@@ -1,0 +1,450 @@
+{
+  "paciente": {
+    "nome": "Gestante",
+    "idade": 23,
+    "peso": 88,
+    "gestacao": "16 semanas",
+    "diagnostico": "Início de Diabetes Gestacional",
+    "biotipo": "Endomorfo"
+  },
+  "refeicoes": {
+    "cafe_manha": {
+      "titulo": "Café da Manhã",
+      "horario": "07:00 - 08:00",
+      "foco": "Carboidrato complexo, proteína de alto valor biológico e gordura saudável para um bom controle glicêmico matinal.",
+      "opcoes": [
+        {
+          "id": 1,
+          "nome": "Tapivo com Mamão",
+          "ingredientes": [
+            "1 ovo mexido ou cozido",
+            "2-3 colheres de sopa de goma de tapioca hidratada",
+            "Salsinha e cebolinha a gosto",
+            "1 fatia média de mamão"
+          ],
+          "preparo": "Misture o ovo mexido com salsinha e cebolinha à goma de tapioca hidratada e asse em frigideira antiaderente. Sirva com mamão.",
+          "substituicoes": {
+            "mamao": ["1/2 xícara de frutas vermelhas", "1 fatia pequena de melão"],
+            "adicional": ["1 colher de chá de sementes de chia ou linhaça"]
+          }
+        }
+      ]
+    },
+    "lanche_manha": {
+      "titulo": "Lanche da Manhã",
+      "horario": "10:00 - 11:00",
+      "foco": "Pequena refeição para evitar longos períodos de jejum e manter a glicemia estável.",
+      "opcoes": [
+        {
+          "id": 1,
+          "nome": "Fruta com Oleaginosas",
+          "ingredientes": ["1 fruta pequena (maçã, pera, pêssego)", "5-6 unidades de castanhas ou nozes"]
+        },
+        {
+          "id": 2,
+          "nome": "Iogurte com Aveia",
+          "ingredientes": ["1 pote de iogurte natural desnatado", "1 colher de sopa de aveia em flocos", "1/2 xícara de frutas picadas"]
+        },
+        {
+          "id": 3,
+          "nome": "Pão Integral com Queijo",
+          "ingredientes": ["1 fatia de pão integral", "1 fatia de queijo branco", "Orégano a gosto"]
+        },
+        {
+          "id": 4,
+          "nome": "Vitamina de Abacate",
+          "ingredientes": ["1/4 de abacate pequeno", "100ml de leite desnatado", "Sem açúcar"]
+        }
+      ]
+    },
+    "almoco": {
+      "titulo": "Almoço",
+      "horario": "13:00 - 14:00",
+      "foco": "Refeição completa com carboidrato complexo, proteína magra, leguminosas e grande variedade de vegetais.",
+      "opcoes": [
+        {
+          "id": 1,
+          "nome": "Carne Moída com Abóbora e Arroz Integral",
+          "ingredientes": [
+            "120g de carne moída magra (patinho, acém)",
+            "1 xícara de abóbora cabotiá picada",
+            "1/2 cebola média picada",
+            "2 dentes de alho picados",
+            "1/2 xícara de molho de tomate caseiro (sem açúcar)",
+            "1/4 xícara de água ou caldo de legumes caseiro",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "Sal, pimenta do reino, cheiro verde a gosto",
+            "1/2 xícara de arroz integral cozido",
+            "1 xícara de folhas verdes escuras"
+          ],
+          "preparo": [
+            "Em uma panela, aqueça o azeite e refogue a cebola e o alho até dourarem.",
+            "Adicione a carne moída e refogue até dourar e soltar. Tempere com sal e pimenta.",
+            "Acrescente a abóbora picada, o molho de tomate e a água/caldo de legumes. Misture bem.",
+            "Tampe a panela e cozinhe em fogo baixo por cerca de 15-20 minutos, ou até a abóbora ficar macia e o molho encorpado.",
+            "Finalize com cheiro verde picado.",
+            "Sirva acompanhada de arroz integral e folhas verdes."
+          ],
+          "substituicoes": {
+            "carne_moida": ["Frango moído", "Carne de panela desfiada"],
+            "abobora": ["Abobrinha", "Berinjela", "Chuchu"],
+            "arroz_integral": ["Quinoa", "Batata doce cozida (1 pequena)", "Inhame cozido (1 pequeno)"],
+            "folhas_verdes": ["Brócolis cozido no vapor", "Couve-flor", "Vagem"]
+          }
+        },
+        {
+          "id": 2,
+          "nome": "Frango Xadrez Light com Arroz Integral",
+          "ingredientes": [
+            "150g de peito de frango cortado em cubos",
+            "1/2 cebola média picada",
+            "1/2 pimentão verde picado",
+            "1/2 pimentão vermelho picado",
+            "1/2 xícara de brócolis em floretes",
+            "1/4 xícara de molho shoyu light",
+            "1 colher de chá de amido de milho (opcional)",
+            "1/4 xícara de água",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "1/2 xícara de arroz integral cozido"
+          ],
+          "preparo": [
+            "Em uma frigideira grande ou wok, aqueça o azeite e doure o frango em cubos.",
+            "Adicione a cebola e os pimentões, refogando por alguns minutos.",
+            "Acrescente o brócolis e refogue por mais 2-3 minutos.",
+            "Misture o shoyu light com a água e o amido de milho. Despeje sobre o frango e os vegetais.",
+            "Cozinhe em fogo baixo, mexendo sempre, até o molho engrossar levemente.",
+            "Sirva acompanhado de arroz integral."
+          ],
+          "substituicoes": {
+            "frango": ["Filé mignon suíno em cubos", "Tofu firme em cubos"],
+            "pimentoes": ["Cenoura em rodelas", "Vagem picada"],
+            "brocolis": ["Couve-flor", "Cogumelos fatiados"],
+            "arroz_integral": ["Quinoa", "Batata doce cozida", "Inhame cozido"]
+          }
+        },
+        {
+          "id": 3,
+          "nome": "Salmão Assado com Legumes e Quinoa",
+          "ingredientes": [
+            "150g de filé de salmão",
+            "1/2 xícara de quinoa cozida",
+            "1 xícara de legumes variados picados (brócolis, cenoura, abobrinha)",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "Suco de 1/2 limão",
+            "Sal, pimenta do reino, dill fresco a gosto"
+          ],
+          "preparo": [
+            "Pré-aqueça o forno a 180°C.",
+            "Em uma assadeira, coloque os legumes picados. Regue com metade do azeite.",
+            "Coloque o filé de salmão sobre os legumes. Regue com o restante do azeite e suco de limão.",
+            "Leve ao forno por 15-20 minutos, ou até o salmão estar cozido.",
+            "Sirva acompanhado de quinoa cozida."
+          ],
+          "substituicoes": {
+            "salmao": ["Tilápia", "Merluza", "Frango grelhado"],
+            "quinoa": ["Arroz integral", "Batata doce cozida", "Inhame cozido"],
+            "legumes": ["Couve-flor", "Vagem", "Aspargos"]
+          }
+        },
+        {
+          "id": 4,
+          "nome": "Ensopado de Carne com Legumes",
+          "ingredientes": [
+            "150g de carne bovina magra para ensopado em cubos",
+            "1/2 cebola média picada",
+            "2 dentes de alho picados",
+            "1 cenoura média em rodelas",
+            "1 batata doce pequena em cubos",
+            "1/2 xícara de ervilhas frescas ou congeladas",
+            "1 xícara de molho de tomate caseiro",
+            "1 xícara de água ou caldo de carne caseiro",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "1/2 xícara de arroz integral cozido"
+          ],
+          "preparo": [
+            "Em uma panela de pressão, aqueça o azeite e doure a carne em cubos.",
+            "Adicione a cebola e o alho, refogando até ficarem macios.",
+            "Acrescente a cenoura, a batata doce, o molho de tomate e a água/caldo.",
+            "Cozinhe por cerca de 20-25 minutos após pegar pressão.",
+            "Adicione as ervilhas nos últimos 5 minutos de cozimento.",
+            "Sirva acompanhado de arroz integral."
+          ],
+          "substituicoes": {
+            "carne_bovina": ["Carne de porco magra em cubos", "Frango em cubos"],
+            "batata_doce": ["Inhame", "Mandioquinha"],
+            "ervilhas": ["Vagem picada", "Milho verde (com moderação)"],
+            "arroz_integral": ["Quinoa", "Purê de abóbora"]
+          }
+        },
+        {
+          "id": 5,
+          "nome": "Peito de Frango Grelhado com Purê de Couve-flor e Salada",
+          "ingredientes": [
+            "150g de peito de frango grelhado",
+            "1 xícara de couve-flor cozida no vapor",
+            "1 colher de sopa de creme de ricota light",
+            "1 colher de chá de azeite de oliva extra virgem",
+            "2 xícaras de salada de folhas verdes variadas",
+            "1/2 tomate picado",
+            "1/4 pepino picado"
+          ],
+          "preparo": [
+            "Tempere o peito de frango e grelhe até dourar e cozinhar por completo.",
+            "Cozinhe a couve-flor no vapor até ficar bem macia.",
+            "Amasse a couve-flor com o creme de ricota e azeite até obter um purê.",
+            "Prepare a salada com as folhas verdes, tomate e pepino.",
+            "Sirva o frango com o purê e a salada."
+          ],
+          "substituicoes": {
+            "frango": ["Filé de peixe grelhado", "Omelete de claras"],
+            "couve_flor": ["Brócolis", "Abóbora cozida"],
+            "creme_ricota": ["Requeijão light", "Cream cheese light"]
+          }
+        }
+      ]
+    },
+    "lanche_tarde": {
+      "titulo": "Lanche da Tarde",
+      "horario": "16:00 - 17:00",
+      "foco": "Similar ao lanche da manhã, com opções que combinem carboidratos, proteínas e gorduras.",
+      "opcoes": [
+        {
+          "id": 1,
+          "nome": "Fruta com Pasta de Amendoim",
+          "ingredientes": ["1 fruta média (banana, laranja)", "1 colher de sopa de pasta de amendoim integral"]
+        },
+        {
+          "id": 2,
+          "nome": "Suco Verde",
+          "ingredientes": ["Couve", "Pepino", "Maçã verde", "Limão", "Sem coar e sem açúcar"]
+        },
+        {
+          "id": 3,
+          "nome": "Palitos de Vegetais com Homus",
+          "ingredientes": ["Palitos de cenoura e pepino", "2 colheres de sopa de homus"]
+        },
+        {
+          "id": 4,
+          "nome": "Pipoca Natural",
+          "ingredientes": ["1 xícara de pipoca feita na água", "Pouco sal"]
+        },
+        {
+          "id": 5,
+          "nome": "Pão Integral com Patê de Atum",
+          "ingredientes": ["1 fatia de pão integral", "Atum em água", "Azeite", "Salsinha"]
+        }
+      ]
+    },
+    "jantar": {
+      "titulo": "Jantar",
+      "horario": "19:00 - 20:00",
+      "foco": "Refeição mais leve que o almoço, com atenção redobrada ao controle de carboidratos para evitar picos glicêmicos noturnos.",
+      "opcoes": [
+        {
+          "id": 1,
+          "nome": "Frango Desfiado ao Molho com Legumes",
+          "ingredientes": [
+            "120g de peito de frango cozido e desfiado",
+            "1/2 cebola pequena picada",
+            "1 dente de alho picado",
+            "1/2 xícara de molho de tomate caseiro",
+            "1/4 xícara de água ou caldo de frango caseiro",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "1 xícara de legumes cozidos no vapor"
+          ],
+          "preparo": [
+            "Em uma panela, aqueça o azeite e refogue a cebola e o alho.",
+            "Adicione o frango desfiado e refogue por alguns minutos.",
+            "Acrescente o molho de tomate e a água/caldo de frango.",
+            "Cozinhe em fogo baixo por cerca de 5-7 minutos.",
+            "Sirva acompanhado dos legumes cozidos no vapor."
+          ],
+          "substituicoes": {
+            "frango": ["Carne desfiada", "Atum em água"],
+            "legumes": ["Vagem", "Abobrinha", "Berinjela"]
+          }
+        },
+        {
+          "id": 2,
+          "nome": "Omelete de Legumes com Salada",
+          "ingredientes": [
+            "2 ovos grandes",
+            "1/4 xícara de legumes picados (espinafre, tomate, cogumelos)",
+            "1 colher de sopa de queijo cottage",
+            "1 colher de chá de azeite de oliva extra virgem",
+            "1 xícara de salada de folhas verdes variadas"
+          ],
+          "preparo": [
+            "Em uma tigela, bata os ovos com sal, pimenta e orégano.",
+            "Em uma frigideira antiaderente, aqueça o azeite e refogue os legumes.",
+            "Despeje os ovos batidos sobre os legumes. Espalhe o queijo cottage por cima.",
+            "Cozinhe em fogo baixo até as bordas da omelete começarem a firmar.",
+            "Sirva acompanhada de salada de folhas verdes."
+          ],
+          "substituicoes": {
+            "legumes": ["Abobrinha", "Brócolis", "Couve-flor"],
+            "queijo": ["Queijo minas frescal light ralado"]
+          }
+        },
+        {
+          "id": 3,
+          "nome": "Sopa Creme de Abóbora com Frango",
+          "ingredientes": [
+            "1 xícara de abóbora cabotiá picada",
+            "1/2 xícara de peito de frango cozido e desfiado",
+            "1/4 cebola pequena picada",
+            "1 dente de alho picado",
+            "1 xícara de caldo de legumes caseiro",
+            "1 colher de sopa de azeite de oliva extra virgem"
+          ],
+          "preparo": [
+            "Em uma panela, aqueça o azeite e refogue a cebola e o alho.",
+            "Adicione a abóbora picada e o caldo de legumes. Cozinhe até a abóbora ficar macia.",
+            "Bata no liquidificador até obter um creme homogêneo.",
+            "Retorne o creme para a panela, adicione o frango desfiado e aqueça bem.",
+            "Sirva a sopa creme de abóbora com frango."
+          ],
+          "substituicoes": {
+            "abobora": ["Abóbora japonesa", "Moranga"],
+            "frango": ["Carne desfiada", "Lentilha cozida"]
+          }
+        },
+        {
+          "id": 4,
+          "nome": "Peixe Branco Cozido com Purê de Mandioquinha",
+          "ingredientes": [
+            "150g de filé de peixe branco (tilápia, merluza)",
+            "1 xícara de mandioquinha cozida",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "Suco de 1/2 limão",
+            "1/2 xícara de brócolis cozido no vapor"
+          ],
+          "preparo": [
+            "Tempere o filé de peixe com sal, pimenta e suco de limão.",
+            "Cozinhe o peixe no vapor ou em pouca água até ficar macio.",
+            "Amasse a mandioquinha cozida com metade do azeite.",
+            "Sirva o peixe com o purê de mandioquinha e o brócolis."
+          ],
+          "substituicoes": {
+            "peixe": ["Frango desfiado", "Ovos cozidos"],
+            "mandioquinha": ["Batata doce", "Inhame"],
+            "brocolis": ["Couve-flor", "Vagem"]
+          }
+        },
+        {
+          "id": 5,
+          "nome": "Salada Completa com Grão de Bico e Frango Grelhado",
+          "ingredientes": [
+            "100g de peito de frango grelhado em tiras",
+            "1/2 xícara de grão de bico cozido",
+            "2 xícaras de folhas verdes variadas",
+            "1/2 tomate picado",
+            "1/4 pepino picado",
+            "1/4 cebola roxa fatiada finamente",
+            "1 colher de sopa de azeite de oliva extra virgem",
+            "Suco de 1/2 limão"
+          ],
+          "preparo": [
+            "Em um prato grande, disponha as folhas verdes.",
+            "Adicione o frango grelhado, o grão de bico, tomate, pepino e cebola roxa.",
+            "Misture o azeite com suco de limão para fazer o molho.",
+            "Regue a salada com o molho e sirva imediatamente."
+          ],
+          "substituicoes": {
+            "frango": ["Atum em água", "Ovos cozidos", "Tofu grelhado"],
+            "grao_bico": ["Lentilha cozida", "Feijão fradinho cozido"],
+            "vegetais": ["Cenoura ralada", "Beterraba ralada"]
+          }
+        }
+      ]
+    },
+    "lanche_noite": {
+      "titulo": "Lanche da Noite (Opcional)",
+      "horario": "22:00 - 22:30",
+      "foco": "Pequena porção de proteína e/ou gordura saudável para evitar hipoglicemia noturna e auxiliar no controle da glicemia de jejum.",
+      "opcoes": [
+        {
+          "id": 1,
+          "nome": "Leite Morno com Canela",
+          "ingredientes": ["1 copo de leite desnatado morno", "Uma pitada de canela"]
+        },
+        {
+          "id": 2,
+          "nome": "Queijo Branco",
+          "ingredientes": ["1 fatia pequena de queijo branco"]
+        },
+        {
+          "id": 3,
+          "nome": "Oleaginosas",
+          "ingredientes": ["5-6 unidades de amêndoas ou nozes"]
+        },
+        {
+          "id": 4,
+          "nome": "Iogurte Natural",
+          "ingredientes": ["1/2 xícara de iogurte natural desnatado"]
+        }
+      ]
+    }
+  },
+  "enjoos": {
+    "titulo": "Estratégias para Alívio de Enjoos",
+    "orientacoes": [
+      "Coma pequenas porções e com frequência",
+      "Evite alimentos gordurosos, fritos e muito condimentados",
+      "Prefira alimentos secos e de fácil digestão",
+      "Evite misturar líquidos e sólidos nas refeições",
+      "Use gengibre como aliado contra enjoos",
+      "Evite cheiros fortes",
+      "Descanse sempre que sentir necessidade"
+    ],
+    "alimentos_bebidas": [
+      {
+        "nome": "Chá de Gengibre",
+        "descricao": "Prepare com gengibre fresco ralado e água quente. Não adicione açúcar."
+      },
+      {
+        "nome": "Água com Limão",
+        "descricao": "Algumas gotas de limão na água podem ajudar a refrescar o paladar."
+      },
+      {
+        "nome": "Biscoitos de Arroz",
+        "descricao": "Consumir pequenas porções ao acordar pode ajudar a assentar o estômago."
+      },
+      {
+        "nome": "Frutas Cítricas",
+        "descricao": "Laranja, tangerina, limão em pequenas quantidades podem ser refrescantes."
+      },
+      {
+        "nome": "Maçã",
+        "descricao": "Rica em fibras, pode ajudar a estabilizar o açúcar no sangue."
+      },
+      {
+        "nome": "Caldo de Legumes",
+        "descricao": "Um caldo morno e leve, feito com legumes sem adição de gordura."
+      }
+    ],
+    "refeicoes_enjoo": [
+      {
+        "nome": "Sopa Leve de Legumes com Frango",
+        "ingredientes": ["Abobrinha", "Chuchu", "Cenoura (pouca quantidade)", "Brócolis", "Couve-flor", "Frango desfiado"],
+        "preparo": "Prepare uma sopa com legumes de baixo índice glicêmico e adicione frango desfiado. Tempere com ervas frescas e pouco sal."
+      },
+      {
+        "nome": "Creme de Abóbora com Gengibre",
+        "ingredientes": ["Abóbora cabotiá", "Gengibre fresco ralado", "Caldo de legumes"],
+        "preparo": "Conforme a receita já fornecida, mas com um toque extra de gengibre fresco ralado. Sirva morno."
+      },
+      {
+        "nome": "Omelete Leve com Espinafre",
+        "ingredientes": ["Ovos", "Espinafre picado", "Torradas integrais"],
+        "preparo": "Uma omelete feita com ovos e espinafre picado, cozida em fogo baixo."
+      },
+      {
+        "nome": "Canja de Galinha Leve",
+        "ingredientes": ["Arroz integral (pouco)", "Frango desfiado", "Legumes variados"],
+        "preparo": "Prepare uma canja com pouco arroz integral, frango desfiado e bastante legumes. Evite temperos fortes."
+      }
+    ]
+  }
+}
+
