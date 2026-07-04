@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Minha Dieta &amp; Compras</title>
+<style>
+  :root {
+    --paper: #eff2e8;
+    --card: #fbfaf4;
+    --card-soft: #f3f2e9;
+    --ink: #202b1d;
+    --ink-soft: #57624c;
+    --line: #d6dbc7;
+    --accent-herb: #3e6b3b;
+    --accent-herb-strong: #2b4e29;
+    --accent-yolk: #d99a24;
+    --accent-yolk-ink: #543c0a;
+    --shadow: 0 1px 2px rgba(32, 43, 29, 0.06), 0 4px 14px rgba(32, 43, 29, 0.05);
+    --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161c13;
+      --card: #1e2519;
+      --card-soft: #232b1c;
+      --ink: #eae8dc;
+      --ink-soft: #a9b39c;
+      --line: #333c2b;
+      --accent-herb: #7fae73;
+      --accent-herb-strong: #9cc492;
+      --accent-yolk: #f0b94a;
+      --accent-yolk-ink: #2a1d02;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-herb);
+    outline-offset: 2px;
+  }
+
+  .app-header {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2.25rem 1.5rem 1rem;
+  }
+
+  .app-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  .app-header p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    max-width: 60ch;
+  }
+
+  .layout {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  nav.tabs {
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tab {
+    text-align: left;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    color: var(--ink-soft);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    padding: 0.55rem 0.75rem;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .tab:hover { background: var(--card-soft); color: var(--ink); }
+
+  .tab[aria-selected="true"] {
+    color: var(--accent-herb-strong);
+    border-left-color: var(--accent-herb);
+    background: var(--card-soft);
+    font-weight: 600;
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 1.25rem 1.4rem;
+  }
+
+  .card + .card { margin-top: 1rem; }
+
+  .diet-meal h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    margin: 0 0 0.15rem;
+  }
+
+  .diet-meal .meal-meta {
+    color: var(--accent-yolk-ink);
+    background: color-mix(in srgb, var(--accent-yolk) 22%, transparent);
+    display: inline-block;
+    font-size: 0.78rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .diet-meal .meal-meta { color: #2a1d02; }
+  }
+
+  .suggestion {
+    border-top: 1px dashed var(--line);
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .suggestion:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+
+  .suggestion h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-herb-strong);
+    margin: 0 0 0.3rem;
+  }
+
+  .suggestion p { margin: 0; color: var(--ink); }
+
+  details.info-note {
+    background: var(--card-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    margin-top: 1.25rem;
+  }
+  details.info-note summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-display);
+  }
+  details.info-note ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+  details.info-note li { margin-bottom: 0.4rem; }
+
+  .semana-intro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+  .semana-intro strong { color: var(--ink); }
+
+  .progresso {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .progresso-barra {
+    flex: 1;
+    height: 8px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progresso-fill {
+    height: 100%;
+    background: var(--accent-herb);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .progresso span {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  table.menu-semana {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+  }
+  table.menu-semana th, table.menu-semana td {
+    text-align: left;
+    padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.menu-semana th {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent-herb-strong);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  table.menu-semana td.dia-nome { font-weight: 600; white-space: nowrap; }
+  .table-scroll { overflow-x: auto; }
+
+  h2.categoria-titulo {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--accent-herb-strong);
+    margin: 1.6rem 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  h2.categoria-titulo:first-of-type { margin-top: 0.5rem; }
+
+  ul.lista-itens { list-style: none; margin: 0; padding: 0; }
+
+  li.item-linha {
+    border-bottom: 1px solid var(--line);
+    padding: 0.6rem 0.1rem;
+  }
+  li.item-linha:last-child { border-bottom: none; }
+
+  .item-linha-topo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .item-check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+  }
+
+  .item-check input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+    accent-color: var(--accent-herb);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .item-nome {
+    overflow-wrap: break-word;
+  }
+
+  .tag-opcional {
+    font-size: 0.72rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-left: 0.3rem;
+  }
+
+  .item-linha.comprado .item-nome {
+    text-decoration: line-through;
+    color: var(--ink-soft);
+  }
+  .item-linha.comprado .item-qtd { color: var(--ink-soft); }
+
+  .item-qtd {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .expandir {
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    width: 26px;
+    height: 26px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .expandir:hover { background: var(--card-soft); }
+  .expandir[aria-expanded="true"] { transform: rotate(180deg); }
+
+  ul.usos {
+    list-style: none;
+    margin: 0.55rem 0 0 2.1rem;
+    padding: 0.55rem 0.8rem;
+    background: var(--card-soft);
+    border-radius: 8px;
+    font-size: 0.83rem;
+    color: var(--ink-soft);
+  }
+  ul.usos li { padding: 0.15rem 0; }
+  ul.usos li + li { border-top: 1px dashed var(--line); }
+  ul.usos[hidden] { display: none; }
+
+  .legenda-estimativa {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+
+  .receita-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--ink-soft);
+    text-underline-offset: 3px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .receita-link:hover { color: var(--accent-herb-strong); text-decoration-color: var(--accent-herb-strong); }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 8, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 50;
+  }
+  .modal-overlay.aberto { display: flex; }
+
+  .modal-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    max-width: 480px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 1.5rem 1.6rem;
+    position: relative;
+  }
+  .modal-card h3 {
+    font-family: var(--font-display);
+    margin: 0 0 0.75rem;
+    padding-right: 1.75rem;
+    text-wrap: balance;
+  }
+  .modal-card p { margin: 0; line-height: 1.6; color: var(--ink); }
+
+  .modal-fechar {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--card-soft);
+    color: var(--ink-soft);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .modal-fechar:hover { background: var(--line); color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .layout { grid-template-columns: 1fr; }
+    nav.tabs {
+      position: static;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 0.4rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .tab { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; border-radius: 6px 6px 0 0; }
+    .tab[aria-selected="true"] { border-left-color: transparent; border-bottom-color: var(--accent-herb); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Minha Dieta &amp; Lista de Compras</h1>
+    <p>O plano alimentar completo, organizado em 4 semanas que se revezam sem repetir a mesma combinação, reaproveitando os mesmos ingredientes em mais de uma receita para gastar menos e desperdiçar menos.</p>
+  </header>
+
+  <div class="layout">
+    <nav class="tabs" role="tablist" aria-label="Seções">
+      <button class="tab" role="tab" data-tab="dieta" aria-selected="true">A Dieta</button>
+      <button class="tab" role="tab" data-tab="semana1" aria-selected="false">Semana 1</button>
+      <button class="tab" role="tab" data-tab="semana2" aria-selected="false">Semana 2</button>
+      <button class="tab" role="tab" data-tab="semana3" aria-selected="false">Semana 3</button>
+      <button class="tab" role="tab" data-tab="semana4" aria-selected="false">Semana 4</button>
+    </nav>
+
+    <main>
+      <section id="tab-dieta" class="panel active">
+        <div class="card diet-meal">
+          <h2>Desjejum</h2>
+          <div class="suggestion">
+            <h3>Sugestão 01</h3>
+            <p>100g de mamão ou outra fruta da preferência + Crep fit: 2 ovos + 2 colheres de sopa rasa de farelo de aveia ou tapioca + 1 colher de chá de fermento em pó e sal a gosto. Selar na frigideira e rechear com 60g de frango desfiado + 1 xícara de café preto.</p>
+          </div>
+          <div class="suggestion">
+            <h3>Sugestão 02</h3>
+            <p>1 fruta da preferência com 1 colher de fibras + 1 fatia de pão integral com patê de frango: usa 60g de frango com 1 colher de sopa de requeijão e sal a gosto. Distribuir em cima do pão, salpicar queijo parmesão e levar para assar até dourar + 1 xícara de café preto.</p>
+          </div>
+        </div>
+
+        <div class="card diet-meal">
+          <h2>Almoço</h2>
+          <span class="meal-meta">12:30h · 2 cápsulas de Ômega-3</span>
+          <div class="suggestion">
+            <p>
+              Mix de folhosos: alface, rúcula, agrião à vontade. Para temperar a salada, utilizar 1 colher de sopa de azeite de oliva extra-virgem e limão a gosto.<br />
+              150g de legumes cozidos/refogados.<br />
+              70g de arroz ou macarrão ou 90g de batata, mandioca ou batata doce OU 80g de feijão cozido ou lentilha.<br />
+              1 bife grande (150g) de gado, frango ou peixe refogado/grelhado.
+            </p>
+          </div>
+        </div>
+
+        <div class="card diet-meal">
+          <h2>Lanche da tarde</h2>
+          <span class="meal-meta">16h</span>
+          <div class="suggestion">
+            <h3>Sugestão 01</h3>
+            <p>Sanduíche proteico: 2 fatias (50g) de pão integral ou 1 cacetinho + 60g de frango ou carne moída + verduras a gosto + 80g de mamão ou outra fruta.</p>
+          </div>
+          <div class="suggestion">
+            <h3>Sugestão 03</h3>
+            <p>Panqueca de banana: 2 ovos + 1 banana + 1 colher de farelo de aveia + cacau a gosto + 1 colher de chá de fermento em pó. Assar no micro-ondas ou fazer tipo panqueca — pode comer salgada, retirando a banana e recheando com 50g de carne.</p>
+          </div>
+          <div class="suggestion">
+            <h3>Sugestão 04</h3>
+            <p>Pão proteico: 1 fatia (25g) de pão integral com patê de ovos: 2 ovos cozidos + 1 colher de chá de requeijão e sal a gosto. Misturar bem, colocar em cima do pão e salpicar queijo ralado tipo parmesão. Levar na airfryer até dourar + 80g de mamão ou outra fruta.</p>
+          </div>
+        </div>
+
+        <div class="card diet-meal">
+          <h2>Jantar</h2>
+          <span class="meal-meta">20:00h · 1 colher de sobremesa de vinagre de maçã com 50ml de água</span>
+          <div class="suggestion">
+            <h3>Sugestão 02</h3>
+            <p>Crepioca/crepizza: 2 ovos + 2 colheres de sopa de farelo de aveia + sal e temperos a gosto. Selar na frigideira. Recheio: 80g de carne moída ou frango + saladas/legumes.</p>
+          </div>
+        </div>
+
+        <details class="info-note">
+          <summary>Como a lista de compras foi pensada</summary>
+          <ul>
+            <li><strong>Variação sem repetir:</strong> a cada semana a proteína, o carboidrato, os legumes e as frutas do almoço giram em uma ordem diferente, então a Semana 2 nunca cai exatamente na mesma sequência da Semana 1 — mas usa o mesmo tipo de ingrediente, só muda o dia em que ele aparece.</li>
+            <li><strong>Farelo de aveia em vez de tapioca:</strong> escolhemos sempre farelo de aveia no crep fit para reaproveitar o mesmo pacote usado na panqueca e na crepioca do jantar, em vez de comprar dois itens diferentes.</li>
+            <li><strong>Pão integral fatiado</strong> é usado no desjejum, no lanche e no pão proteico — um pacote só cobre as três receitas na semana.</li>
+            <li><strong>O legume do jantar é o mesmo do almoço:</strong> a crepioca é recheada com o legume que sobrou do almoço daquele dia, então a quantidade comprada já cobre as duas refeições.</li>
+            <li><strong>Itens marcados com "~"</strong> são estimativas (o texto original diz "a gosto" ou "à vontade"), então a quantidade é um palpite razoável para não faltar.</li>
+            <li><strong>Peixe (tilápia) só 1x por semana:</strong> por ser mais caro, ele aparece em apenas um almoço da semana — nesse dia dá pra trocar por frango ou bife na mesma quantidade se preferir não comprar peixe.</li>
+            <li>Sal e temperos básicos não entram na lista — presume-se que já estão na despensa.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="tab-semana1" class="panel"></section>
+      <section id="tab-semana2" class="panel"></section>
+      <section id="tab-semana3" class="panel"></section>
+      <section id="tab-semana4" class="panel"></section>
+    </main>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <button type="button" class="modal-fechar" aria-label="Fechar">&times;</button>
+      <h3 id="modal-titulo"></h3>
+      <p id="modal-corpo"></p>
+    </div>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Ingredientes ----------
+  var ING = {
+    frango:       { nome: "Peito de frango (para desfiar/grelhar)", unidade: "g", cat: "Proteínas" },
+    carneMoida:   { nome: "Carne moída", unidade: "g", cat: "Proteínas" },
+    bife:         { nome: "Bife (patinho ou alcatra)", unidade: "g", cat: "Proteínas" },
+    peixe:        { nome: "Filé de peixe (tilápia)", unidade: "g", cat: "Proteínas", opcional: true },
+
+    ovos:         { nome: "Ovos", unidade: "un", cat: "Ovos e Laticínios" },
+    requeijao:    { nome: "Requeijão", unidade: "g", cat: "Ovos e Laticínios" },
+    parmesao:     { nome: "Queijo parmesão ralado", unidade: "g", cat: "Ovos e Laticínios" },
+
+    arroz:          { nome: "Arroz", unidade: "g", cat: "Carboidratos" },
+    macarrao:       { nome: "Macarrão", unidade: "g", cat: "Carboidratos" },
+    batataInglesa:  { nome: "Batata inglesa", unidade: "g", cat: "Carboidratos" },
+    mandioca:       { nome: "Mandioca", unidade: "g", cat: "Carboidratos" },
+    batataDoce:     { nome: "Batata doce", unidade: "g", cat: "Carboidratos" },
+    feijao:         { nome: "Feijão cozido", unidade: "g", cat: "Carboidratos" },
+    lentilha:       { nome: "Lentilha cozida", unidade: "g", cat: "Carboidratos" },
+
+    folhosos:   { nome: "Mix de folhosos (alface, rúcula, agrião)", unidade: "maço", cat: "Hortifruti", estimado: true },
+    limao:      { nome: "Limão", unidade: "un", cat: "Hortifruti", estimado: true },
+    cenoura:    { nome: "Cenoura", unidade: "g", cat: "Hortifruti" },
+    abobrinha:  { nome: "Abobrinha", unidade: "g", cat: "Hortifruti" },
+    brocolis:   { nome: "Brócolis", unidade: "g", cat: "Hortifruti" },
+    couveFlor:  { nome: "Couve-flor", unidade: "g", cat: "Hortifruti" },
+    chuchu:     { nome: "Chuchu", unidade: "g", cat: "Hortifruti" },
+    vagem:      { nome: "Vagem", unidade: "g", cat: "Hortifruti" },
+    beterraba:  { nome: "Beterraba", unidade: "g", cat: "Hortifruti" },
+    repolho:    { nome: "Repolho", unidade: "g", cat: "Hortifruti" },
+
+    mamao:    { nome: "Mamão", unidade: "g", cat: "Frutas" },
+    banana:   { nome: "Banana", unidade: "un", cat: "Frutas" },
+    maca:     { nome: "Maçã", unidade: "un", cat: "Frutas" },
+    morango:  { nome: "Morango", unidade: "g", cat: "Frutas" },
+    laranja:  { nome: "Laranja", unidade: "un", cat: "Frutas" },
+    uva:      { nome: "Uva", unidade: "g", cat: "Frutas" },
+    pera:     { nome: "Pera", unidade: "un", cat: "Frutas" },
+
+    paoIntegral: { nome: "Pão de forma integral", unidade: "fatia", cat: "Padaria" },
+
+    farelo:       { nome: "Farelo de aveia", unidade: "g", cat: "Mercearia" },
+    fermento:     { nome: "Fermento em pó", unidade: "g", cat: "Mercearia" },
+    cafe:         { nome: "Café em pó", unidade: "g", cat: "Mercearia" },
+    cacau:        { nome: "Cacau em pó", unidade: "g", cat: "Mercearia", estimado: true },
+    vinagreMaca:  { nome: "Vinagre de maçã", unidade: "ml", cat: "Mercearia" },
+    omega3:       { nome: "Cápsulas de Ômega-3", unidade: "cáps", cat: "Mercearia" },
+    azeite:       { nome: "Azeite de oliva extra-virgem", unidade: "ml", cat: "Mercearia" },
+    fibras:       { nome: "Fibras (farelo/psyllium)", unidade: "g", cat: "Mercearia" }
+  };
+
+  var CATEGORIA_ORDEM = ["Proteínas", "Ovos e Laticínios", "Carboidratos", "Hortifruti", "Frutas", "Padaria", "Mercearia"];
+
+  var CARB_QTD = { arroz: 70, macarrao: 70, batataInglesa: 90, mandioca: 90, batataDoce: 90, feijao: 80, lentilha: 80 };
+
+  var PROT_GRELHADO = { frango: "Frango grelhado", bife: "Bife grelhado", peixe: "Peixe grelhado" };
+
+  var PROTEINAS_BASE = ["frango", "bife"];
+  var CARBS = ["arroz", "macarrao", "batataDoce", "mandioca", "feijao", "batataInglesa", "lentilha"];
+
+  var SEMANAS_PALETA = [
+    { frutas: ["mamao", "banana"],   legumes: ["cenoura", "abobrinha"] },
+    { frutas: ["maca", "morango"],   legumes: ["brocolis", "couveFlor"] },
+    { frutas: ["banana", "pera"],    legumes: ["chuchu", "vagem"] },
+    { frutas: ["laranja", "uva"],    legumes: ["beterraba", "repolho"] }
+  ];
+
+  var DIAS_SEMANA = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+
+  // ---------- Geração do cardápio ----------
+  function fruitPortion(fruitKey, gramsIfBulk) {
+    return ING[fruitKey].unidade === "un" ? 1 : gramsIfBulk;
+  }
+
+  function gerarSemana(w) {
+    var paleta = SEMANAS_PALETA[w];
+    var diaPeixe = (w * 2 + 2) % 7;
+    var dias = [];
+    for (var i = 0; i < 7; i++) {
+      var proteina = i === diaPeixe ? "peixe" : PROTEINAS_BASE[(i + w) % 2];
+      var carboidrato = CARBS[(i + w * 2) % 7];
+      var legume = paleta.legumes[i % 2];
+      var fruta = paleta.frutas[(i + 1) % 2];
+      var jantarRecheio = proteina === "frango" ? "frango" : (proteina === "bife" ? "carneMoida" : (i % 2 === 0 ? "frango" : "carneMoida"));
+      var lancheTipo = ["lanche1", "lanche3", "lanche4"][(i + w) % 3];
+      dias.push({
+        nome: DIAS_SEMANA[i],
+        desjejumTipo: i % 2 === 0 ? "desjejum1" : "desjejum2",
+        proteina: proteina,
+        carboidrato: carboidrato,
+        legume: legume,
+        fruta: fruta,
+        jantarRecheio: jantarRecheio,
+        lancheTipo: lancheTipo,
+        lancheRecheio: jantarRecheio
+      });
+    }
+    return dias;
+  }
+
+  // ---------- Receitas (itens por dia) ----------
+  function itensDesjejum(dia) {
+    if (dia.desjejumTipo === "desjejum1") {
+      return [
+        { ing: dia.fruta, qtd: fruitPortion(dia.fruta, 100) },
+        { ing: "ovos", qtd: 2 },
+        { ing: "farelo", qtd: 20 },
+        { ing: "fermento", qtd: 3 },
+        { ing: "frango", qtd: 60 },
+        { ing: "cafe", qtd: 7 }
+      ];
+    }
+    return [
+      { ing: dia.fruta, qtd: fruitPortion(dia.fruta, 100) },
+      { ing: "fibras", qtd: 10 },
+      { ing: "paoIntegral", qtd: 1 },
+      { ing: "frango", qtd: 60 },
+      { ing: "requeijao", qtd: 20 },
+      { ing: "parmesao", qtd: 10 },
+      { ing: "cafe", qtd: 7 }
+    ];
+  }
+
+  function nomeDesjejum(dia) {
+    return dia.desjejumTipo === "desjejum1" ? "Crep fit com frango" : "Pão integral com patê de frango";
+  }
+
+  function itensAlmoco(dia) {
+    return [
+      { ing: "folhosos", qtd: 1 / 7 },
+      { ing: "azeite", qtd: 13 },
+      { ing: "limao", qtd: 0.3 },
+      { ing: "omega3", qtd: 2 },
+      { ing: dia.legume, qtd: 150 },
+      { ing: dia.carboidrato, qtd: CARB_QTD[dia.carboidrato] },
+      { ing: dia.proteina, qtd: 150 }
+    ];
+  }
+
+  function nomeAlmoco(dia) {
+    var base = PROT_GRELHADO[dia.proteina] + " com " + ING[dia.carboidrato].nome.toLowerCase() + " e " + ING[dia.legume].nome.toLowerCase();
+    if (dia.proteina === "peixe") base += " (ou troque por frango/bife)";
+    return base;
+  }
+
+  function itensLanche(dia) {
+    if (dia.lancheTipo === "lanche1") {
+      return [
+        { ing: "paoIntegral", qtd: 2 },
+        { ing: dia.lancheRecheio, qtd: 60 },
+        { ing: dia.fruta, qtd: fruitPortion(dia.fruta, 80) }
+      ];
+    }
+    if (dia.lancheTipo === "lanche3") {
+      return [
+        { ing: "ovos", qtd: 2 },
+        { ing: "banana", qtd: 1 },
+        { ing: "farelo", qtd: 10 },
+        { ing: "cacau", qtd: 5 },
+        { ing: "fermento", qtd: 3 }
+      ];
+    }
+    return [
+      { ing: "ovos", qtd: 2 },
+      { ing: "paoIntegral", qtd: 1 },
+      { ing: "requeijao", qtd: 7 },
+      { ing: "parmesao", qtd: 10 },
+      { ing: dia.fruta, qtd: fruitPortion(dia.fruta, 80) }
+    ];
+  }
+
+  function nomeLanche(dia) {
+    if (dia.lancheTipo === "lanche1") return "Sanduíche proteico (" + ING[dia.lancheRecheio].nome.toLowerCase() + ")";
+    if (dia.lancheTipo === "lanche3") return "Panqueca de banana";
+    return "Pão proteico com patê de ovos";
+  }
+
+  function itensJantar(dia) {
+    return [
+      { ing: "vinagreMaca", qtd: 10 },
+      { ing: "ovos", qtd: 2 },
+      { ing: "farelo", qtd: 20 },
+      { ing: dia.jantarRecheio, qtd: 80 },
+      { ing: dia.legume, qtd: 50 }
+    ];
+  }
+
+  function nomeJantar(dia) {
+    return "Crepioca recheada com " + ING[dia.jantarRecheio].nome.toLowerCase();
+  }
+
+  // ---------- Texto completo das instruções (para o popup da receita) ----------
+  var PROT_DESCRICAO = { frango: "frango", bife: "gado (bife)", peixe: "peixe" };
+
+  function instrucaoDesjejum(dia) {
+    if (dia.desjejumTipo === "desjejum1") {
+      return "100g de " + ING[dia.fruta].nome.toLowerCase() + " (ou outra fruta da preferência) + Crep fit: 2 ovos + 2 colheres de sopa rasa de farelo de aveia + 1 colher de chá de fermento em pó e sal a gosto. Selar na frigideira e rechear com 60g de frango desfiado. Acompanha 1 xícara de café preto.";
+    }
+    return "1 " + ING[dia.fruta].nome.toLowerCase() + " (ou outra fruta da preferência) com 1 colher de fibras + 1 fatia de pão integral com patê de frango: misture 60g de frango com 1 colher de sopa de requeijão e sal a gosto, distribua em cima do pão, salpique queijo parmesão e leve para assar até dourar. Acompanha 1 xícara de café preto.";
+  }
+
+  function instrucaoAlmoco(dia) {
+    var texto = "Monte um mix de folhosos (alface, rúcula, agrião) à vontade e tempere com 1 colher de sopa de azeite de oliva extra-virgem e limão a gosto. Some 150g de " + ING[dia.legume].nome.toLowerCase() + " cozido/refogado + " + CARB_QTD[dia.carboidrato] + "g de " + ING[dia.carboidrato].nome.toLowerCase() + " + 1 porção (150g) de " + PROT_DESCRICAO[dia.proteina] + " refogado/grelhado. Tome 2 cápsulas de Ômega-3 junto.";
+    if (dia.proteina === "peixe") {
+      texto += " O peixe entra só 1x por semana por ser mais caro — se não estiver em conta nesse dia, substitua por frango ou bife na mesma quantidade (150g) sem problema.";
+    }
+    return texto;
+  }
+
+  function instrucaoLanche(dia) {
+    if (dia.lancheTipo === "lanche1") {
+      return "Sanduíche proteico: 2 fatias (50g) de pão integral + 60g de " + ING[dia.lancheRecheio].nome.toLowerCase() + " + verduras a gosto (reaproveite as do mix do almoço) + 80g de " + ING[dia.fruta].nome.toLowerCase() + ".";
+    }
+    if (dia.lancheTipo === "lanche3") {
+      return "Panqueca de banana: bata 2 ovos + 1 banana + 1 colher de farelo de aveia + cacau a gosto + 1 colher de chá de fermento em pó. Asse no micro-ondas ou frite como panqueca (também pode ser salgada, trocando a banana por 50g de carne).";
+    }
+    return "Pão proteico: misture 2 ovos cozidos + 1 colher de chá de requeijão e sal a gosto, coloque em cima de 1 fatia (25g) de pão integral, salpique queijo parmesão ralado e leve na airfryer até dourar. Acompanha 80g de " + ING[dia.fruta].nome.toLowerCase() + ".";
+  }
+
+  function instrucaoJantar(dia) {
+    return "Antes: 1 colher de sobremesa de vinagre de maçã diluída em 50ml de água. Crepioca/crepizza: bata 2 ovos + 2 colheres de sopa de farelo de aveia + sal e temperos a gosto e selar na frigideira. Recheie com 80g de " + ING[dia.jantarRecheio].nome.toLowerCase() + " + " + ING[dia.legume].nome.toLowerCase() + " (reaproveitado do almoço) e saladas a gosto.";
+  }
+
+  // ---------- Agregação semanal ----------
+  function agregarSemana(dias) {
+    var usos = {};
+    function add(ingKey, qtd, diaNome, refeicao, receita) {
+      if (!usos[ingKey]) usos[ingKey] = { total: 0, usos: [] };
+      usos[ingKey].total += qtd;
+      usos[ingKey].usos.push({ dia: diaNome, refeicao: refeicao, receita: receita, qtd: qtd });
+    }
+    dias.forEach(function (dia) {
+      itensDesjejum(dia).forEach(function (it) { add(it.ing, it.qtd, dia.nome, "Desjejum", nomeDesjejum(dia)); });
+      itensAlmoco(dia).forEach(function (it) { add(it.ing, it.qtd, dia.nome, "Almoço", nomeAlmoco(dia)); });
+      itensLanche(dia).forEach(function (it) { add(it.ing, it.qtd, dia.nome, "Lanche", nomeLanche(dia)); });
+      itensJantar(dia).forEach(function (it) { add(it.ing, it.qtd, dia.nome, "Jantar", nomeJantar(dia)); });
+    });
+    return usos;
+  }
+
+  function formatQtd(total, unidade, estimado) {
+    var texto;
+    if (unidade === "g" || unidade === "ml") {
+      var passo = total >= 200 ? 10 : 5;
+      var arred = Math.max(passo, Math.round(total / passo) * passo);
+      texto = arred + " " + unidade;
+    } else {
+      texto = Math.ceil(total) + " " + unidade;
+    }
+    return (estimado ? "~ " : "") + texto;
+  }
+
+  // ---------- Renderização ----------
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function receitaBotao(titulo, corpo) {
+    return "<button type=\"button\" class=\"receita-link\" data-titulo=\"" + escapeHtml(titulo) + "\" data-corpo=\"" + escapeHtml(corpo) + "\">" + escapeHtml(titulo) + "</button>";
+  }
+
+  function renderMenuTabela(dias) {
+    var linhas = dias.map(function (dia) {
+      return "<tr>" +
+        "<td class=\"dia-nome\">" + escapeHtml(dia.nome) + "</td>" +
+        "<td>" + receitaBotao(nomeDesjejum(dia), instrucaoDesjejum(dia)) + "</td>" +
+        "<td>" + receitaBotao(nomeAlmoco(dia), instrucaoAlmoco(dia)) + "</td>" +
+        "<td>" + receitaBotao(nomeLanche(dia), instrucaoLanche(dia)) + "</td>" +
+        "<td>" + receitaBotao(nomeJantar(dia), instrucaoJantar(dia)) + "</td>" +
+        "</tr>";
+    }).join("");
+    return "<div class=\"table-scroll\"><table class=\"menu-semana\">" +
+      "<thead><tr><th>Dia</th><th>Desjejum</th><th>Almoço</th><th>Lanche</th><th>Jantar</th></tr></thead>" +
+      "<tbody>" + linhas + "</tbody></table></div>";
+  }
+
+  function ordemRefeicao(r) {
+    return { "Desjejum": 0, "Almoço": 1, "Lanche": 2, "Jantar": 3 }[r];
+  }
+
+  function renderListaCompras(semanaNum, usos) {
+    var html = "";
+    CATEGORIA_ORDEM.forEach(function (cat) {
+      var chaves = Object.keys(usos).filter(function (k) { return ING[k].cat === cat; });
+      if (!chaves.length) return;
+      chaves.sort(function (a, b) { return ING[a].nome.localeCompare(ING[b].nome, "pt-BR"); });
+      html += "<h2 class=\"categoria-titulo\">" + escapeHtml(cat) + "</h2><ul class=\"lista-itens\">";
+      chaves.forEach(function (key) {
+        var info = ING[key];
+        var dado = usos[key];
+        var chave = "w" + semanaNum + ":" + key;
+        var usosOrdenados = dado.usos.slice().sort(function (a, b) {
+          var di = DIAS_SEMANA.indexOf(a.dia) - DIAS_SEMANA.indexOf(b.dia);
+          if (di !== 0) return di;
+          return ordemRefeicao(a.refeicao) - ordemRefeicao(b.refeicao);
+        });
+        var usosHtml = usosOrdenados.map(function (u) {
+          return "<li>" + escapeHtml(u.dia) + " — " + escapeHtml(u.refeicao) + ": " + escapeHtml(u.receita) + " (" + formatQtd(u.qtd, info.unidade, false) + ")</li>";
+        }).join("");
+        var nomeExibido = escapeHtml(info.nome) + (info.opcional ? " <span class=\"tag-opcional\">substitua se preferir</span>" : "");
+        html += "<li class=\"item-linha\" data-semana=\"" + semanaNum + "\">" +
+          "<div class=\"item-linha-topo\">" +
+          "<label class=\"item-check\">" +
+          "<input type=\"checkbox\" data-key=\"" + chave + "\" data-semana=\"" + semanaNum + "\" />" +
+          "<span class=\"item-nome\">" + nomeExibido + "</span>" +
+          "</label>" +
+          "<span class=\"item-qtd\">" + formatQtd(dado.total, info.unidade, info.estimado) + "</span>" +
+          "<button type=\"button\" class=\"expandir\" aria-expanded=\"false\" aria-label=\"Ver receitas que usam " + escapeHtml(info.nome) + "\">&#9662;</button>" +
+          "</div>" +
+          "<ul class=\"usos\" hidden>" + usosHtml + "</ul>" +
+          "</li>";
+      });
+      html += "</ul>";
+    });
+    return html;
+  }
+
+  function renderSemanaHTML(idx, dias, usos) {
+    var semanaNum = idx + 1;
+    var paleta = SEMANAS_PALETA[idx];
+    var intro = "<div class=\"semana-intro\">" +
+      "<span>Frutas da semana: <strong>" + escapeHtml(ING[paleta.frutas[0]].nome) + " e " + escapeHtml(ING[paleta.frutas[1]].nome) + "</strong></span>" +
+      "<span>Legumes da semana: <strong>" + escapeHtml(ING[paleta.legumes[0]].nome) + " e " + escapeHtml(ING[paleta.legumes[1]].nome) + "</strong></span>" +
+      "</div>";
+    var progresso = "<div class=\"progresso\">" +
+      "<div class=\"progresso-barra\"><div class=\"progresso-fill\" id=\"fill-s" + semanaNum + "\"></div></div>" +
+      "<span id=\"progresso-texto-s" + semanaNum + "\">0 de 0 itens</span>" +
+      "</div>";
+    return "<div class=\"card\">" +
+      "<h2 style=\"font-family:var(--font-display);margin-top:0;\">Semana " + semanaNum + " — Cardápio</h2>" +
+      intro + renderMenuTabela(dias) +
+      "</div>" +
+      "<div class=\"card\">" +
+      "<h2 style=\"font-family:var(--font-display);margin-top:0;\">Lista de compras</h2>" +
+      progresso +
+      renderListaCompras(semanaNum, usos) +
+      "<p class=\"legenda-estimativa\">~ quantidade estimada (o item original diz &quot;a gosto&quot; ou &quot;à vontade&quot;)</p>" +
+      "</div>";
+  }
+
+  // ---------- Estado / localStorage (reseta a cada mês, sobrevive a reload) ----------
+  var STORAGE_KEY = "dietaAppV1";
+
+  function mesAtualStr() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+  }
+
+  function carregarEstado() {
+    var raw = null;
+    try { raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); } catch (e) { raw = null; }
+    var atual = mesAtualStr();
+    if (!raw || raw.mes !== atual) {
+      raw = { mes: atual, checks: {} };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(raw));
+    }
+    return raw;
+  }
+
+  var estado = carregarEstado();
+
+  function salvarEstado() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+  }
+
+  function aplicarChecksSalvos() {
+    document.querySelectorAll("input[type=checkbox][data-key]").forEach(function (cb) {
+      var marcado = !!estado.checks[cb.dataset.key];
+      cb.checked = marcado;
+      cb.closest(".item-linha").classList.toggle("comprado", marcado);
+    });
+  }
+
+  function atualizarProgresso(semanaNum) {
+    var painel = document.getElementById("tab-semana" + semanaNum);
+    if (!painel) return;
+    var boxes = painel.querySelectorAll("input[type=checkbox]");
+    var total = boxes.length;
+    var marcados = painel.querySelectorAll("input[type=checkbox]:checked").length;
+    var pct = total ? Math.round((marcados / total) * 100) : 0;
+    var fill = document.getElementById("fill-s" + semanaNum);
+    var texto = document.getElementById("progresso-texto-s" + semanaNum);
+    if (fill) fill.style.width = pct + "%";
+    if (texto) texto.textContent = marcados + " de " + total + " itens";
+  }
+
+  // ---------- Popup de receita ----------
+  function abrirModal(titulo, corpo) {
+    document.getElementById("modal-titulo").textContent = titulo;
+    document.getElementById("modal-corpo").textContent = corpo;
+    document.getElementById("modal-overlay").classList.add("aberto");
+  }
+
+  function fecharModal() {
+    document.getElementById("modal-overlay").classList.remove("aberto");
+  }
+
+  // ---------- Inicialização ----------
+  var TODAS_SEMANAS = [0, 1, 2, 3].map(gerarSemana);
+
+  TODAS_SEMANAS.forEach(function (dias, idx) {
+    var usos = agregarSemana(dias);
+    document.getElementById("tab-semana" + (idx + 1)).innerHTML = renderSemanaHTML(idx, dias, usos);
+  });
+
+  aplicarChecksSalvos();
+  [1, 2, 3, 4].forEach(atualizarProgresso);
+
+  // Abas
+  document.querySelectorAll(".tab").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (b) { b.setAttribute("aria-selected", String(b === btn)); });
+      document.querySelectorAll(".panel").forEach(function (p) { p.classList.remove("active"); });
+      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  // Checkbox (delegação)
+  document.addEventListener("change", function (e) {
+    var cb = e.target.closest("input[type=checkbox][data-key]");
+    if (!cb) return;
+    estado.checks[cb.dataset.key] = cb.checked;
+    salvarEstado();
+    cb.closest(".item-linha").classList.toggle("comprado", cb.checked);
+    atualizarProgresso(cb.dataset.semana);
+  });
+
+  // Expandir/recolher usos + popup de receita + fechar modal (delegação)
+  document.addEventListener("click", function (e) {
+    var receita = e.target.closest(".receita-link");
+    if (receita) { abrirModal(receita.dataset.titulo, receita.dataset.corpo); return; }
+
+    if (e.target.closest(".modal-fechar") || e.target.id === "modal-overlay") { fecharModal(); return; }
+
+    var btn = e.target.closest(".expandir");
+    if (btn) {
+      var linha = btn.closest(".item-linha");
+      var lista = linha.querySelector(".usos");
+      var expandido = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!expandido));
+      lista.hidden = expandido;
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") fecharModal();
+  });
+})();
+</script>
+</body>
+</html>
