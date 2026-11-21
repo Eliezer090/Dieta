@@ -1,6 +1,6 @@
 // Gerado por get-ofertas.py; não edite à mão.
 window.OFERTAS_KOCH = {
- "atualizado": "20/11/2026 22:16",
+ "atualizado": "20/11/2026 22:25",
  "itens": [
   {
    "item": "Ovos",
