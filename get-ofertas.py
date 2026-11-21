@@ -40,6 +40,7 @@ PAUSA_MS = 400             # pausa entre buscas, para não pesar no servidor
 PAGINAS_POR_BUSCA = 2      # até 40 resultados por item (os mais relevantes vêm primeiro)
 MIN_ITENS = 50             # abaixo disso, considera que a coleta quebrou
 MIN_DIAS_HISTORICO = 7     # dias de histórico antes de usar a regra dos 30 dias
+MAX_EMBALAGEM = 6         # genérico: embalagem até 6x o tamanho que você compra
 TOLERANCIA = 0.05          # até 5% acima do menor preço dos 30 dias ainda conta como preço bom
 HEADLESS = os.getenv("HEADLESS") == "1"   # HEADLESS=1 testa sem janela (pode ser bloqueado)
 DB = os.path.join(PASTA, "ofertas.db")
@@ -213,51 +214,65 @@ def rotulo(a):
 
 
 # Demais itens da tabela de preços (index.html) que não são da dieta: limpeza, higiene,
-# temperos, frutas... Procura o MESMO produto (mesma marca) e converte para o tamanho da
-# linha (detergente de 1L -> preço de 500ml). Campos:
+# temperos, frutas... Genéricos: qualquer marca; específicos: a mesma marca/produto.
+# O preço é convertido para o tamanho da linha (detergente de 1L -> preço de 500ml).
+# Todas as opções do dia ficam gravadas e aparecem ao clicar na linha da aba Preços. Campos:
 #   linha  : nome EXATO da linha na tabela PRECOS do index.html (o preço pago vem de lá)
-#   busca  : termo pesquisado no site
+#   buscas : termos pesquisados no site
 #   inicio : (opcional) o nome do produto precisa começar por uma destas expressões
 #   tem    : começos de palavra que todos precisam estar no nome
+#   qualquer: (opcional) pelo menos uma destas expressões no nome ("sem acucar", "diet"...)
 #   excluir: começos de palavra proibidos
-#   tam    : tamanho da linha, na unidade (kg, L ou un = unidades/rolos)
-#   unidade: "kg", "L" ou "un". Sem tamanho no nome: kg/L = preço já por kg; un = mesma embalagem
+#   tam    : tamanho da linha, na unidade (kg, L, un = unidades, m = metros de papel)
+#   unidade: "kg", "L", "un" ou "m" (rolos x metros)
+#   granel : hortifrúti vendido por kg/unidade (sem tamanho no nome = preço do kg/unidade)
+#   multi  : pacote com várias unidades de peso ("leve 6 pague 5 85g" = 6 x 85g)
+#   especifico: mesma marca. Genérico sem tamanho no nome fica de fora (não dá para comparar);
+#               específico sem tamanho = mesma embalagem da linha
 EXTRAS = [
-    {"linha": "Requeijão Tirol cheddar, 180g", "busca": "requeijao cheddar", "tem": ["requeijao", "tirol", "cheddar"], "tam": 0.18, "unidade": "kg"},
-    {"linha": "Cebolinha verde, maço", "busca": "cebolinha", "inicio": ["cebolinha"], "excluir": ["desidratad", "picad", "pote", "granulad", "flocos", "pacal", "kitano", "spices", "santa", "pramesa"], "tam": 1, "unidade": "un"},
-    {"linha": "Pimentão vermelho, kg", "busca": "pimentao vermelho", "inicio": ["pimentao vermelho"], "excluir": ["conserva", "po", "assad"], "tam": 1, "unidade": "kg"},
-    {"linha": "Repolho verde, unidade", "busca": "repolho", "inicio": ["repolho"], "tem": ["un"], "excluir": ["roxo"], "tam": 1, "unidade": "un"},
-    {"linha": "Salsa, maço", "busca": "salsa maco", "inicio": ["salsa", "salsinha", "cheiro verde"], "excluir": ["desidratad", "flocos", "po", "pote", "picad", "kg"], "tam": 1, "unidade": "un"},
-    {"linha": "Abacaxi pérola, unidade", "busca": "abacaxi", "inicio": ["abacaxi"], "excluir": ["suco", "polpa", "calda", "desidratad", "doce", "gelatina", "kg", "picad", "fatiad", "nectar"], "tam": 1, "unidade": "un"},
-    {"linha": "Coco verde, unidade", "busca": "coco verde", "inicio": ["coco verde"], "excluir": ["agua", "ralad", "kg"], "tam": 1, "unidade": "un"},
-    {"linha": "Melão amarelo, kg", "busca": "melao amarelo", "inicio": ["melao amarelo", "melao"], "excluir": ["sapo", "cantaloupe", "orange", "galia", "pele"], "tam": 1, "unidade": "kg"},
-    {"linha": "Massa Rap10 integral (wrap), 297g", "busca": "rap10 integral", "tem": ["rap", "integral"], "tam": 0.297, "unidade": "kg"},
-    {"linha": "Fermento Royal, 100g", "busca": "fermento royal", "tem": ["fermento", "royal"], "tam": 0.1, "unidade": "kg"},
-    {"linha": "Milho verde Predilecta, lata 170g", "busca": "milho verde predilecta", "tem": ["milho", "predilecta"], "excluir": ["pipoca", "creme", "ervilha"], "tam": 0.17, "unidade": "kg"},
-    {"linha": "Milho de pipoca Yoki, 400g", "busca": "milho de pipoca yoki", "tem": ["milho", "pipoca", "yoki"], "excluir": ["micro"], "tam": 0.4, "unidade": "kg"},
-    {"linha": "Pepino Zilse burger fatiado, 330g", "busca": "pepino zilse", "tem": ["pepino", "zilse"], "tam": 0.33, "unidade": "kg"},
-    {"linha": "Canela em pó Pacal, 27g", "busca": "canela pacal", "tem": ["canela", "pacal"], "excluir": ["casca", "pau", "rama"], "tam": 0.027, "unidade": "kg"},
-    {"linha": "Chimichurri Pacal, 5g", "busca": "chimichurri pacal", "tem": ["chimichurri", "pacal"], "tam": 0.005, "unidade": "kg"},
-    {"linha": "Tempero Kitano mix para frango, 40g", "busca": "kitano frango", "tem": ["kitano", "frango"], "tam": 0.04, "unidade": "kg"},
-    {"linha": "Café solúvel L'Or Classique, 40g", "busca": "cafe soluvel l'or", "tem": ["soluvel", "classique"], "tam": 0.04, "unidade": "kg"},
-    {"linha": "Chá Leão ervas hortelã, 15g", "busca": "cha leao hortela", "tem": ["cha", "leao", "hortela"], "tam": 0.015, "unidade": "kg"},
-    {"linha": "Chá Leão Relaxa camomila, 16g", "busca": "cha leao camomila", "tem": ["cha", "leao", "camomila"], "tam": 0.016, "unidade": "kg"},
-    {"linha": "Geleia Linea sem açúcar frutas vermelhas, 230g", "busca": "geleia linea", "tem": ["geleia", "linea", "vermelh"], "tam": 0.23, "unidade": "kg"},
-    {"linha": "Biscoito Trakinas recheado, 126g", "busca": "trakinas", "tem": ["trakinas"], "excluir": ["mini", "kit"], "tam": 0.126, "unidade": "kg"},
-    {"linha": "Pipoca de micro-ondas Yoki, 160g", "busca": "pipoca micro-ondas yoki", "tem": ["pipoca", "micro", "yoki"], "tam": 0.16, "unidade": "kg"},
-    {"linha": "Pudim Dr. Oetker diet chocolate, 25g", "busca": "pudim oetker diet", "tem": ["pudim", "oetker", "diet"], "tam": 0.025, "unidade": "kg"},
-    {"linha": "Refresco Clight, 8g", "busca": "clight", "tem": ["clight"], "tam": 0.008, "unidade": "kg"},
-    {"linha": "Macarrão instantâneo Nissin galinha caipira, 80g", "busca": "nissin galinha caipira", "tem": ["nissin", "caipira"], "excluir": ["cup", "copo"], "tam": 0.08, "unidade": "kg"},
-    {"linha": "Petit gateau Mr. Bey chocolate, 240g", "busca": "petit gateau mr bey", "tem": ["petit", "bey"], "tam": 0.24, "unidade": "kg"},
-    {"linha": "Papel higiênico Duetto 20m, 18 rolos", "busca": "papel higienico duetto", "tem": ["papel", "higienico", "duetto"], "tam": 18, "unidade": "un"},
-    {"linha": "Lava-roupas Girando Sol, 3L", "busca": "lava roupas girando sol", "tem": ["girando", "sol"], "excluir": ["amaciante", "barra", "po", "pasta", "tira", "limpador", "detergente", "desinfetante", "multiuso"], "tam": 3, "unidade": "L"},
-    {"linha": "Detergente Suprema neutro, 500ml", "busca": "detergente suprema", "tem": ["detergente", "suprema"], "excluir": ["kit", "caixa"], "tam": 0.5, "unidade": "L"},
-    {"linha": "Esponja Condor multiuso, 4 un", "busca": "esponja condor", "tem": ["esponja", "condor"], "excluir": ["aco", "banho", "inox", "maquiagem"], "tam": 4, "unidade": "un"},
-    {"linha": "Kit shampoo + condicionador Tresemmé, 525ml", "busca": "kit tresemme", "tem": ["kit", "tresemme"], "tam": 0.525, "unidade": "L"},
-    {"linha": "Desodorante Dove creme, 50g", "busca": "desodorante dove creme", "tem": ["desodorante", "dove", "creme"], "excluir": ["aerosol", "roll", "kit"], "tam": 0.05, "unidade": "kg"},
-    {"linha": "Sabonete Protex, 85g", "busca": "sabonete protex", "tem": ["sabonete", "protex"], "excluir": ["liquido", "refil", "intimo", "leve", "kit", "pack", "unidades"], "tam": 0.085, "unidade": "kg"},
-    {"linha": "Toalha umedecida Piquitucho, 140 un", "busca": "toalha umedecida piquitucho", "tem": ["piquitucho"], "tam": 140, "unidade": "un"},
-    {"linha": "Repelente Raid 45 noites, refil", "busca": "raid 45 noites refil", "tem": ["raid", "45", "refil"], "tam": 1, "unidade": "un"},
+    # --- genéricos: qualquer marca, comparados pelo tamanho/medida ---
+    {"linha": "Requeijão Tirol cheddar, 180g", "buscas": ["requeijao cheddar"], "tem": ["requeijao", "cheddar"], "tam": 0.18, "unidade": "kg"},
+    {"linha": "Cebolinha verde, maço", "buscas": ["cebolinha"], "inicio": ["cebolinha"], "excluir": ["desidratad", "picad", "pote", "granulad", "flocos", "pacal", "kitano", "spices", "santa", "pramesa"], "tam": 1, "unidade": "un", "granel": True},
+    {"linha": "Pimentão vermelho, kg", "buscas": ["pimentao vermelho"], "inicio": ["pimentao vermelho"], "excluir": ["conserva", "po", "assad"], "tam": 1, "unidade": "kg", "granel": True},
+    {"linha": "Repolho verde, unidade", "buscas": ["repolho"], "inicio": ["repolho"], "tem": ["un"], "excluir": ["roxo"], "tam": 1, "unidade": "un", "granel": True},
+    {"linha": "Salsa, maço", "buscas": ["salsa maco", "cheiro verde"], "inicio": ["salsa", "salsinha", "cheiro verde"], "excluir": ["desidratad", "flocos", "po", "pote", "picad", "kg", "pacal", "kitano"], "tam": 1, "unidade": "un", "granel": True},
+    {"linha": "Abacaxi pérola, unidade", "buscas": ["abacaxi"], "inicio": ["abacaxi"], "excluir": ["suco", "polpa", "calda", "desidratad", "doce", "gelatina", "kg", "picad", "fatiad", "nectar"], "tam": 1, "unidade": "un", "granel": True},
+    {"linha": "Coco verde, unidade", "buscas": ["coco verde"], "inicio": ["coco verde"], "excluir": ["agua", "ralad", "kg"], "tam": 1, "unidade": "un", "granel": True},
+    {"linha": "Melão amarelo, kg", "buscas": ["melao amarelo"], "inicio": ["melao amarelo", "melao"], "excluir": ["sapo", "cantaloupe", "orange", "galia", "pele"], "tam": 1, "unidade": "kg", "granel": True},
+    {"linha": "Fermento Royal, 100g", "buscas": ["fermento quimico"], "inicio": ["fermento"], "excluir": ["biolog", "levedura", "fresco", "seco"], "tam": 0.1, "unidade": "kg"},
+    {"linha": "Milho verde Predilecta, lata 170g", "buscas": ["milho verde"], "inicio": ["milho verde", "milho em conserva", "milho"], "tem": ["milho"], "excluir": ["pipoca", "creme", "ervilha", "espiga", "congelad", "farinha", "flocos", "canjica", "cozid"], "tam": 0.17, "unidade": "kg"},
+    {"linha": "Milho de pipoca Yoki, 400g", "buscas": ["milho de pipoca"], "tem": ["milho", "pipoca"], "excluir": ["micro", "doce", "caramel", "pronta"], "tam": 0.4, "unidade": "kg"},
+    {"linha": "Pepino Zilse burger fatiado, 330g", "buscas": ["pepino conserva"], "tem": ["pepino", "conserva"], "tam": 0.33, "unidade": "kg"},
+    {"linha": "Canela em pó Pacal, 27g", "buscas": ["canela em po"], "tem": ["canela", "po"], "excluir": ["casca", "pau", "rama", "acucar", "cha"], "tam": 0.027, "unidade": "kg"},
+    {"linha": "Chimichurri Pacal, 5g", "buscas": ["chimichurri"], "inicio": ["chimichurri", "tempero chimichurri"], "excluir": ["molho", "oleo", "azeite", "pasta"], "tam": 0.005, "unidade": "kg"},
+    {"linha": "Chá Leão ervas hortelã, 15g", "buscas": ["cha hortela"], "inicio": ["cha"], "tem": ["hortela"], "excluir": ["gelado", "mate", "pronto", "limao", "ml", "zero"], "tam": 0.015, "unidade": "kg"},
+    {"linha": "Chá Leão Relaxa camomila, 16g", "buscas": ["cha camomila"], "inicio": ["cha"], "tem": ["camomila"], "excluir": ["gelado", "pronto", "ml", "zero", "limao"], "tam": 0.016, "unidade": "kg"},
+    {"linha": "Geleia Linea sem açúcar frutas vermelhas, 230g", "buscas": ["geleia sem acucar", "geleia zero"], "tem": ["geleia"], "qualquer": ["sem acucar", "zero acucar", "diet", "zero"], "tam": 0.23, "unidade": "kg"},
+    # papel: só folha dupla, por metro (rolos x metros); 18 rolos de 20m = 360m
+    {"linha": "Papel higiênico Duetto 20m, 18 rolos", "buscas": ["papel higienico folha dupla"], "tem": ["papel", "higienico", "dupla"], "excluir": ["umedecid"], "tam": 360, "unidade": "m"},
+    # lava-roupas: só líquido e não concentrado (concentrado rende mais por litro)
+    {"linha": "Lava-roupas Girando Sol, 3L", "buscas": ["lava roupas liquido", "sabao liquido"], "inicio": ["lava roupa", "lava roupas", "sabao liquido"], "excluir": ["em po", "po", "barra", "amaciante", "tira", "limpador", "concentrad", "louca", "loucas"], "tam": 3, "unidade": "L"},
+    {"linha": "Lava-roupas concentrado, 1L", "buscas": ["lava roupas concentrado", "sabao liquido concentrado"], "inicio": ["lava roupa", "lava roupas", "sabao liquido", "sabao"], "tem": ["concentrad"], "excluir": ["po", "barra", "amaciante", "tira", "limpador", "louca", "loucas"], "tam": 1, "unidade": "L"},
+    {"linha": "Detergente Suprema neutro, 500ml", "buscas": ["detergente liquido"], "inicio": ["detergente", "lava loucas"], "excluir": ["maquina", "pastilha", "po", "roupa", "automotiv", "carro", "piso", "kit", "caixa", "lava roupa", "concentrad"], "tam": 0.5, "unidade": "L"},
+    {"linha": "Esponja Condor multiuso, 4 un", "buscas": ["esponja multiuso"], "inicio": ["esponja"], "excluir": ["aco", "banho", "inox", "maquiagem", "bucha", "vidro", "corpo", "infantil"], "tam": 4, "unidade": "un"},
+    {"linha": "Desodorante aerosol (Rexona e similares), 150ml", "buscas": ["desodorante aerosol"], "tem": ["desodorante", "aerosol"], "excluir": ["kit", "pes", "intimo", "creme", "roll"], "tam": 0.15, "unidade": "L"},
+    {"linha": "Desodorante Dove creme, 50g", "buscas": ["desodorante creme"], "tem": ["desodorante", "creme"], "excluir": ["aerosol", "roll", "spray", "kit", "pes", "intimo"], "tam": 0.05, "unidade": "kg"},
+    # sabonete: só em barra; "leve 6 pague 5 85g" = 6 x 85g
+    {"linha": "Sabonete Protex, 85g", "buscas": ["sabonete barra"], "inicio": ["sabonete"], "excluir": ["liquido", "refil", "intimo", "facial", "infantil", "kit"], "tam": 0.085, "unidade": "kg", "multi": True},
+    {"linha": "Toalha umedecida Piquitucho, 140 un", "buscas": ["toalha umedecida", "lenco umedecido"], "inicio": ["toalha umedecida", "toalhas umedecidas", "lenco umedecido", "lencos umedecidos"], "excluir": ["demaquilante", "intima", "limpeza", "multiuso"], "tam": 140, "unidade": "un"},
+    # --- específicos: mesma marca/produto ---
+    {"linha": "Massa Rap10 integral (wrap), 297g", "buscas": ["rap10 integral"], "tem": ["rap", "integral"], "tam": 0.297, "unidade": "kg", "especifico": True},
+    {"linha": "Pipoca de micro-ondas Yoki, 160g", "buscas": ["pipoca micro-ondas yoki"], "tem": ["pipoca", "micro", "yoki"], "tam": 0.16, "unidade": "kg", "especifico": True},
+    {"linha": "Tempero Kitano mix para frango, 40g", "buscas": ["kitano frango"], "tem": ["kitano", "frango"], "tam": 0.04, "unidade": "kg", "especifico": True},
+    {"linha": "Café solúvel L'Or Classique, 40g", "buscas": ["cafe soluvel l'or"], "tem": ["soluvel", "classique"], "tam": 0.04, "unidade": "kg", "especifico": True},
+    {"linha": "Biscoito Trakinas recheado, 126g", "buscas": ["trakinas"], "tem": ["trakinas"], "excluir": ["mini", "kit"], "tam": 0.126, "unidade": "kg", "especifico": True},
+    {"linha": "Pudim Dr. Oetker diet chocolate, 25g", "buscas": ["pudim oetker diet"], "tem": ["pudim", "oetker", "diet"], "tam": 0.025, "unidade": "kg", "especifico": True},
+    {"linha": "Refresco Clight, 8g", "buscas": ["clight"], "tem": ["clight"], "tam": 0.008, "unidade": "kg", "especifico": True},
+    {"linha": "Macarrão instantâneo Nissin galinha caipira, 80g", "buscas": ["nissin galinha caipira"], "tem": ["nissin", "caipira"], "excluir": ["cup", "copo"], "tam": 0.08, "unidade": "kg", "especifico": True},
+    {"linha": "Petit gateau Mr. Bey chocolate, 240g", "buscas": ["petit gateau mr bey"], "tem": ["petit", "bey"], "tam": 0.24, "unidade": "kg", "especifico": True},
+    {"linha": "Kit shampoo + condicionador Tresemmé, 525ml", "buscas": ["kit tresemme"], "tem": ["kit", "tresemme"], "tam": 0.525, "unidade": "L", "especifico": True},
+    # refil precisa servir no aparelho Raid de vocês
+    {"linha": "Repelente Raid 45 noites, refil", "buscas": ["raid 45 noites refil"], "tem": ["raid", "45", "refil"], "tam": 1, "unidade": "un", "especifico": True},
 ]
 
 
@@ -280,6 +295,7 @@ for _e in EXTRAS:
     _e.setdefault("inicio", [])
     _e.setdefault("excluir", [])
     _e.setdefault("tem", [])
+    _e.setdefault("qualquer", [])
     _e["pago"] = PAGOS.get(_e["linha"])
 
 
@@ -294,7 +310,7 @@ def norm(t):
     return "".join(c for c in t if not unicodedata.combining(c))
 
 
-def quantidade(nome, unidade):
+def quantidade(nome, unidade, multi=False):
     """Quanto vem na embalagem: kg ou L (ex.: '500g' -> 0.5) ou nº de ovos. None se não achar."""
     n = norm(nome).replace(",", ".")
     if unidade == "ovo":
@@ -306,9 +322,18 @@ def quantidade(nome, unidade):
         m = re.search(r"(\d+(?:\.\d+)?)\s*(kg|g|gr|ml|l|lt|litros?)\b", n)
         if m:
             v, u = float(m.group(1)), m.group(2)
-            return v / 1000 if u in ("g", "gr", "ml") else v
+            v = v / 1000 if u in ("g", "gr", "ml") else v
+            if multi:  # 'Leve 6 Pague 5 85g' -> 6 x 0,085
+                c = re.search(r"(?:leve|c/|com)\s*(\d+)(?![\d.]|\s*(?:g|gr|kg|ml|l|lt|m)\b)|(\d+)\s*(?:un\b|unid)", n)
+                if c:
+                    v *= float(c.group(1) or c.group(2))
+            return v
+    if unidade == "m":  # papel higiênico: rolos x metros ('30m Leve 24 Pague 22' -> 720)
+        r = re.search(r"(?:leve|c/|com)\s*(\d+)(?![\d.]|\s*(?:g|gr|kg|ml|l|lt|m)\b)|(\d+)\s*rolos?", n)
+        mt = re.search(r"(\d+(?:\.\d+)?)\s*m(?:etros)?\b", n)
+        return float(r.group(1) or r.group(2)) * float(mt.group(1)) if r and mt else None
     if unidade == "un":  # rolos, unidades, folhas: '18 Rolos', 'c/4', '140 un'
-        m = re.search(r"(?:c/|com|leve)\s*(\d+)|(\d+)\s*(?:un\b|unid|rolos?|folhas|lencos)", n)
+        m = re.search(r"(?:leve|c/|com)\s*(\d+)(?![\d.]|\s*(?:g|gr|kg|ml|l|lt|m)\b)|(\d+)\s*(?:un\b|unid|rolos?|folhas|lencos)", n)
         if m:
             return float(m.group(1) or m.group(2))
     return None
@@ -322,17 +347,26 @@ def casar_extra(nome):
     for e in EXTRAS:
         if e["inicio"] and not any(texto.startswith(i + " ") for i in e["inicio"]):
             continue
+        if e["qualquer"] and not any(" " + q + " " in " " + texto for q in e["qualquer"]):
+            continue
         if all(tem(t) for t in e["tem"]) and not any(tem(x) for x in e["excluir"]):
             return e
     return None
 
 
 def preco_equivalente(nome, atual, e):
-    """Preço convertido para o tamanho da linha da tabela (detergente 1L -> preço de 500ml)."""
-    qtd = quantidade(nome, e["unidade"])
-    if qtd is None:  # sem tamanho no nome: kg/L = preço já por kg; un = mesma embalagem da linha
-        return atual if e["unidade"] == "un" else atual * e["tam"]
-    return atual / qtd * e["tam"]
+    """Preço convertido para o tamanho da linha da tabela (detergente 1L -> preço de 500ml).
+    None quando não dá para comparar (genérico sem tamanho no nome)."""
+    qtd = quantidade(nome, e["unidade"], e.get("multi", False))
+    if qtd:
+        if not e.get("especifico") and qtd > e["tam"] * MAX_EMBALAGEM:
+            return None
+        return atual / qtd * e["tam"]
+    if e.get("granel"):  # hortifrúti: sem tamanho = preço do kg ou da unidade
+        return atual * e["tam"] if e["unidade"] in ("kg", "L") else atual
+    if e.get("especifico"):  # mesma marca: mesma embalagem da linha
+        return atual if e["unidade"] in ("un", "m") else None
+    return None
 
 
 def casar(nome):
@@ -375,7 +409,8 @@ def coletar():
         # porque a busca já tem marca e tipo e os mais relevantes vêm primeiro.
         termos = {t: PAGINAS_POR_BUSCA for a in ALVOS for t in a["buscas"]}
         for e in EXTRAS:
-            termos.setdefault(e["busca"], 1)
+            for t in e["buscas"]:
+                termos.setdefault(t, 1)
         for termo, paginas in termos.items():
             for frm in range(0, paginas * SIZE, SIZE):
                 url = f"{API}?size={SIZE}&from={frm}&search={urllib.parse.quote(termo)}"
@@ -448,9 +483,10 @@ def reprocessar(db):
     for dia, pid, nome, atual, cheio in db.execute(
             "select dia, id, nome, preco_atual, preco_cheio from precos").fetchall():
         e = casar_extra(nome)
-        if e:
+        equiv = preco_equivalente(nome, atual, e) if e else None
+        if equiv:
             db.execute("insert or replace into extras values(?,?,?,?,?,?,?)",
-                       (dia, e["linha"], pid, nome, atual, cheio, preco_equivalente(nome, atual, e)))
+                       (dia, e["linha"], pid, nome, atual, cheio, equiv))
         alvo, aprov = casar(nome)
         if alvo is None:
             continue
@@ -623,11 +659,20 @@ def gerar_js(db, hoje):
                      "aprov": hoje_row[3]} if hoje_row else None,
             "menor30": {"produto": min_row[0], "preco": min_row[1], "porUnidade": round(min_row[2], 4),
                         "dia": min_row[3]} if min_row else None,
+            # todas as marcas/cortes de hoje, do mais barato ao mais caro (lista que abre ao clicar)
+            "opcoes": [{"produto": n, "preco": pr, "cheio": ch, "porUnidade": round(pu, 4), "aprov": ap}
+                       for n, pr, ch, pu, ap in db.execute(
+                           "select nome, preco, cheio, por_unidade, aprov from dieta where item=? and dia=? "
+                           "order by por_unidade", (a["nome"], hoje))],
         })
+    # Demais itens da tabela: por linha, todas as opções de hoje (a 1ª é a mais barata).
     extras = {}
     for linha, nome, preco, cheio, equiv in db.execute(
-            "select linha, nome, preco, cheio, min(equiv) from extras where dia=? group by linha", (hoje,)):
-        extras[linha] = {"produto": nome, "preco": preco, "cheio": cheio, "equiv": round(equiv, 2)}
+            "select linha, nome, preco, cheio, equiv from extras where dia=? order by linha, equiv", (hoje,)):
+        op = {"produto": nome, "preco": preco, "cheio": cheio, "equiv": round(equiv, 2)}
+        if linha not in extras:
+            extras[linha] = dict(op, opcoes=[])
+        extras[linha]["opcoes"].append(op)
     dados = {"atualizado": datetime.datetime.now().strftime("%d/%m/%Y %H:%M"), "itens": linhas,
              "extras": extras}
     with open(JS_SAIDA, "w", encoding="utf-8") as f:
