@@ -1333,12 +1333,12 @@
   // Liga cada linha da tabela de cupons a um item do get-ofertas.py: [item, tamanho da linha em kg, L ou nº de ovos].
   var PRECOS_KOCH = {
     "Ovos vermelhos, bandeja com 30": ["Ovos", 30],
-    "Peito de frango com osso, kg": ["Peito de frango c/ osso", 1],
-    "Carne moída dianteiro Komprão, 400g": ["Carne moída", 0.4],
+    "Peito de frango com osso, kg": ["Frango", 1],
+    "Carne moída dianteiro Komprão, 400g": ["Carne bovina", 0.4],
     "Leite Santa Clara integral, 1L": ["Leite integral", 1],
     "Iogurte Batavo cremoso integral, 160g": ["Iogurte natural", 0.16],
     "Requeijão Lac Lelo light, 400g": ["Requeijão", 0.4],
-    "Queijo mussarela Lasaroli fatiado, 300g": ["Mussarela fatiada", 0.3],
+    "Queijo mussarela Lasaroli fatiado, 300g": ["Mussarela", 0.3],
     "Abobrinha verde, kg": ["Abobrinha", 1],
     "Alho, kg": ["Alho", 1],
     "Batata lavada, kg": ["Batata inglesa", 1],
@@ -1361,8 +1361,8 @@
     PRECOS.forEach(function (l) { if (cats.indexOf(l[0]) < 0) cats.push(l[0]); });
     var ths = PRECOS_DATAS.map(function (d) { return "<th class=\"num\">" + escapeHtml(d) + "</th>"; }).join("");
     // Coluna do Koch: preço de hoje do mesmo item, convertido para o tamanho da linha (vem de ofertas-koch.js).
-    var koch = {};
-    if (window.OFERTAS_KOCH) window.OFERTAS_KOCH.itens.forEach(function (i) { if (i.hoje) koch[i.item] = i.hoje; });
+    var koch = {}, extras = (window.OFERTAS_KOCH && window.OFERTAS_KOCH.extras) || {};
+    if (window.OFERTAS_KOCH) window.OFERTAS_KOCH.itens.forEach(function (i) { if (i.hoje) koch[i.item] = i; });
     var temKoch = Object.keys(koch).length > 0;
     var kochData = temKoch ? window.OFERTAS_KOCH.atualizado.slice(0, 5) : "";
     var thKoch = temKoch ? "<th class=\"num\">Site " + escapeHtml(kochData) + "</th>" : "";
@@ -1387,10 +1387,19 @@
         var ultimo = comPreco[comPreco.length - 1];
         var celSite = "", varTxt = "&mdash;";
         if (temKoch) {
-          var m = PRECOS_KOCH[l[1]], o = m && koch[m[0]];
-          if (o) {
-            var v = o.porUnidade * m[1];
-            celSite = "<td class=\"num\">" + formatBRL(v) + "<span class=\"produto-koch\">" + escapeHtml(o.produto) + "</span></td>";
+          // Itens da dieta: o mais barato do item (qualquer marca/corte), convertido para o tamanho da linha;
+          // frango, carne e alho: quanto custa a mesma quantidade de carne/alho limpo do que você comprou.
+          // Demais itens: o mesmo produto, no tamanho da linha.
+          var m = PRECOS_KOCH[l[1]], it = m && koch[m[0]], ex = extras[l[1]], v = null, prod = "";
+          if (it) {
+            v = it.hoje.porUnidade * (it.aprovRef || 1) * m[1];
+            prod = it.hoje.produto + " · " + formatBRL(it.hoje.preco) + (it.hoje.aprov < 1 ? " (equivalente, já descontando osso, pele ou casca)" : "");
+          } else if (ex) {
+            v = ex.equiv;
+            prod = ex.produto + " · " + formatBRL(ex.preco);
+          }
+          if (v != null) {
+            celSite = "<td class=\"num\">" + formatBRL(v) + "<span class=\"produto-koch\">" + escapeHtml(prod) + "</span></td>";
             if (ultimo != null) varTxt = variacao(ultimo, v);
           } else {
             celSite = "<td class=\"num\">&mdash;</td>";
@@ -1412,19 +1421,20 @@
   function renderOfertasKoch() {
     var d = window.OFERTAS_KOCH;
     if (!d || !d.itens) return "";
-    var un = { kg: "/kg", L: "/L", ovo: "/ovo", un: "/un" };
-    var cel = function (o, u) {
-      return o ? formatBRL(o.porUnidade) + un[u] + "<span class=\"produto-koch\">" + escapeHtml(o.produto) + " · " + formatBRL(o.preco) + "</span>" : "&mdash;";
+    // porUnidade/ref vêm por kg (limpo), L ou ovo; "fator" converte para o que é mostrado (pão: pacote de 400g).
+    var cel = function (o, i) {
+      var f = i.fator || 1, u = "/" + (i.rotulo || i.unidade);
+      return o ? formatBRL(o.porUnidade * f) + u + "<span class=\"produto-koch\">" + escapeHtml(o.produto) + " · " + formatBRL(o.preco) + "</span>" : "&mdash;";
     };
     var linhas = d.itens.map(function (i) {
       var boa = i.hoje && i.ref != null && i.hoje.porUnidade < i.ref - 0.005;
-      var menor = i.menor30 ? cel(i.menor30, i.unidade) + "<span class=\"produto-koch\">em " + i.menor30.dia.split("-").reverse().join("/") + "</span>" : "&mdash;";
+      var menor = i.menor30 ? cel(i.menor30, i) + "<span class=\"produto-koch\">em " + i.menor30.dia.split("-").reverse().join("/") + "</span>" : "&mdash;";
       return "<tr" + (boa ? " class=\"oferta-boa\"" : "") + "><td>" + escapeHtml(i.item) + (boa ? " ✓ comprar" : "") + "</td>" +
-        "<td class=\"num\">" + (i.ref != null ? formatBRL(i.ref) + un[i.unidade] : "&mdash;") + "</td>" +
-        "<td class=\"num\">" + cel(i.hoje, i.unidade) + "</td><td class=\"num\">" + menor + "</td></tr>";
+        "<td class=\"num\">" + (i.ref != null ? formatBRL(i.ref * (i.fator || 1)) + "/" + (i.rotulo || i.unidade) : "&mdash;") + "</td>" +
+        "<td class=\"num\">" + cel(i.hoje, i) + "</td><td class=\"num\">" + menor + "</td></tr>";
     }).join("");
     return "<div class=\"card\"><h2 style=\"font-family:var(--font-display);margin-top:0;\">Preços do site hoje (itens da dieta)</h2>" +
-      "<p class=\"prep-intro\">Atualizado em " + escapeHtml(d.atualizado) + ". Busca diária no site do Koch: o produto mais barato de cada item hoje, por kg, litro ou ovo, comparado com o menor preço que você já pagou (cupons abaixo) e com o menor dos últimos 30 dias. Linha destacada = mais barato que o menor já pago: vale comprar.</p>" +
+      "<p class=\"prep-intro\">Atualizado em " + escapeHtml(d.atualizado) + ". Busca diária no site do Koch: o produto mais barato de cada item hoje (qualquer marca; frango, carne e alho comparam todos os cortes e tipos pelo kg limpo, sem osso, pele ou casca; pão por pacote de 400g), comparado com o menor preço que você já pagou (cupons abaixo) e com o menor dos últimos 30 dias. Linha destacada = mais barato que o menor já pago: vale comprar.</p>" +
       "<div class=\"table-scroll\"><table class=\"menu-semana tabela-precos\"><thead><tr><th>Item</th><th class=\"num\">Menor já pago</th><th class=\"num\">Site hoje</th><th class=\"num\">Site, menor em 30 dias</th></tr></thead><tbody>" +
       linhas + "</tbody></table></div></div>";
   }
