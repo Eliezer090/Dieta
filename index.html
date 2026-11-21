@@ -54,10 +54,10 @@
     outline-offset: 2px;
   }
 
+  /* ocupa a largura toda; a margem lateral cresce com a tela (16px no celular, até 40px no monitor) */
   .app-header {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 2.25rem 1.5rem 1rem;
+    margin: 0;
+    padding: 2.25rem clamp(1rem, 2.5vw, 2.5rem) 1rem;
   }
 
   .app-header h1 {
@@ -76,11 +76,10 @@
   }
 
   .layout {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 0 1.5rem 3rem;
+    margin: 0;
+    padding: 0 clamp(1rem, 2.5vw, 2.5rem) 3rem;
     display: grid;
-    grid-template-columns: 168px 1fr;
+    grid-template-columns: 190px 1fr;
     gap: 1.5rem;
     align-items: start;
   }
@@ -417,6 +416,9 @@
     }
     .tab { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; border-radius: 6px 6px 0 0; }
     .tab[aria-selected="true"] { border-left-color: transparent; border-bottom-color: var(--accent-herb); }
+    .app-header { padding-top: 1.25rem; }
+    .card { padding: 1rem; border-radius: 8px; }
+    .tabela-precos { font-size: 0.85rem; }
   }
 
 
@@ -449,6 +451,11 @@
   .prep-meta strong { color: var(--ink); }
   ol.preparo li { margin: 0 0 0.55rem; }
 
+  .tabela-precos .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tabela-precos tr.oferta-boa td { background: var(--card-soft); font-weight: 700; }
+  .tabela-precos .produto-koch { display: block; font-size: 0.85em; font-weight: 400; opacity: 0.75; white-space: normal; min-width: 9rem; }
+  .tabela-precos .cat-linha td { font-family: var(--font-display); font-weight: 700; color: var(--accent-herb-strong); background: var(--card-soft); }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
@@ -468,6 +475,7 @@
       <button class="tab" role="tab" data-tab="semana3" aria-selected="false">Semana 3</button>
       <button class="tab" role="tab" data-tab="semana4" aria-selected="false">Semana 4</button>
       <button class="tab" role="tab" data-tab="dieta" aria-selected="false">A Dieta</button>
+      <button class="tab" role="tab" data-tab="precos" aria-selected="false">Preços</button>
     </nav>
 
     <main>
@@ -478,6 +486,7 @@
       <section id="tab-semana3" class="panel"></section>
       <section id="tab-semana4" class="panel"></section>
       <section id="tab-dieta" class="panel"></section>
+      <section id="tab-precos" class="panel"></section>
       <details class="info-note">
           <summary>Como a lista de compras foi pensada</summary>
           <ul>
@@ -489,7 +498,7 @@
             <li><strong>Lanche das 10h:</strong> não consta no PDF. São ~120 a 175 kcal e ocupam o lugar da ceia opcional (~215 kcal). Confirme com a nutricionista.</li>
             <li><strong>Calorias (tabela TACO; margem de ~10%):</strong> o cardápio fecha em média ~1.610 kcal por dia, de ~1.460 (sábado) a ~1.760 nos dias mais altos, com ~87 a 150 g de proteína. A salada vai sem azeite (só limão e sal), como vocês fazem; o PDF prevê 1 colher de sopa de azeite no almoço (~115 kcal). O plano do PDF, na mesma conta, dá ~1.555 kcal sem a ceia e ~1.770 com ela.</li>
             <li><strong>Troca fora do PDF:</strong> pizza de pão e sanduíche de ovo no jantar não constam no plano da nutricionista. Confirme com ela antes de usar.</li>
-            <li><strong>Itens marcados com "~"</strong> são estimativas. Os preços vêm do cupom de 07/11/2026; itens com &mdash; não estavam no cupom.</li>
+            <li><strong>Itens marcados com "~"</strong> são estimativas. Os preços vêm dos cupons de 07/11 e 16/11/2026; itens com &mdash; não estavam no cupom.</li>
           </ul>
         </details>
     </main>
@@ -503,51 +512,53 @@
     </div>
   </div>
 
+<!-- gerado todo dia por get-ofertas.py; se não existir, a tabela de ofertas não aparece -->
+<script src="ofertas-koch.js"></script>
 <script>
 (function () {
   "use strict";
 
   // ---------- Ingredientes ----------
-  // preco = R$ por unidade-base (g, ml, un ou fatia), do cupom do Komprão de 07/11/2026.
+  // preco = R$ por unidade-base (g, ml, un ou fatia), dos cupons do Komprão de 07/11 e 16/11/2026 (o mais recente vale).
   // Sem preco = o item não estava no cupom. emCasa = já existe na despensa e não entra na lista.
   var ING = {
     carneMoida:     { nome: "Carne moída (crua)", unidade: "g", cat: "Proteínas", preco: 19.13 / 1000 },
     frango:         { nome: "Peito de frango com osso", unidade: "g", cat: "Proteínas", preco: 13.49 / 1000 },
 
-    ovos:           { nome: "Ovos (bandeja com 30)", unidade: "un", cat: "Ovos e Laticínios", preco: 12.79 / 30, pacote: 30 },
+    ovos:           { nome: "Ovos (bandeja com 30)", unidade: "un", cat: "Ovos e Laticínios", preco: 14.99 / 30, pacote: 30 },
     leite:          { nome: "Leite integral (iogurte caseiro e vitamina)", unidade: "ml", cat: "Ovos e Laticínios", preco: 4.49 / 1000, pacote: 1000 },
     iogurteNatural: { nome: "Iogurte natural sem açúcar (fermento do 1º lote)", unidade: "un", cat: "Ovos e Laticínios", preco: 3.69, pacote: 1 },
-    requeijao:      { nome: "Requeijão light", unidade: "g", cat: "Ovos e Laticínios", preco: 14.99 / 400, pacote: 400 },
-    queijo:         { nome: "Queijo (mussarela ou parmesão ralado)", unidade: "g", cat: "Ovos e Laticínios" },
+    requeijao:      { nome: "Requeijão cremoso (copo 180g)", unidade: "g", cat: "Ovos e Laticínios", preco: 7.99 / 180 },
+    queijo:         { nome: "Queijo mussarela fatiado (pacote 300g)", unidade: "g", cat: "Ovos e Laticínios", preco: 14.99 / 300 },
 
     arroz:          { nome: "Arroz", unidade: "g", cat: "Carboidratos", emCasa: true },
     feijao:         { nome: "Feijão cozido", unidade: "g", cat: "Carboidratos", emCasa: true },
     batataInglesa:  { nome: "Batata inglesa", unidade: "g", cat: "Carboidratos", preco: 6.49 / 1000 },
 
     repolho:    { nome: "Repolho (salada e refogado)", unidade: "g", cat: "Hortifruti", preco: 3.99 / 1000, fc: 1.15 },
-    tomate:     { nome: "Tomate", unidade: "g", cat: "Hortifruti" },
+    tomate:     { nome: "Tomate", unidade: "g", cat: "Hortifruti", preco: 22.99 / 1000 },
     cebola:     { nome: "Cebola", unidade: "g", cat: "Hortifruti", preco: 9.99 / 1000, fc: 1.1 },
-    alho:       { nome: "Alho", unidade: "dente", cat: "Hortifruti" },
+    alho:       { nome: "Alho", unidade: "dente", cat: "Hortifruti", preco: 24.99 / 1000 * 5 },
     limao:      { nome: "Limão", unidade: "un", cat: "Hortifruti", estimado: true },
     cenoura:    { nome: "Cenoura", unidade: "g", cat: "Hortifruti", preco: 4.99 / 1000, fc: 1.1 },
-    abobrinha:  { nome: "Abobrinha", unidade: "g", cat: "Hortifruti", fc: 1.05 },
+    abobrinha:  { nome: "Abobrinha", unidade: "g", cat: "Hortifruti", preco: 6.79 / 1000, fc: 1.05 },
     chuchu:     { nome: "Chuchu", unidade: "g", cat: "Hortifruti", fc: 1.2 },
     vagem:      { nome: "Vagem", unidade: "g", cat: "Hortifruti", fc: 1.05 },
     beterraba:  { nome: "Beterraba", unidade: "g", cat: "Hortifruti", preco: 5.79 / 1000, fc: 1.15 },
 
-    banana:   { nome: "Banana", unidade: "un", cat: "Frutas" },
+    banana:   { nome: "Banana caturra (~150g cada, com casca)", unidade: "un", cat: "Frutas", preco: 4.99 / 1000 * 150 },
     manga:    { nome: "Manga", unidade: "g", cat: "Frutas", preco: 4.99 / 1000, fc: 1.5 },
     abacaxi:  { nome: "Abacaxi", unidade: "g", cat: "Frutas", fc: 1.8 },
     maca:     { nome: "Maçã", unidade: "un", cat: "Frutas" },
     mamao:    { nome: "Mamão", unidade: "g", cat: "Frutas", preco: 11.79 / 1000, fc: 1.45 },
     laranja:  { nome: "Laranja", unidade: "un", cat: "Frutas", fc: 1.0 },
 
-    paoIntegral: { nome: "Pão de forma integral (pacote com ~16 fatias)", unidade: "fatia", cat: "Padaria", preco: 7.79 / 16, pacote: 16 },
+    paoIntegral: { nome: "Pão de forma integral (pacote com ~16 fatias)", unidade: "fatia", cat: "Padaria", preco: 6.99 / 16, pacote: 16 },
 
     tapioca:       { nome: "Tapioca (goma hidratada)", unidade: "g", cat: "Mercearia" },
     aveia:         { nome: "Aveia (farelo ou flocos finos)", unidade: "g", cat: "Mercearia" },
-    fermento:      { nome: "Fermento em pó", unidade: "g", cat: "Mercearia" },
-    extratoTomate: { nome: "Extrato de tomate", unidade: "g", cat: "Mercearia", preco: 4.19 / 290, pacote: 290 },
+    fermento:      { nome: "Fermento em pó (pote 100g)", unidade: "g", cat: "Mercearia", preco: 4.69 / 100 },
+    extratoTomate: { nome: "Extrato de tomate", unidade: "g", cat: "Mercearia", preco: 13.79 / 1020 },
     cafe:          { nome: "Café em pó", unidade: "g", cat: "Mercearia", emCasa: true },
     canela:        { nome: "Canela em pó", unidade: "g", cat: "Mercearia", emCasa: true },
     omega3:        { nome: "Cápsulas de Ômega-3", unidade: "cáps", cat: "Mercearia" }
@@ -1124,7 +1135,7 @@
       "</div>";
     var est = totalEstimado(usos);
     var custo = "<p class=\"custo-estimado\"><strong>Estimativa dos itens com preço no cupom: " + formatBRL(est.total) + "</strong> " +
-      "(ovos, pão, leite, requeijão, extrato e iogurte contados por embalagem fechada; o resto, proporcional ao uso). " + est.semPreco + " itens ainda sem preço (marcados com &mdash;).</p>";
+      "(ovos, pão, leite e iogurte contados por embalagem fechada; o resto, proporcional ao uso). " + est.semPreco + " itens ainda sem preço (marcados com &mdash;).</p>";
     var progresso = custo + "<div class=\"progresso\">" +
       "<div class=\"progresso-barra\"><div class=\"progresso-fill\" id=\"fill-s" + semanaNum + "\"></div></div>" +
       "<span id=\"progresso-texto-s" + semanaNum + "\">0 de 0 itens</span>" +
@@ -1138,7 +1149,7 @@
       "<h2 style=\"font-family:var(--font-display);margin-top:0;\">Lista de compras</h2>" +
       progresso +
       renderListaCompras(semanaNum, usos) +
-      "<p class=\"legenda-estimativa\">~ quantidade de compra, já com casca, caroço e talo (as receitas usam o peso limpo). Preços: cupom do Komprão de 07/11/2026. Arroz, feijão, café e canela já estão em casa e não entram na lista.</p>" +
+      "<p class=\"legenda-estimativa\">~ quantidade de compra, já com casca, caroço e talo (as receitas usam o peso limpo). Preços: cupons do Komprão de 07/11 e 16/11/2026. Arroz, feijão, café e canela já estão em casa e não entram na lista.</p>" +
       "</div>";
   }
 
@@ -1244,7 +1255,7 @@
       "<ul class=\"preparo\">" +
       "<li>Média de ~1.610 kcal por dia, de ~1.460 (sábado) a ~1.760 nos dias mais altos, com ~87 a 150 g de proteína.</li>" +
       "<li>Compra-base: 1 bandeja de 30 ovos, ~1,13 kg de carne moída, ~1,12 kg de peito de frango com osso, 2 L de leite e 1 pacote de pão integral.</li>" +
-      "<li>Custo dos itens com preço no cupom: de ~R$ 110 a ~R$ 115 por semana.</li>" +
+      "<li>Custo dos itens com preço no cupom: de ~R$ 135 a ~R$ 145 por semana.</li>" +
       "</ul></div>";
     html += tabelaRefeicao("Café da manhã (7h)", "Sempre com mamão e aveia. Os cafés com ovo trocam de dia a cada semana; os de frango ficam na segunda, sexta e sábado por causa dos potes do domingo.", "desjejum");
     html += tabelaRefeicao("Lanche da manhã (10h)", "Três opções que se revezam: iogurte coado com aveia, pão com requeijão e a fruta da semana, banana com aveia e canela.", "manha");
@@ -1254,6 +1265,170 @@
     return html;
   }
   document.getElementById("tab-dieta").innerHTML = renderResumo();
+
+
+  // ---------- Aba "Preços": histórico de preços por compra (Komprão, Camboriú) ----------
+  // Para registrar uma compra nova: acrescente a data em PRECOS_DATAS e um valor (ou null) no fim de cada linha.
+  var PRECOS_DATAS = ["07/11/2026", "16/11/2026"];
+  var PRECOS = [
+    ["Carnes e ovos", "Ovos vermelhos, bandeja com 30", [12.79, 14.99]],
+    ["Carnes e ovos", "Peito de frango com osso, kg", [13.49, null]],
+    ["Carnes e ovos", "Carne moída dianteiro Komprão, 400g", [21.99, null]],
+    ["Laticínios", "Leite Santa Clara integral, 1L", [4.49, null]],
+    ["Laticínios", "Iogurte Batavo cremoso integral, 160g", [3.69, null]],
+    ["Laticínios", "Requeijão Lac Lelo light, 400g", [14.99, null]],
+    ["Laticínios", "Requeijão Tirol cheddar, 180g", [null, 7.99]],
+    ["Laticínios", "Queijo mussarela Lasaroli fatiado, 300g", [null, 14.99]],
+    ["Hortifruti", "Abobrinha verde, kg", [null, 6.79]],
+    ["Hortifruti", "Alho, kg", [null, 24.99]],
+    ["Hortifruti", "Batata lavada, kg", [6.49, null]],
+    ["Hortifruti", "Batata-doce, kg", [null, 5.79]],
+    ["Hortifruti", "Beterraba, kg", [5.79, null]],
+    ["Hortifruti", "Cebola, kg", [9.99, 9.99]],
+    ["Hortifruti", "Cebolinha verde, maço", [2.99, null]],
+    ["Hortifruti", "Cenoura, kg", [4.99, 4.99]],
+    ["Hortifruti", "Pimentão vermelho, kg", [24.99, null]],
+    ["Hortifruti", "Repolho verde, unidade", [3.99, null]],
+    ["Hortifruti", "Salsa, maço", [2.99, null]],
+    ["Hortifruti", "Tomate salada, kg", [null, 22.99]],
+    ["Frutas", "Abacaxi pérola, unidade", [9.79, null]],
+    ["Frutas", "Banana caturra, kg", [null, 4.99]],
+    ["Frutas", "Coco verde, unidade", [4.79, 4.99]],
+    ["Frutas", "Mamão formosa, kg", [11.79, null]],
+    ["Frutas", "Manga Tommy, kg", [4.99, null]],
+    ["Frutas", "Melão amarelo, kg", [null, 7.79]],
+    ["Padaria e mercearia", "Pão Thabrulai sanduíche, 400g", [7.79, 6.99]],
+    ["Padaria e mercearia", "Massa Rap10 integral (wrap), 297g", [null, 16.89]],
+    ["Padaria e mercearia", "Extrato de tomate Bonare, 290g", [4.19, null]],
+    ["Padaria e mercearia", "Extrato de tomate Bonare gourmet, 1,02 kg", [null, 13.79]],
+    ["Padaria e mercearia", "Fermento Royal, 100g", [null, 4.69]],
+    ["Padaria e mercearia", "Milho verde Predilecta, lata 170g", [1.99, null]],
+    ["Padaria e mercearia", "Milho de pipoca Yoki, 400g", [null, 4.39]],
+    ["Padaria e mercearia", "Pepino Zilse burger fatiado, 330g", [12.39, null]],
+    ["Padaria e mercearia", "Canela em pó Pacal, 27g", [4.79, null]],
+    ["Padaria e mercearia", "Chimichurri Pacal, 5g", [2.19, null]],
+    ["Padaria e mercearia", "Tempero Kitano mix para frango, 40g", [null, 6.99]],
+    ["Padaria e mercearia", "Café solúvel L'Or Classique, 40g", [9.99, null]],
+    ["Padaria e mercearia", "Chá Leão ervas hortelã, 15g", [9.79, null]],
+    ["Padaria e mercearia", "Chá Leão Relaxa camomila, 16g", [19.49, null]],
+    ["Padaria e mercearia", "Geleia Linea sem açúcar frutas vermelhas, 230g", [31.99, null]],
+    ["Doces e lanches", "Biscoito Trakinas recheado, 126g", [2.69, 2.69]],
+    ["Doces e lanches", "Pipoca de micro-ondas Yoki, 160g", [6.79, 8.99]],
+    ["Doces e lanches", "Pudim Dr. Oetker diet chocolate, 25g", [5.79, null]],
+    ["Doces e lanches", "Refresco Clight, 8g", [1.89, null]],
+    ["Doces e lanches", "Macarrão instantâneo Nissin galinha caipira, 80g", [null, 2.99]],
+    ["Doces e lanches", "Petit gateau Mr. Bey chocolate, 240g", [null, 33.99]],
+    ["Limpeza e higiene", "Papel higiênico Duetto 20m, 18 rolos", [32.99, null]],
+    ["Limpeza e higiene", "Lava-roupas Girando Sol, 3L", [19.89, null]],
+    ["Limpeza e higiene", "Detergente Suprema neutro, 500ml", [1.69, null]],
+    ["Limpeza e higiene", "Esponja Condor multiuso, 4 un", [4.89, null]],
+    ["Limpeza e higiene", "Kit shampoo + condicionador Tresemmé, 525ml", [39.99, null]],
+    ["Limpeza e higiene", "Desodorante Dove creme, 50g", [19.99, null]],
+    ["Limpeza e higiene", "Sabonete Protex, 85g", [3.19, null]],
+    ["Limpeza e higiene", "Toalha umedecida Piquitucho, 140 un", [9.99, null]],
+    ["Limpeza e higiene", "Repelente Raid 45 noites, refil", [18.99, null]],
+    ["Utensílios", "Assadeira antiaderente 37x25x5 cm", [26.99, null]]
+  ];
+
+  // Liga cada linha da tabela de cupons a um item do get-ofertas.py: [item, tamanho da linha em kg, L ou nº de ovos].
+  var PRECOS_KOCH = {
+    "Ovos vermelhos, bandeja com 30": ["Ovos", 30],
+    "Peito de frango com osso, kg": ["Peito de frango c/ osso", 1],
+    "Carne moída dianteiro Komprão, 400g": ["Carne moída", 0.4],
+    "Leite Santa Clara integral, 1L": ["Leite integral", 1],
+    "Iogurte Batavo cremoso integral, 160g": ["Iogurte natural", 0.16],
+    "Requeijão Lac Lelo light, 400g": ["Requeijão", 0.4],
+    "Queijo mussarela Lasaroli fatiado, 300g": ["Mussarela fatiada", 0.3],
+    "Abobrinha verde, kg": ["Abobrinha", 1],
+    "Alho, kg": ["Alho", 1],
+    "Batata lavada, kg": ["Batata inglesa", 1],
+    "Batata-doce, kg": ["Batata-doce", 1],
+    "Beterraba, kg": ["Beterraba", 1],
+    "Cebola, kg": ["Cebola", 1],
+    "Cenoura, kg": ["Cenoura", 1],
+    "Tomate salada, kg": ["Tomate", 1],
+    "Banana caturra, kg": ["Banana", 1],
+    "Mamão formosa, kg": ["Mamão", 1],
+    "Manga Tommy, kg": ["Manga", 1],
+    "Pão Thabrulai sanduíche, 400g": ["Pão de forma", 0.4],
+    "Extrato de tomate Bonare, 290g": ["Extrato de tomate", 0.29],
+    "Extrato de tomate Bonare gourmet, 1,02 kg": ["Extrato de tomate", 1.02]
+  };
+
+  function renderPrecos() {
+    var H2 = "<h2 style=\"font-family:var(--font-display);margin-top:0;\">";
+    var cats = [];
+    PRECOS.forEach(function (l) { if (cats.indexOf(l[0]) < 0) cats.push(l[0]); });
+    var ths = PRECOS_DATAS.map(function (d) { return "<th class=\"num\">" + escapeHtml(d) + "</th>"; }).join("");
+    // Coluna do Koch: preço de hoje do mesmo item, convertido para o tamanho da linha (vem de ofertas-koch.js).
+    var koch = {};
+    if (window.OFERTAS_KOCH) window.OFERTAS_KOCH.itens.forEach(function (i) { if (i.hoje) koch[i.item] = i.hoje; });
+    var temKoch = Object.keys(koch).length > 0;
+    var kochData = temKoch ? window.OFERTAS_KOCH.atualizado.slice(0, 5) : "";
+    var thKoch = temKoch ? "<th class=\"num\">Site " + escapeHtml(kochData) + "</th>" : "";
+    // Variação: com dados do site, compara o site hoje com a última compra; sem eles, as duas últimas compras.
+    var tituloVar = temKoch ? "Site × última compra" : "Variação";
+    var html = "<div class=\"card\">" + H2 + "Tabela de preços</h2>" +
+      "<p class=\"prep-intro\">Preços pagos em cada compra. Um traço significa que o produto não foi comprado naquele dia." +
+      (temKoch ? " A coluna Site mostra o produto mais barato do mesmo item no site hoje, já no mesmo tamanho da linha. A última coluna diz quanto o site está mais barato (−) ou mais caro (+) que a última vez que você pagou."
+               : " A coluna Variação compara as duas compras mais recentes em que o produto apareceu.") + "</p>" +
+      "<div class=\"table-scroll\"><table class=\"menu-semana tabela-precos\"><thead><tr><th>Produto</th>" + ths + thKoch +
+      "<th class=\"num\">" + tituloVar + "</th></tr></thead><tbody>";
+    var variacao = function (antes, depois) {
+      var d = depois - antes;
+      if (Math.abs(d) < 0.005) return "igual";
+      var txt = (d > 0 ? "+ " : "− ") + formatBRL(Math.abs(d)) + " (" + (d > 0 ? "+" : "−") + Math.abs(Math.round(d / antes * 100)) + "%)";
+      return d < 0 ? "<strong>" + txt + "</strong>" : txt;
+    };
+    cats.forEach(function (cat) {
+      html += "<tr class=\"cat-linha\"><td colspan=\"" + (PRECOS_DATAS.length + 2 + (temKoch ? 1 : 0)) + "\">" + escapeHtml(cat) + "</td></tr>";
+      PRECOS.filter(function (l) { return l[0] === cat; }).forEach(function (l) {
+        var vals = l[2], comPreco = vals.filter(function (v) { return v != null; });
+        var ultimo = comPreco[comPreco.length - 1];
+        var celSite = "", varTxt = "&mdash;";
+        if (temKoch) {
+          var m = PRECOS_KOCH[l[1]], o = m && koch[m[0]];
+          if (o) {
+            var v = o.porUnidade * m[1];
+            celSite = "<td class=\"num\">" + formatBRL(v) + "<span class=\"produto-koch\">" + escapeHtml(o.produto) + "</span></td>";
+            if (ultimo != null) varTxt = variacao(ultimo, v);
+          } else {
+            celSite = "<td class=\"num\">&mdash;</td>";
+          }
+        } else if (comPreco.length >= 2) {
+          varTxt = variacao(comPreco[comPreco.length - 2], ultimo);
+        }
+        html += "<tr><td>" + escapeHtml(l[1]) + "</td>" + PRECOS_DATAS.map(function (_, i) {
+          return "<td class=\"num\">" + (vals[i] != null ? formatBRL(vals[i]) : "&mdash;") + "</td>"; }).join("") +
+          celSite + "<td class=\"num\">" + varTxt + "</td></tr>";
+      });
+    });
+    html += "</tbody></table></div>" +
+      "<p class=\"legenda-estimativa\">Fora dos cupons: carne moída a R$ 19,13/kg (preço que você informou ter conseguido; sem data). É o valor usado nas listas de compras.</p></div>";
+    return renderOfertasKoch() + html;
+  }
+
+  // Ofertas do Koch (arquivo ofertas-koch.js, gerado por get-ofertas.py). Referência = menor preço pago no Komprão.
+  function renderOfertasKoch() {
+    var d = window.OFERTAS_KOCH;
+    if (!d || !d.itens) return "";
+    var un = { kg: "/kg", L: "/L", ovo: "/ovo", un: "/un" };
+    var cel = function (o, u) {
+      return o ? formatBRL(o.porUnidade) + un[u] + "<span class=\"produto-koch\">" + escapeHtml(o.produto) + " · " + formatBRL(o.preco) + "</span>" : "&mdash;";
+    };
+    var linhas = d.itens.map(function (i) {
+      var boa = i.hoje && i.ref != null && i.hoje.porUnidade < i.ref - 0.005;
+      var menor = i.menor30 ? cel(i.menor30, i.unidade) + "<span class=\"produto-koch\">em " + i.menor30.dia.split("-").reverse().join("/") + "</span>" : "&mdash;";
+      return "<tr" + (boa ? " class=\"oferta-boa\"" : "") + "><td>" + escapeHtml(i.item) + (boa ? " ✓ comprar" : "") + "</td>" +
+        "<td class=\"num\">" + (i.ref != null ? formatBRL(i.ref) + un[i.unidade] : "&mdash;") + "</td>" +
+        "<td class=\"num\">" + cel(i.hoje, i.unidade) + "</td><td class=\"num\">" + menor + "</td></tr>";
+    }).join("");
+    return "<div class=\"card\"><h2 style=\"font-family:var(--font-display);margin-top:0;\">Preços do site hoje (itens da dieta)</h2>" +
+      "<p class=\"prep-intro\">Atualizado em " + escapeHtml(d.atualizado) + ". Busca diária no site do Koch: o produto mais barato de cada item hoje, por kg, litro ou ovo, comparado com o menor preço que você já pagou (cupons abaixo) e com o menor dos últimos 30 dias. Linha destacada = mais barato que o menor já pago: vale comprar.</p>" +
+      "<div class=\"table-scroll\"><table class=\"menu-semana tabela-precos\"><thead><tr><th>Item</th><th class=\"num\">Menor já pago</th><th class=\"num\">Site hoje</th><th class=\"num\">Site, menor em 30 dias</th></tr></thead><tbody>" +
+      linhas + "</tbody></table></div></div>";
+  }
+  document.getElementById("tab-precos").innerHTML = renderPrecos();
 
   aplicarChecksSalvos();
   [1, 2, 3, 4].forEach(atualizarProgresso);

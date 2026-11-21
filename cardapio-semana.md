@@ -1,6 +1,6 @@
 # Cardápio econômico – poucos ingredientes, muitas receitas
 
-Gerado a partir dos mesmos dados do index.html (semana 1: frutas banana e manga; legumes cenoura e abobrinha). Mantém as porções e equivalências do PDF da nutricionista (entrega 01/07/2026). Sem atum, peixe, whey nem itens caros que só servem para uma receita. Sem o vinagre de maçã.
+Gerado a partir dos mesmos dados do index.html (semana 1: frutas banana caturra (~150g cada, com casca) e manga; legumes cenoura e abobrinha). Mantém as porções e equivalências do PDF da nutricionista (entrega 01/07/2026). Sem atum, peixe, whey nem itens caros que só servem para uma receita. Sem o vinagre de maçã.
 
 ## Calorias (estimativa por tabelas médias, margem de ~10%)
 - Média do cardápio (tabela TACO): ~1.610 kcal/dia, de ~1.460 (sábado) a ~1.760 nos dias mais altos, com ~87 a 150 g de proteína por dia. Salada sem azeite (só limão e sal).
@@ -11,10 +11,10 @@ Gerado a partir dos mesmos dados do index.html (semana 1: frutas banana e manga;
 ## A ideia: 3 proteínas + leite, muitos formatos
 Ovos, carne moída e frango são a base. A variação vem do formato (crepioca, bolonhesa, almôndega, fritada, pizza de pão) e dos temperos, não de ingredientes novos.
 
-## Preço de cada proteína (cupom Komprão de 07/11/2026)
+## Preço de cada proteína (cupons Komprão de 07/11 e 16/11/2026)
 | Proteína | Preço | Custo por grama de proteína (aprox.) |
 |---|---|---|
-| Ovo (bandeja com 30 a R$ 12,79) | R$ 0,43 cada | R$ 0,07 |
+| Ovo (bandeja com 30 a R$ 14,99) | R$ 0,50 cada | R$ 0,08 |
 | Peito de frango com osso (R$ 13,49/kg) | R$ 13,49/kg | R$ 0,08 |
 | Carne moída dianteiro embalada 400 g (R$ 21,99) | R$ 54,97/kg | R$ 0,28 |
 | Carne moída que você conseguiu a R$ 19,13/kg | R$ 19,13/kg | R$ 0,11 |
@@ -33,34 +33,34 @@ Ovos, carne moída e frango são a base. A variação vem do formato (crepioca, 
 Pizza de pão e sanduíche de ovo no jantar NÃO estão no PDF; confirmar com a nutricionista.
 
 ## Lista de compras da semana 1 (arroz, feijão, café e canela já estão em casa)
-| Item | Quantidade de compra (com casca e caroço) | Preço (cupom 07/11/2026) |
+| Item | Quantidade de compra (com casca e caroço) | Preço (cupons 07/11 e 16/11/2026) |
 |---|---|---|
 | Carne moída (crua) | 1130 g | R$ 21,62 |
 | Peito de frango com osso | 1120 g | R$ 15,11 |
 | Iogurte natural sem açúcar (fermento do 1º lote) | 1 un | R$ 3,69 |
 | Leite integral (iogurte caseiro e vitamina) | 1880 ml | R$ 8,98 |
-| Ovos (bandeja com 30) | 29 un | R$ 12,79 |
-| Queijo (mussarela ou parmesão ralado) | 100 g | — |
-| Requeijão light | 120 g | R$ 14,99 |
+| Ovos (bandeja com 30) | 29 un | R$ 14,99 |
+| Queijo mussarela fatiado (pacote 300g) | 100 g | R$ 5,00 |
+| Requeijão cremoso (copo 180g) | 120 g | R$ 5,24 |
 | Batata inglesa | 560 g | R$ 3,63 |
-| Abobrinha | 950 g | — |
-| Alho | 5 dente | — |
+| Abobrinha | 950 g | R$ 6,42 |
+| Alho | 5 dente | R$ 0,62 |
 | Cebola | 230 g | R$ 2,31 |
 | Cenoura | 630 g | R$ 3,16 |
 | Limão | 3 un | — |
 | Repolho (salada e refogado) | 820 g | R$ 3,26 |
-| Tomate | 970 g | — |
-| Banana | 11 un | — |
+| Tomate | 970 g | R$ 22,30 |
+| Banana caturra (~150g cada, com casca) | 11 un | R$ 8,23 |
 | Mamão | 1020 g | R$ 11,97 |
 | Manga | 240 g | R$ 1,20 |
-| Pão de forma integral (pacote com ~16 fatias) | 11 fatia | R$ 7,79 |
+| Pão de forma integral (pacote com ~16 fatias) | 11 fatia | R$ 6,99 |
 | Aveia (farelo ou flocos finos) | 220 g | — |
 | Cápsulas de Ômega-3 | 14 cáps | — |
-| Extrato de tomate | 35 g | R$ 4,19 |
-| Fermento em pó | 10 g | — |
+| Extrato de tomate | 35 g | R$ 0,47 |
+| Fermento em pó (pote 100g) | 10 g | R$ 0,42 |
 | Tapioca (goma hidratada) | 120 g | — |
 
-Itens com preço no cupom: R$ 114,68 (ovos, pão, leite, requeijão, extrato e iogurte contados por embalagem fechada; o resto proporcional ao uso). 10 itens sem preço no cupom (—). Compra real: ovos 1 bandeja de 30, leite 2 L, carne moída 1,2 kg, frango 1,2 kg com osso, pão 1 pacote, requeijão 1 pote de 400 g.
+Itens com preço no cupom: R$ 145,60 (ovos, pão, leite e iogurte contados por embalagem fechada; o resto proporcional ao uso). 4 itens sem preço no cupom (—). Compra real: ovos 1 bandeja de 30, leite 2 L, carne moída 1,2 kg, frango 1,2 kg com osso, pão 1 pacote, requeijão 1 copo de 180 g.
 
 ## Domingo: o que preparar, em ordem (cerca de 3 horas)
 Siga a ordem de cima para baixo. Primeiro vai para o fogo o que demora e só precisa de vigia (frango e arroz); enquanto cozinha, você pica os legumes e leva a forma ao forno; depois faz as receitas de frigideira e monta as marmitas. Cada passo já traz a receita completa, com as quantidades. Você só precisa de 1 forma grande, 1 frigideira com tampa, 1 panela de pressão e 2 panelas.
