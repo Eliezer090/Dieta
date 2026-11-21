@@ -6,7 +6,8 @@ aba Preços do index.html), grava o histórico em SQLite, gera ofertas-koch.js
 
 Preço bom = por kg/L/ovo/un igual ou abaixo da referência do Komprão,
             OU o menor preço do Koch em 30 dias (com 7+ dias de histórico).
-A mesma oferta não é avisada de novo por 7 dias, a não ser que fique mais barata.
+Todo dia vai uma mensagem com todos os itens: promoções no topo, depois preço bom
+sem promoção, depois uma tabela com o resto.
 
 Instalação (uma vez):
     pip install playwright
@@ -38,7 +39,6 @@ PAGINAS_POR_BUSCA = 2      # até 40 resultados por item (os mais relevantes vê
 MIN_ITENS = 50             # abaixo disso, considera que a coleta quebrou
 MIN_DIAS_HISTORICO = 7     # dias de histórico antes de usar a regra dos 30 dias
 TOLERANCIA = 0.05          # até 5% acima do menor preço dos 30 dias ainda conta como preço bom
-DIAS_SEM_REPETIR = 7       # não repete o mesmo aviso nesse intervalo
 HEADLESS = os.getenv("HEADLESS") == "1"   # HEADLESS=1 testa sem janela (pode ser bloqueado)
 DB = os.path.join(PASTA, "ofertas.db")
 JS_SAIDA = os.path.join(PASTA, "ofertas-koch.js")
@@ -210,58 +210,109 @@ def salvar(db, hoje, itens):
     db.commit()
 
 
-def analisar(db, hoje, itens, registrar=True):
-    """Compara os produtos da dieta com a referência e o histórico. Devolve as linhas de aviso."""
-    linhas, melhores = [], {}
+def preco_bom(db, hoje, alvo, por_un):
+    """True se o preço por kg/L/ovo está bom: abaixo do menor já pago, ou perto do menor dos 30 dias."""
+    ref = alvo["ref"]
+    if ref and por_un < ref - 0.005:  # mais barato de verdade, não igual
+        return True
+    # Histórico do item (qualquer marca): o mais barato de cada dia nos últimos 30 dias.
+    dias, menor, media = db.execute(
+        "select count(*), min(m), avg(m) from ("
+        " select dia, min(por_unidade) m from dieta"
+        " where item=? and dia<? and dia>=date(?, '-30 day') group by dia)",
+        (alvo["nome"], hoje, hoje),
+    ).fetchone()
+    # Perto do menor dos 30 dias (até TOLERANCIA acima) E abaixo da média: R$ 9,10 conta
+    # mesmo que o recorde tenha sido R$ 9,05; um preço que nunca muda não conta.
+    return bool(dias >= MIN_DIAS_HISTORICO and menor
+                and por_un <= menor * (1 + TOLERANCIA) and por_un < media - 0.005)
+
+
+def analisar(db, hoje, itens):
+    """Grava os produtos da dieta e devolve um resumo por item (na ordem de ALVOS):
+    {alvo, melhor, promo, bom} onde melhor/promo = (por_un, preço, preço cheio, nome) ou None."""
+    resumo = {a["nome"]: {"alvo": a, "melhor": None, "promo": None} for a in ALVOS}
     for h in sorted(itens, key=lambda h: h["name"]):
         alvo = casar(h["name"])
         if alvo is None:
             continue
-        atual = preco_atual(h)
+        atual, cheio = preco_atual(h), h["pricing"]["price"]
         qtd = quantidade(h["name"], alvo["unidade"])
         por_un = atual / qtd if qtd else atual
         db.execute("insert or replace into dieta values(?,?,?,?,?,?)",
                    (hoje, alvo["nome"], h["id"], h["name"], atual, por_un))
-        ref, u = alvo["ref"], alvo["unidade"]
-        print(f"  [{alvo['nome']}] {h['name']}: R$ {brl(atual)} = R$ {brl(por_un)}/{u}"
-              + (f" (menor pago R$ {brl(ref)})" if ref else ""))
-
-        motivo = None
-        if ref and por_un < ref - 0.005:  # mais barato de verdade, não igual
-            motivo = f"R$ {brl(por_un)}/{u}, o menor que você já pagou foi R$ {brl(ref)}"
-        else:
-            # Histórico do item (qualquer marca), por kg/L/ovo: o mais barato de cada dia nos últimos 30 dias.
-            dias, menor, media = db.execute(
-                "select count(*), min(m), avg(m) from ("
-                " select dia, min(por_unidade) m from dieta"
-                " where item=? and dia<? and dia>=date(?, '-30 day') group by dia)",
-                (alvo["nome"], hoje, hoje),
-            ).fetchone()
-            # Preço bom = perto do menor dos 30 dias (até TOLERANCIA acima) E abaixo da média.
-            # Assim R$ 9,10 avisa mesmo que o recorde tenha sido R$ 9,05; preço que nunca muda não avisa.
-            if (dias >= MIN_DIAS_HISTORICO and menor
-                    and por_un <= menor * (1 + TOLERANCIA) and por_un < media - 0.005):
-                motivo = (f"R$ {brl(por_un)}/{u}: perto do menor em 30 dias (R$ {brl(menor)}),"
-                          f" média R$ {brl(media)}")
-        # guarda só a opção mais barata (por kg/L/ovo) de cada item da dieta
-        if motivo and (alvo["nome"] not in melhores or por_un < melhores[alvo["nome"]][0]):
-            melhores[alvo["nome"]] = (por_un, h, atual, motivo)
-
-    for item, (por_un, h, atual, motivo) in melhores.items():
-        # a tabela alertas guarda o item da dieta na coluna id
-        ja = db.execute(
-            "select min(por_unidade) from alertas where id=? and dia>=date(?, ?)",
-            (item, hoje, f"-{DIAS_SEM_REPETIR} day"),
-        ).fetchone()[0]
-        if ja is not None and por_un >= ja - 0.005:
-            continue  # já avisado nesta semana, e não ficou mais barato
-        if registrar:  # no modo --sem-aviso não marca como avisado, para o aviso real sair depois
-            db.execute("insert into alertas values(?,?,?)", (hoje, item, por_un))
-        cheio = h["pricing"]["price"]
-        etiqueta = f"promoção, cheio R$ {brl(cheio)}" if atual < cheio - 0.005 else "preço normal"
-        linhas.append(f"• {item}: {h['name']} R$ {brl(atual)} ({etiqueta}) - {motivo}")
+        print(f"  [{alvo['nome']}] {h['name']}: R$ {brl(atual)} = R$ {brl(por_un)}/{alvo['unidade']}"
+              + (f" (menor pago R$ {brl(alvo['ref'])})" if alvo["ref"] else ""))
+        r, opcao = resumo[alvo["nome"]], (por_un, atual, cheio, h["name"])
+        if r["melhor"] is None or por_un < r["melhor"][0]:
+            r["melhor"] = opcao
+        if atual < cheio - 0.005 and (r["promo"] is None or por_un < r["promo"][0]):
+            r["promo"] = opcao
+    for r in resumo.values():
+        r["bom"] = bool(r["melhor"]) and preco_bom(db, hoje, r["alvo"], r["melhor"][0])
+        r["promo_bom"] = bool(r["promo"]) and preco_bom(db, hoje, r["alvo"], r["promo"][0])
     db.commit()
-    return linhas
+    return list(resumo.values())
+
+
+# Nomes curtos para caber na tabela do WhatsApp (celular mostra ~32 letras por linha).
+CURTO = {"Peito de frango c/ osso": "Frango c/osso", "Mussarela fatiada": "Mussarela",
+         "Extrato de tomate": "Extrato tom.", "Iogurte natural": "Iogurte nat.",
+         "Leite integral": "Leite", "Batata inglesa": "Batata", "Pão de forma": "Pão de forma"}
+DIAS_SEMANA = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"]
+
+
+def _nome_curto(nome, alvo, limite=30):
+    """Tira do nome do produto as palavras que já estão no item: 'Iogurte Integral Salubi Natural 750G'
+    vira 'Integral Salubi 750G' quando o item é Iogurte natural."""
+    chaves = set(alvo["incluir"]) | {w for i in alvo["inicio"] for w in i.split()}
+    fica = [p for p in nome.split()
+            if not any(norm(p).startswith(c) for c in chaves) and norm(p) not in ("de", "do", "da", "com")]
+    txt = " ".join(fica) or nome
+    return txt if len(txt) <= limite else txt[:limite - 1] + "…"
+
+
+def montar_mensagem(resumo, data):
+    """Mensagem do WhatsApp: promoções que valem no topo, depois preço bom sem promoção,
+    depois uma tabela com o resto. Formatação do WhatsApp: *negrito*, _itálico_, ~riscado~,
+    ``` bloco de largura fixa ```."""
+    un = lambda a: "ovo" if a["unidade"] == "ovo" else a["unidade"]
+    promo = [r for r in resumo if r["promo_bom"]]
+    bons = [r for r in resumo if not r["promo_bom"] and r["bom"]]
+    resto = [r for r in resumo if not r["promo_bom"] and not r["bom"]]
+
+    linhas = [f"🛒 *Preços Koch · {DIAS_SEMANA[data.weekday()]} {data:%d/%m}*", ""]
+    if promo:
+        linhas.append(f"🔥 *PROMOÇÃO QUE VALE A PENA* ({len(promo)})")
+        for r in promo:
+            por_un, atual, cheio, nome = r["promo"]
+            a = r["alvo"]
+            linhas.append(f"• *{a['nome']}* R$ {brl(atual)} ~{brl(cheio)}~")
+            linhas.append(f"   _{_nome_curto(nome, a)} · {brl(por_un)}/{un(a)}_")
+        linhas.append("")
+    if bons:
+        linhas.append(f"✅ *PREÇO BOM, SEM PROMOÇÃO* ({len(bons)})")
+        for r in bons:
+            por_un, atual, cheio, nome = r["melhor"]
+            a = r["alvo"]
+            linhas.append(f"• *{a['nome']}* R$ {brl(por_un)}/{un(a)}")
+            detalhe = _nome_curto(nome, a)
+            if norm(detalhe).strip() not in ("kg", ""):
+                linhas.append(f"   _{detalhe}_")
+        linhas.append("")
+    if resto:
+        linhas.append("📋 *DEMAIS ITENS*")
+        linhas.append("```")
+        linhas.append(f"{'ITEM':<14}{'HOJE':>10}{'PAGO':>7}")
+        for r in resto:
+            a = r["alvo"]
+            hoje_txt = f"{brl(r['melhor'][0])}/{un(a)}" if r["melhor"] else "—"
+            nome = CURTO.get(a["nome"], a["nome"])[:13] + ("*" if r["promo"] else "")
+            linhas.append(f"{nome:<14}{hoje_txt:>10}{brl(a['ref']) if a['ref'] else '—':>7}")
+        linhas.append("```")
+        linhas.append("_Preços por kg, litro ou ovo. * = tem promoção, mas não compensa._")
+    linhas += ["", "_Promoção que vale e preço bom = mais barato que o menor que você já pagou._"]
+    return "\n".join(linhas).strip()
 
 
 def gerar_js(db, hoje):
@@ -304,16 +355,24 @@ def login_whatsapp():
 
 
 def enviar_whatsapp(texto):
-    texto = texto[:1500]  # o texto vai na URL, então mantenha curto
+    """Abre a conversa e digita a mensagem linha a linha (Shift+Enter quebra a linha sem enviar).
+    Digitar, em vez de mandar o texto no link, não tem limite de tamanho."""
     with sync_playwright() as p:
         ctx = _abrir_wa(p)
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
-        page.goto(f"https://web.whatsapp.com/send?phone={WA_NUMERO}&text={urllib.parse.quote(texto)}")
+        page.goto(f"https://web.whatsapp.com/send?phone={WA_NUMERO}")
         # se a sessão expirou, aparece o QR e esta espera estoura o tempo
         caixa = page.locator('footer div[contenteditable="true"]')
         caixa.wait_for(timeout=90000)
         page.wait_for_timeout(1500)
-        caixa.press("Enter")
+        caixa.click()
+        for i, linha in enumerate(texto.split("\n")):
+            if i:
+                page.keyboard.press("Shift+Enter")
+            if linha:
+                page.keyboard.insert_text(linha)
+        page.wait_for_timeout(800)
+        page.keyboard.press("Enter")
         page.wait_for_timeout(4000)
         ctx.close()
 
@@ -337,14 +396,11 @@ def main(enviar=True):
         db = sqlite3.connect(DB)
         criar_tabelas(db)
         salvar(db, hoje, itens)
-        linhas = analisar(db, hoje, itens, registrar=enviar)
+        resumo = analisar(db, hoje, itens)
         gerar_js(db, hoje)
         db.close()
-        print(f"{len(itens)} produtos dos itens da dieta gravados; ofertas-koch.js atualizado.")
-        if linhas:
-            notificar("🛒 Preço bom no Koch hoje:\n" + "\n".join(linhas), enviar)
-        else:
-            print("Nenhum item da dieta com preço bom hoje.")
+        print(f"{len(itens)} produtos dos itens da dieta gravados; ofertas-koch.js atualizado.\n")
+        notificar(montar_mensagem(resumo, datetime.date.today()), enviar)
     except Exception as e:
         notificar(f"⚠️ Coleta do Koch falhou: {e}", enviar)
         sys.exit(1)
