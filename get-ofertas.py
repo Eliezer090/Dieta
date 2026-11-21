@@ -95,6 +95,11 @@ ALVOS = [
 # ref None = nunca comprado no Komprão (ou só por unidade, caso do repolho): só avisa pelo histórico de 30 dias.
 
 
+def brl(v):
+    """4.99 -> '4,99' (formato brasileiro nas mensagens)."""
+    return f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
 def norm(t):
     """minúsculo e sem acento, para 'Café' casar com 'cafe'."""
     t = unicodedata.normalize("NFKD", t.lower())
@@ -218,12 +223,12 @@ def analisar(db, hoje, itens, registrar=True):
         db.execute("insert or replace into dieta values(?,?,?,?,?,?)",
                    (hoje, alvo["nome"], h["id"], h["name"], atual, por_un))
         ref, u = alvo["ref"], alvo["unidade"]
-        print(f"  [{alvo['nome']}] {h['name']}: R$ {atual:.2f} = R$ {por_un:.2f}/{u}"
-              + (f" (menor pago R$ {ref:.2f})" if ref else ""))
+        print(f"  [{alvo['nome']}] {h['name']}: R$ {brl(atual)} = R$ {brl(por_un)}/{u}"
+              + (f" (menor pago R$ {brl(ref)})" if ref else ""))
 
         motivo = None
         if ref and por_un < ref - 0.005:  # mais barato de verdade, não igual
-            motivo = f"R$ {por_un:.2f}/{u}, o menor que você já pagou foi R$ {ref:.2f}"
+            motivo = f"R$ {brl(por_un)}/{u}, o menor que você já pagou foi R$ {brl(ref)}"
         else:
             # Histórico do item (qualquer marca), por kg/L/ovo: o mais barato de cada dia nos últimos 30 dias.
             dias, menor, media = db.execute(
@@ -236,8 +241,8 @@ def analisar(db, hoje, itens, registrar=True):
             # Assim R$ 9,10 avisa mesmo que o recorde tenha sido R$ 9,05; preço que nunca muda não avisa.
             if (dias >= MIN_DIAS_HISTORICO and menor
                     and por_un <= menor * (1 + TOLERANCIA) and por_un < media - 0.005):
-                motivo = (f"R$ {por_un:.2f}/{u}: perto do menor em 30 dias (R$ {menor:.2f}),"
-                          f" média R$ {media:.2f}")
+                motivo = (f"R$ {brl(por_un)}/{u}: perto do menor em 30 dias (R$ {brl(menor)}),"
+                          f" média R$ {brl(media)}")
         # guarda só a opção mais barata (por kg/L/ovo) de cada item da dieta
         if motivo and (alvo["nome"] not in melhores or por_un < melhores[alvo["nome"]][0]):
             melhores[alvo["nome"]] = (por_un, h, atual, motivo)
@@ -253,8 +258,8 @@ def analisar(db, hoje, itens, registrar=True):
         if registrar:  # no modo --sem-aviso não marca como avisado, para o aviso real sair depois
             db.execute("insert into alertas values(?,?,?)", (hoje, item, por_un))
         cheio = h["pricing"]["price"]
-        etiqueta = f"promoção, cheio R$ {cheio:.2f}" if atual < cheio - 0.005 else "preço normal"
-        linhas.append(f"• {item}: {h['name']} R$ {atual:.2f} ({etiqueta}) - {motivo}")
+        etiqueta = f"promoção, cheio R$ {brl(cheio)}" if atual < cheio - 0.005 else "preço normal"
+        linhas.append(f"• {item}: {h['name']} R$ {brl(atual)} ({etiqueta}) - {motivo}")
     db.commit()
     return linhas
 
