@@ -1,6 +1,6 @@
 // Gerado por get-ofertas.py; não edite à mão.
 window.OFERTAS_KOCH = {
- "atualizado": "21/11/2026 11:24",
+ "atualizado": "22/11/2026 09:01",
  "itens": [
   {
    "item": "Ovos",
@@ -20,7 +20,7 @@ window.OFERTAS_KOCH = {
     "produto": "Ovos Vermelhos com 30 Unidades",
     "preco": 12.99,
     "porUnidade": 0.433,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -120,7 +120,7 @@ window.OFERTAS_KOCH = {
     "produto": "CARNE MOIDA BOVINA KROTH CONG 500G",
     "preco": 16.99,
     "porUnidade": 33.98,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -290,7 +290,7 @@ window.OFERTAS_KOCH = {
     "produto": "Coxa e Sobrecoxa De Frango Congelada Kg",
     "preco": 7.79,
     "porUnidade": 12.9833,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -375,6 +375,13 @@ window.OFERTAS_KOCH = {
      "preco": 14.99,
      "cheio": 14.99,
      "porUnidade": 19.9867,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Filé de Peito de Frango Nat Congelada 1kg",
+     "preco": 19.99,
+     "cheio": 19.99,
+     "porUnidade": 19.99,
      "aprov": 1.0
     },
     {
@@ -539,6 +546,13 @@ window.OFERTAS_KOCH = {
      "aprov": 0.65
     },
     {
+     "produto": "COXINHA DA ASA FRANGO LAR IQF 700G",
+     "preco": 10.49,
+     "cheio": 10.49,
+     "porUnidade": 29.9714,
+     "aprov": 0.5
+    },
+    {
      "produto": "Coxinha da Asa Pioneiro 750g",
      "preco": 11.99,
      "cheio": 11.99,
@@ -586,13 +600,6 @@ window.OFERTAS_KOCH = {
      "cheio": 18.99,
      "porUnidade": 48.6923,
      "aprov": 0.65
-    },
-    {
-     "produto": "Coxinha da Asa Macedo Frango Resfriado 600g",
-     "preco": 14.99,
-     "cheio": 14.99,
-     "porUnidade": 49.9667,
-     "aprov": 0.5
     },
     {
      "produto": "Coxinha da Asa de Pato Villa Germania Congelado 750G",
@@ -649,7 +656,7 @@ window.OFERTAS_KOCH = {
     "produto": "Iogurte Natural Holandês Embalagem 1L",
     "preco": 12.99,
     "porUnidade": 12.99,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -742,7 +749,7 @@ window.OFERTAS_KOCH = {
     "produto": "Leite Italac Integral 1L",
     "preco": 4.39,
     "porUnidade": 4.39,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -821,7 +828,7 @@ window.OFERTAS_KOCH = {
     "produto": "Queijo Mussarela Fatiado Lac Lelo 300G",
     "preco": 12.99,
     "porUnidade": 43.3,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -921,7 +928,7 @@ window.OFERTAS_KOCH = {
     "produto": "Requeijão Tirolez Light Tradicional 200G",
     "preco": 5.99,
     "porUnidade": 29.95,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1422,7 +1429,7 @@ window.OFERTAS_KOCH = {
     "produto": "Batata Doce Kg",
     "preco": 5.49,
     "porUnidade": 5.49,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1459,7 +1466,7 @@ window.OFERTAS_KOCH = {
     "produto": "Batata Para Conserva Kg",
     "preco": 5.99,
     "porUnidade": 5.99,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1503,7 +1510,7 @@ window.OFERTAS_KOCH = {
     "produto": "Abobrinha Verde Kg",
     "preco": 3.99,
     "porUnidade": 3.99,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1533,7 +1540,7 @@ window.OFERTAS_KOCH = {
     "produto": "Cebola Para Conserva Kg",
     "preco": 7.99,
     "porUnidade": 7.99,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1577,7 +1584,7 @@ window.OFERTAS_KOCH = {
     "produto": "Cenoura Kg",
     "preco": 4.79,
     "porUnidade": 4.79,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1585,13 +1592,6 @@ window.OFERTAS_KOCH = {
      "preco": 4.79,
      "cheio": 4.79,
      "porUnidade": 4.79,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Cenoura Dal Campo 1Kg",
-     "preco": 4.99,
-     "cheio": 4.99,
-     "porUnidade": 4.99,
      "aprov": 1.0
     },
     {
@@ -1628,7 +1628,7 @@ window.OFERTAS_KOCH = {
     "produto": "Alho Kg",
     "preco": 26.99,
     "porUnidade": 31.7529,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1686,7 +1686,7 @@ window.OFERTAS_KOCH = {
     "produto": "Extrato de Tomate Bonare 300G",
     "preco": 3.19,
     "porUnidade": 10.6333,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1694,13 +1694,6 @@ window.OFERTAS_KOCH = {
      "preco": 3.19,
      "cheio": 3.19,
      "porUnidade": 10.6333,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Extrato de Tomato Quero 300G",
-     "preco": 5.49,
-     "cheio": 5.49,
-     "porUnidade": 18.3,
      "aprov": 1.0
     },
     {
@@ -1772,7 +1765,7 @@ window.OFERTAS_KOCH = {
     "produto": "Tomate Kg",
     "preco": 19.99,
     "porUnidade": 19.99,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1858,7 +1851,7 @@ window.OFERTAS_KOCH = {
     "produto": "Banana Caturra Kg",
     "preco": 5.29,
     "porUnidade": 5.29,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1930,7 +1923,7 @@ window.OFERTAS_KOCH = {
     "produto": "Mamão Papaia/Hawai kg",
     "preco": 10.49,
     "porUnidade": 10.49,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -1967,7 +1960,7 @@ window.OFERTAS_KOCH = {
     "produto": "Manga Tommy Kg",
     "preco": 6.49,
     "porUnidade": 6.49,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -2004,7 +1997,7 @@ window.OFERTAS_KOCH = {
     "produto": "Beterraba Dal Campo 1Kg",
     "preco": 5.99,
     "porUnidade": 5.99,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -2041,7 +2034,7 @@ window.OFERTAS_KOCH = {
     "produto": "Repolho Verde Unidade",
     "preco": 4.79,
     "porUnidade": 4.79,
-    "dia": "2026-11-21"
+    "dia": "2026-11-22"
    },
    "opcoes": [
     {
@@ -2076,9 +2069,9 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": null,
    "hoje": {
-    "produto": "Aveia Vitao Flocos Finos Pacote 400G",
-    "preco": 8.69,
-    "porUnidade": 21.725,
+    "produto": "Aveia Integral Nestlé Flocos Pacote 450G",
+    "preco": 13.99,
+    "porUnidade": 31.0889,
     "aprov": 1.0
    },
    "menor30": {
@@ -2088,20 +2081,6 @@ window.OFERTAS_KOCH = {
     "dia": "2026-11-21"
    },
    "opcoes": [
-    {
-     "produto": "Aveia Vitao Flocos Finos Pacote 400G",
-     "preco": 8.69,
-     "cheio": 8.69,
-     "porUnidade": 21.725,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Aveia Integral Nestlé Flocos Finos Pacote 450G",
-     "preco": 13.99,
-     "cheio": 13.99,
-     "porUnidade": 31.0889,
-     "aprov": 1.0
-    },
     {
      "produto": "Aveia Integral Nestlé Flocos Pacote 450G",
      "preco": 13.99,
@@ -2771,17 +2750,11 @@ window.OFERTAS_KOCH = {
    ]
   },
   "Desodorante aerosol (Rexona e similares), 150ml": {
-   "produto": "Desodorante Antitranspirante Aerosol Dove Original 250ml",
-   "preco": 31.9,
-   "cheio": 31.9,
-   "equiv": 19.14,
+   "produto": "Desodorante Aerosol Dove Mencare Invisible Dry 150ml",
+   "preco": 22.79,
+   "cheio": 22.79,
+   "equiv": 22.79,
    "opcoes": [
-    {
-     "produto": "Desodorante Antitranspirante Aerosol Dove Original 250ml",
-     "preco": 31.9,
-     "cheio": 31.9,
-     "equiv": 19.14
-    },
     {
      "produto": "Desodorante Aerosol Dove Mencare Invisible Dry 150ml",
      "preco": 22.79,
@@ -2790,12 +2763,6 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Desodorante Aerosol Dove MenCare Sem Perfume 150ml",
-     "preco": 22.79,
-     "cheio": 22.79,
-     "equiv": 22.79
-    },
-    {
-     "produto": "Dove Desodorante MenCare Aerosol Energy Boost 150ml",
      "preco": 22.79,
      "cheio": 22.79,
      "equiv": 22.79
@@ -2853,17 +2820,11 @@ window.OFERTAS_KOCH = {
    ]
   },
   "Esponja Condor multiuso, 4 un": {
-   "produto": "Esponja Condor Face Verde Leve 4 Pague 3",
-   "preco": 4.99,
-   "cheio": 4.99,
-   "equiv": 4.99,
+   "produto": "Esponja Scotch-Brite Dupla Face Verde Multiuso Leve 4 Pague 3",
+   "preco": 10.99,
+   "cheio": 10.99,
+   "equiv": 10.99,
    "opcoes": [
-    {
-     "produto": "Esponja Condor Face Verde Leve 4 Pague 3",
-     "preco": 4.99,
-     "cheio": 4.99,
-     "equiv": 4.99
-    },
     {
      "produto": "Esponja Scotch-Brite Dupla Face Verde Multiuso Leve 4 Pague 3",
      "preco": 10.99,
@@ -3035,12 +2996,6 @@ window.OFERTAS_KOCH = {
      "equiv": 36.63
     },
     {
-     "produto": "Sabão Líquido Refil Omo Lavanda 900ml",
-     "preco": 10.99,
-     "cheio": 14.89,
-     "equiv": 36.63
-    },
-    {
      "produto": "Lava Roupas Líquido Brancas e Coloridas Coco Girando Sol 3L",
      "preco": 36.99,
      "cheio": 36.99,
@@ -3057,24 +3012,6 @@ window.OFERTAS_KOCH = {
      "preco": 11.59,
      "cheio": 11.59,
      "equiv": 38.63
-    },
-    {
-     "produto": "Lava Roupas Girando Sol Coco e Baunilha 1 Litro",
-     "preco": 14.99,
-     "cheio": 14.99,
-     "equiv": 44.97
-    },
-    {
-     "produto": "Lava Roupas Girando Sol Glicerina 1L",
-     "preco": 14.99,
-     "cheio": 14.99,
-     "equiv": 44.97
-    },
-    {
-     "produto": "Lava Roupas Girando Sol Hipoalergênico Frasco 1 Litro",
-     "preco": 14.99,
-     "cheio": 14.99,
-     "equiv": 44.97
     },
     {
      "produto": "Lava Roupas Líquido Omo Lavagem Perfeita 3l",
@@ -3131,12 +3068,6 @@ window.OFERTAS_KOCH = {
      "equiv": 59.97
     },
     {
-     "produto": "Lava Roupas Líquido Ariel Clássico Brancas e Coloridas 3L",
-     "preco": 63.9,
-     "cheio": 63.9,
-     "equiv": 63.9
-    },
-    {
      "produto": "Lava Roupas Líquido Omo Ação Cuidado Ciclo Rápido 1,4L",
      "preco": 29.99,
      "cheio": 29.99,
@@ -3155,7 +3086,7 @@ window.OFERTAS_KOCH = {
      "equiv": 64.26
     },
     {
-     "produto": "Lava Roupas Líquido Omo Ação Cuidado Ciclo Rápido 750Ml",
+     "produto": "Lava Roupas Líquido Omo Ação Antiodor Ciclo Rápido 750Ml",
      "preco": 17.99,
      "cheio": 17.99,
      "equiv": 71.96
@@ -3773,43 +3704,7 @@ window.OFERTAS_KOCH = {
      "equiv": 2.99
     },
     {
-     "produto": "Sabonete Antibacteriano em Barra Aveia Protex 85G",
-     "preco": 3.99,
-     "cheio": 3.99,
-     "equiv": 3.99
-    },
-    {
-     "produto": "Sabonete Antibacteriano em Barra Cream Protex 85G",
-     "preco": 3.99,
-     "cheio": 3.99,
-     "equiv": 3.99
-    },
-    {
-     "produto": "Sabonete Antibacteriano em Barra Limpeza Profunda Protex 85G",
-     "preco": 3.99,
-     "cheio": 3.99,
-     "equiv": 3.99
-    },
-    {
-     "produto": "Sabonete Protex Erva Doce Barra com 85G",
-     "preco": 3.99,
-     "cheio": 3.99,
-     "equiv": 3.99
-    },
-    {
      "produto": "Sabonete Protex Fresh Barra 85g",
-     "preco": 3.99,
-     "cheio": 3.99,
-     "equiv": 3.99
-    },
-    {
-     "produto": "Sabonete Protex Suave 85G",
-     "preco": 3.99,
-     "cheio": 3.99,
-     "equiv": 3.99
-    },
-    {
-     "produto": "Sabonete Protex Omega 3 85G",
      "preco": 3.99,
      "cheio": 3.99,
      "equiv": 3.99
@@ -3825,18 +3720,6 @@ window.OFERTAS_KOCH = {
      "preco": 4.99,
      "cheio": 4.99,
      "equiv": 4.71
-    },
-    {
-     "produto": "Sabonete Baby Glicerinado Suave Protex 85G",
-     "preco": 4.99,
-     "cheio": 4.99,
-     "equiv": 4.99
-    },
-    {
-     "produto": "Sabonete em Barra para Bebê Baby Delicate Care Protex 85G",
-     "preco": 4.99,
-     "cheio": 4.99,
-     "equiv": 4.99
     },
     {
      "produto": "Sabonete em Barra Dove Pele Sensível 90 g",
