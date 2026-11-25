@@ -1,6 +1,6 @@
 // Gerado por get-ofertas.py; não edite à mão.
 window.OFERTAS_KOCH = {
- "atualizado": "25/11/2026 09:01",
+ "atualizado": "25/11/2026 14:00",
  "itens": [
   {
    "item": "Ovos",
@@ -53,9 +53,9 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Ovos Vermelhos Caipiras Filippsen com 20 Unidades",
-     "preco": 16.99,
+     "preco": 16.79,
      "cheio": 17.99,
-     "porUnidade": 0.8495,
+     "porUnidade": 0.8395,
      "aprov": 1.0
     },
     {
@@ -63,6 +63,13 @@ window.OFERTAS_KOCH = {
      "preco": 8.99,
      "cheio": 8.99,
      "porUnidade": 0.899,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Ovos Vermelhos Caipiras Free Lar com 20 Unidades",
+     "preco": 17.99,
+     "cheio": 17.99,
+     "porUnidade": 0.8995,
      "aprov": 1.0
     },
     {
@@ -518,6 +525,13 @@ window.OFERTAS_KOCH = {
      "aprov": 0.65
     },
     {
+     "produto": "Sassami Macedo Resfriado 700g",
+     "preco": 19.99,
+     "cheio": 19.99,
+     "porUnidade": 28.5571,
+     "aprov": 1.0
+    },
+    {
      "produto": "FILEZINHO CANÇÃO FRANGO EMP PC 700G",
      "preco": 19.99,
      "cheio": 19.99,
@@ -553,6 +567,13 @@ window.OFERTAS_KOCH = {
      "aprov": 0.5
     },
     {
+     "produto": "Filé de Peito Macedo Resfriado 600g",
+     "preco": 19.99,
+     "cheio": 19.99,
+     "porUnidade": 33.3167,
+     "aprov": 1.0
+    },
+    {
      "produto": "Coxinha da Asa Frango Sadia 1Kg",
      "preco": 16.99,
      "cheio": 16.99,
@@ -581,11 +602,25 @@ window.OFERTAS_KOCH = {
      "aprov": 0.65
     },
     {
+     "produto": "Coxinha da Asa Macedo Frango Resfriado 600g",
+     "preco": 14.99,
+     "cheio": 14.99,
+     "porUnidade": 49.9667,
+     "aprov": 0.5
+    },
+    {
      "produto": "Coxinha da Asa de Pato Villa Germania Congelado 750G",
      "preco": 19.99,
      "cheio": 19.99,
      "porUnidade": 53.3067,
      "aprov": 0.5
+    },
+    {
+     "produto": "Frango ao Molho Branco com Bacon e Arroz com Brócolis Meu Menu Perdigão 300G",
+     "preco": 9.69,
+     "cheio": 13.99,
+     "porUnidade": 53.8333,
+     "aprov": 0.6
     },
     {
      "produto": "Coxa e Sobrecoxa de Frango Congelada Perdigão na Brasa Mostarda e Shoyu 800G",
@@ -720,43 +755,43 @@ window.OFERTAS_KOCH = {
    "ref": 4.49,
    "hoje": {
     "produto": "Leite Italac Integral 1L",
-    "preco": 4.98,
-    "porUnidade": 4.98,
+    "preco": 4.39,
+    "porUnidade": 4.39,
     "aprov": 1.0
    },
    "menor30": {
-    "produto": "Leite Uht Integral Aurora 1L",
+    "produto": "Leite Italac Integral 1L",
     "preco": 4.39,
     "porUnidade": 4.39,
-    "dia": "2026-11-24"
+    "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Leite Italac Integral 1L",
-     "preco": 4.98,
+     "preco": 4.39,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.39,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Integral Aurora 1L",
-     "preco": 4.98,
+     "preco": 4.39,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.39,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Parmalat Integral 1L",
-     "preco": 4.98,
+     "preco": 4.39,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.39,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Tirol Integral 1L",
-     "preco": 4.98,
+     "preco": 4.39,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.39,
      "aprov": 1.0
     },
     {
@@ -818,17 +853,17 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
+     "produto": "Queijo Mussarela Lasaroli Fatiado 300G",
+     "preco": 14.99,
+     "cheio": 15.99,
+     "porUnidade": 49.9667,
+     "aprov": 1.0
+    },
+    {
      "produto": "Queijo Mussarela Fatiado Lac Lelo 300G",
      "preco": 15.49,
      "cheio": 15.49,
      "porUnidade": 51.6333,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Queijo Mussarela Lasaroli Fatiado 300G",
-     "preco": 15.99,
-     "cheio": 15.99,
-     "porUnidade": 53.3,
      "aprov": 1.0
     },
     {
@@ -899,29 +934,155 @@ window.OFERTAS_KOCH = {
    "ref": 37.475,
    "hoje": {
     "produto": "Requeijão Cremoso Lac Lelo Tradicional 500G",
-    "preco": 14.99,
-    "porUnidade": 29.98,
+    "preco": 10.49,
+    "porUnidade": 20.98,
     "aprov": 1.0
    },
    "menor30": {
-    "produto": "Requeijão Tirolez Light Tradicional 200G",
-    "preco": 5.99,
-    "porUnidade": 29.95,
-    "dia": "2026-11-22"
+    "produto": "Requeijão Cremoso Lac Lelo Tradicional 500G",
+    "preco": 10.49,
+    "porUnidade": 20.98,
+    "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Requeijão Cremoso Lac Lelo Tradicional 500G",
-     "preco": 14.99,
+     "preco": 10.49,
      "cheio": 14.99,
-     "porUnidade": 29.98,
+     "porUnidade": 20.98,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Lac Lelo Light 400G",
-     "preco": 14.99,
+     "preco": 10.49,
      "cheio": 14.99,
-     "porUnidade": 37.475,
+     "porUnidade": 26.225,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Santa Clara Tradicional 180g",
+     "preco": 4.79,
+     "cheio": 6.99,
+     "porUnidade": 26.6111,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Lac Lelo Light Unidade 180G",
+     "preco": 5.19,
+     "cheio": 7.49,
+     "porUnidade": 28.8333,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Lac Lelo Tradicional Copo 180G",
+     "preco": 5.19,
+     "cheio": 7.49,
+     "porUnidade": 28.8333,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Light Vigor 200G",
+     "preco": 5.89,
+     "cheio": 8.49,
+     "porUnidade": 29.45,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Vigor Tradicional 200G",
+     "preco": 5.89,
+     "cheio": 8.49,
+     "porUnidade": 29.45,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Vigor Tradicional 400g",
+     "preco": 11.89,
+     "cheio": 16.99,
+     "porUnidade": 29.725,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso com Queijo Batavo 400g",
+     "preco": 12.59,
+     "cheio": 17.99,
+     "porUnidade": 31.475,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Catupiry Cremoso Light Copo 200G",
+     "preco": 6.59,
+     "cheio": 9.49,
+     "porUnidade": 32.95,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Tirolez Light Tradicional 200G",
+     "preco": 6.59,
+     "cheio": 9.49,
+     "porUnidade": 32.95,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Tirolez Tradicional 200G",
+     "preco": 6.59,
+     "cheio": 9.49,
+     "porUnidade": 32.95,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Light Tirol 400G",
+     "preco": 13.29,
+     "cheio": 18.99,
+     "porUnidade": 33.225,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Tradicional Tirol 400G",
+     "preco": 13.29,
+     "cheio": 18.99,
+     "porUnidade": 33.225,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Catupiry Light 400G",
+     "preco": 13.29,
+     "cheio": 18.99,
+     "porUnidade": 33.225,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Tradicional Catupiry 400G",
+     "preco": 13.29,
+     "cheio": 18.99,
+     "porUnidade": 33.225,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Tradicional Tirol 180G",
+     "preco": 6.29,
+     "cheio": 8.99,
+     "porUnidade": 34.9444,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Tirol Cremoso Light Copo 180G",
+     "preco": 6.29,
+     "cheio": 8.99,
+     "porUnidade": 34.9444,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Tirol com Queijo Bisnaga 400G",
+     "preco": 13.99,
+     "cheio": 19.99,
+     "porUnidade": 34.975,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Requeijão Cremoso Batavo Pense Zero Sem Lactose 400g",
+     "preco": 13.99,
+     "cheio": 19.99,
+     "porUnidade": 34.975,
      "aprov": 1.0
     },
     {
@@ -932,185 +1093,59 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
-     "produto": "Requeijão Santa Clara Tradicional 180g",
-     "preco": 6.99,
-     "cheio": 6.99,
-     "porUnidade": 38.8333,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Lac Lelo Light Unidade 180G",
-     "preco": 7.49,
-     "cheio": 7.49,
-     "porUnidade": 41.6111,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Lac Lelo Tradicional Copo 180G",
-     "preco": 7.49,
-     "cheio": 7.49,
-     "porUnidade": 41.6111,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Light Vigor 200G",
-     "preco": 8.49,
-     "cheio": 8.49,
-     "porUnidade": 42.45,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Vigor Tradicional 200G",
-     "preco": 8.49,
-     "cheio": 8.49,
-     "porUnidade": 42.45,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Vigor Tradicional 400g",
-     "preco": 16.99,
-     "cheio": 16.99,
-     "porUnidade": 42.475,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso com Queijo Batavo 400g",
-     "preco": 17.99,
-     "cheio": 17.99,
-     "porUnidade": 44.975,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Catupiry Cremoso Light Copo 200G",
-     "preco": 9.49,
-     "cheio": 9.49,
-     "porUnidade": 47.45,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Tirolez Light Tradicional 200G",
-     "preco": 9.49,
-     "cheio": 9.49,
-     "porUnidade": 47.45,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Tirolez Tradicional 200G",
-     "preco": 9.49,
-     "cheio": 9.49,
-     "porUnidade": 47.45,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Light Tirol 400G",
-     "preco": 18.99,
-     "cheio": 18.99,
-     "porUnidade": 47.475,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Tradicional Tirol 400G",
-     "preco": 18.99,
-     "cheio": 18.99,
-     "porUnidade": 47.475,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Catupiry Light 400G",
-     "preco": 18.99,
-     "cheio": 18.99,
-     "porUnidade": 47.475,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Tradicional Catupiry 400G",
-     "preco": 18.99,
-     "cheio": 18.99,
-     "porUnidade": 47.475,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Tradicional Tirol 180G",
-     "preco": 8.99,
-     "cheio": 8.99,
-     "porUnidade": 49.9444,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Tirol Cremoso Light Copo 180G",
-     "preco": 8.99,
-     "cheio": 8.99,
-     "porUnidade": 49.9444,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Tirol com Queijo Bisnaga 400G",
-     "preco": 19.99,
-     "cheio": 19.99,
-     "porUnidade": 49.975,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Requeijão Cremoso Batavo Pense Zero Sem Lactose 400g",
-     "preco": 19.99,
-     "cheio": 19.99,
-     "porUnidade": 49.975,
-     "aprov": 1.0
-    },
-    {
      "produto": "Requeijão Tirol Cremoso Zero Lactose Tradicional Copo 180G",
-     "preco": 9.79,
+     "preco": 6.79,
      "cheio": 9.79,
-     "porUnidade": 54.3889,
+     "porUnidade": 37.7222,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Cremoso President Tradicional Copo 220G",
-     "preco": 12.49,
+     "preco": 8.69,
      "cheio": 12.49,
-     "porUnidade": 56.7727,
+     "porUnidade": 39.5,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Cremoso Lac Lelo Tradicional Bisnaga 400G",
-     "preco": 22.99,
+     "preco": 16.09,
      "cheio": 22.99,
-     "porUnidade": 57.475,
+     "porUnidade": 40.225,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Cremoso Lac Lelo Zero Lactose Copo 200G",
-     "preco": 11.99,
+     "preco": 8.39,
      "cheio": 11.99,
-     "porUnidade": 59.95,
+     "porUnidade": 41.95,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Lacfree Zero Lactose Tradicional Pote 400G",
-     "preco": 23.99,
+     "preco": 16.79,
      "cheio": 23.99,
-     "porUnidade": 59.975,
+     "porUnidade": 41.975,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Cremoso Tirolez Pro  180g",
-     "preco": 10.99,
+     "preco": 7.69,
      "cheio": 10.99,
-     "porUnidade": 61.0556,
+     "porUnidade": 42.7222,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Verde Campo Lacfree Zero Lactose Tradicional 180G",
-     "preco": 11.79,
+     "preco": 8.19,
      "cheio": 11.79,
-     "porUnidade": 65.5,
+     "porUnidade": 45.5,
      "aprov": 1.0
     },
     {
      "produto": "Requeijão Catupiry Cremoso Tradicional Bisnaga 250G",
-     "preco": 17.99,
+     "preco": 12.59,
      "cheio": 17.99,
-     "porUnidade": 71.96,
+     "porUnidade": 50.36,
      "aprov": 1.0
     }
    ]
@@ -1176,6 +1211,13 @@ window.OFERTAS_KOCH = {
      "preco": 9.39,
      "cheio": 9.39,
      "porUnidade": 18.78,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Pão de Forma Schirmann 350G",
+     "preco": 6.69,
+     "cheio": 6.69,
+     "porUnidade": 19.1143,
      "aprov": 1.0
     },
     {
@@ -1382,6 +1424,13 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
+     "produto": "Pão de Forma Multigrãos sem Glúten Schar 200G",
+     "preco": 16.59,
+     "cheio": 16.59,
+     "porUnidade": 82.95,
+     "aprov": 1.0
+    },
+    {
      "produto": "Pão de Forma Milho sem Glúten Schär Bandeja 200g",
      "preco": 16.59,
      "cheio": 16.59,
@@ -1400,22 +1449,22 @@ window.OFERTAS_KOCH = {
    "ref": 5.79,
    "hoje": {
     "produto": "Batata Doce Kg",
-    "preco": 3.99,
-    "porUnidade": 3.99,
+    "preco": 3.79,
+    "porUnidade": 3.79,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Batata Doce Kg",
-    "preco": 3.99,
-    "porUnidade": 3.99,
+    "preco": 3.79,
+    "porUnidade": 3.79,
     "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Batata Doce Kg",
-     "preco": 3.99,
+     "preco": 3.79,
      "cheio": 5.49,
-     "porUnidade": 3.99,
+     "porUnidade": 3.79,
      "aprov": 1.0
     },
     {
@@ -1531,9 +1580,9 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Cebola Cabeça Kg",
-     "preco": 8.49,
+     "preco": 7.99,
      "cheio": 10.99,
-     "porUnidade": 8.49,
+     "porUnidade": 7.99,
      "aprov": 1.0
     },
     {
@@ -1571,6 +1620,13 @@ window.OFERTAS_KOCH = {
      "preco": 2.49,
      "cheio": 4.99,
      "porUnidade": 2.49,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Cenoura Dal Campo 1Kg",
+     "preco": 3.99,
+     "cheio": 4.99,
+     "porUnidade": 3.99,
      "aprov": 1.0
     },
     {
@@ -1656,18 +1712,25 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": 13.5196,
    "hoje": {
-    "produto": "Extrato de Tomate Concentrado Salsaretti 300g",
-    "preco": 5.69,
-    "porUnidade": 18.9667,
+    "produto": "Extrato de Tomate Bonare 300G",
+    "preco": 3.19,
+    "porUnidade": 10.6333,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Extrato de Tomate Bonare 300G",
     "preco": 3.19,
     "porUnidade": 10.6333,
-    "dia": "2026-11-22"
+    "dia": "2026-11-25"
    },
    "opcoes": [
+    {
+     "produto": "Extrato de Tomate Bonare 300G",
+     "preco": 3.19,
+     "cheio": 3.19,
+     "porUnidade": 10.6333,
+     "aprov": 1.0
+    },
     {
      "produto": "Extrato de Tomate Concentrado Salsaretti 300g",
      "preco": 5.69,
@@ -1808,22 +1871,22 @@ window.OFERTAS_KOCH = {
    "ref": 4.99,
    "hoje": {
     "produto": "Banana Branca Kg",
-    "preco": 3.49,
-    "porUnidade": 3.49,
+    "preco": 3.29,
+    "porUnidade": 3.29,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Banana Branca Kg",
-    "preco": 3.49,
-    "porUnidade": 3.49,
+    "preco": 3.29,
+    "porUnidade": 3.29,
     "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Banana Branca Kg",
-     "preco": 3.49,
+     "preco": 3.29,
      "cheio": 5.99,
-     "porUnidade": 3.49,
+     "porUnidade": 3.29,
      "aprov": 1.0
     },
     {
@@ -1835,9 +1898,9 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Banana Prata Cultivando Vidas Orgânico Pacote 800G",
-     "preco": 5.79,
+     "preco": 5.49,
      "cheio": 6.49,
-     "porUnidade": 7.2375,
+     "porUnidade": 6.8625,
      "aprov": 1.0
     },
     {
@@ -1880,22 +1943,22 @@ window.OFERTAS_KOCH = {
    "ref": 11.79,
    "hoje": {
     "produto": "Mamão Papaia/Hawai kg",
-    "preco": 7.99,
-    "porUnidade": 7.99,
+    "preco": 7.79,
+    "porUnidade": 7.79,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Mamão Papaia/Hawai kg",
-    "preco": 7.99,
-    "porUnidade": 7.99,
+    "preco": 7.79,
+    "porUnidade": 7.79,
     "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Mamão Papaia/Hawai kg",
-     "preco": 7.99,
+     "preco": 7.79,
      "cheio": 9.99,
-     "porUnidade": 7.99,
+     "porUnidade": 7.79,
      "aprov": 1.0
     },
     {
@@ -1917,29 +1980,29 @@ window.OFERTAS_KOCH = {
    "ref": 4.99,
    "hoje": {
     "produto": "Manga Tommy Kg",
-    "preco": 6.79,
-    "porUnidade": 6.79,
+    "preco": 6.49,
+    "porUnidade": 6.49,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Manga Tommy Kg",
     "preco": 6.49,
     "porUnidade": 6.49,
-    "dia": "2026-11-22"
+    "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Manga Tommy Kg",
-     "preco": 6.79,
+     "preco": 6.49,
      "cheio": 6.79,
-     "porUnidade": 6.79,
+     "porUnidade": 6.49,
      "aprov": 1.0
     },
     {
      "produto": "Manga Palmer Kg",
-     "preco": 6.79,
+     "preco": 6.49,
      "cheio": 6.79,
-     "porUnidade": 6.79,
+     "porUnidade": 6.49,
      "aprov": 1.0
     }
    ]
@@ -1953,18 +2016,25 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": 5.79,
    "hoje": {
-    "produto": "Beterraba Kg",
-    "preco": 7.99,
-    "porUnidade": 7.99,
+    "produto": "Beterraba Dal Campo 1Kg",
+    "preco": 5.99,
+    "porUnidade": 5.99,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Beterraba Dal Campo 1Kg",
     "preco": 5.99,
     "porUnidade": 5.99,
-    "dia": "2026-11-22"
+    "dia": "2026-11-25"
    },
    "opcoes": [
+    {
+     "produto": "Beterraba Dal Campo 1Kg",
+     "preco": 5.99,
+     "cheio": 5.99,
+     "porUnidade": 5.99,
+     "aprov": 1.0
+    },
     {
      "produto": "Beterraba Kg",
      "preco": 7.99,
@@ -2028,134 +2098,134 @@ window.OFERTAS_KOCH = {
    "ref": null,
    "hoje": {
     "produto": "Aveia Vitao Flocos Finos Pacote 400G",
-    "preco": 8.69,
-    "porUnidade": 21.725,
+    "preco": 5.99,
+    "porUnidade": 14.975,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Aveia Vitao Flocos Finos Pacote 400G",
-    "preco": 8.69,
-    "porUnidade": 21.725,
+    "preco": 5.99,
+    "porUnidade": 14.975,
     "dia": "2026-11-25"
    },
    "opcoes": [
     {
      "produto": "Aveia Vitao Flocos Finos Pacote 400G",
-     "preco": 8.69,
+     "preco": 5.99,
      "cheio": 8.69,
-     "porUnidade": 21.725,
+     "porUnidade": 14.975,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Integral Nestlé Flocos Finos Pacote 450G",
-     "preco": 13.99,
+     "preco": 9.69,
      "cheio": 13.99,
-     "porUnidade": 31.0889,
+     "porUnidade": 21.5333,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Integral Nestlé Flocos Pacote 450G",
-     "preco": 13.99,
+     "preco": 9.69,
      "cheio": 13.99,
-     "porUnidade": 31.0889,
+     "porUnidade": 21.5333,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Italac em Flocos 165g",
-     "preco": 5.29,
+     "preco": 3.69,
      "cheio": 5.29,
-     "porUnidade": 32.0606,
+     "porUnidade": 22.3636,
      "aprov": 1.0
     },
     {
      "produto": "Aveia em Flocos Regulares Quaker 450g Embalagem Econômica",
-     "preco": 14.99,
+     "preco": 10.49,
      "cheio": 14.99,
-     "porUnidade": 33.3111,
+     "porUnidade": 23.3111,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Quaker Flocos Finos Caixa 450G",
-     "preco": 14.99,
+     "preco": 10.49,
      "cheio": 14.99,
-     "porUnidade": 33.3111,
+     "porUnidade": 23.3111,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Integral Flocos Finos Jasmine Pacote 400G",
-     "preco": 13.99,
+     "preco": 9.69,
      "cheio": 13.99,
-     "porUnidade": 34.975,
+     "porUnidade": 24.225,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Integral Flocos Grossos Jasmine Pacote 400G",
-     "preco": 13.99,
+     "preco": 9.69,
      "cheio": 13.99,
-     "porUnidade": 34.975,
+     "porUnidade": 24.225,
      "aprov": 1.0
     },
     {
      "produto": "Aveia em Flocos Regulares Quaker 165g",
-     "preco": 5.89,
+     "preco": 4.09,
      "cheio": 5.89,
-     "porUnidade": 35.697,
+     "porUnidade": 24.7879,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Quaker Flocos Finos Caixa 165G",
-     "preco": 5.89,
+     "preco": 4.09,
      "cheio": 5.89,
-     "porUnidade": 35.697,
+     "porUnidade": 24.7879,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Integral Nestlé Farelo Caixa 170G",
-     "preco": 7.99,
+     "preco": 5.59,
      "cheio": 7.99,
-     "porUnidade": 47.0,
+     "porUnidade": 32.8824,
      "aprov": 1.0
     },
     {
      "produto": "Farelo de Aveia Quaker 165G",
-     "preco": 9.29,
+     "preco": 6.49,
      "cheio": 9.29,
-     "porUnidade": 56.303,
+     "porUnidade": 39.3333,
      "aprov": 1.0
     },
     {
      "produto": "Aveia em Flocos Finos Vitalin Pouch Sem Glúten 200g",
-     "preco": 14.29,
+     "preco": 9.99,
      "cheio": 14.29,
-     "porUnidade": 71.45,
+     "porUnidade": 49.95,
      "aprov": 1.0
     },
     {
      "produto": "Aveia Vitão Sem Glúten Flocos Finos Caixa 170G",
-     "preco": 12.39,
+     "preco": 8.59,
      "cheio": 12.39,
-     "porUnidade": 72.8824,
+     "porUnidade": 50.5294,
      "aprov": 1.0
     },
     {
      "produto": "Farelo de Aveia Vitalin Pouch Sem Glúten 200g",
-     "preco": 15.99,
+     "preco": 11.19,
      "cheio": 15.99,
-     "porUnidade": 79.95,
+     "porUnidade": 55.95,
      "aprov": 1.0
     },
     {
      "produto": "Farelo de Aveia Vitalin Proteica Sem Gluten 160g",
-     "preco": 19.99,
+     "preco": 13.99,
      "cheio": 19.99,
-     "porUnidade": 124.9375,
+     "porUnidade": 87.4375,
      "aprov": 1.0
     },
     {
      "produto": "Farelo de Aveia com Proteína 25G Nestlé 160G",
-     "preco": 18.69,
+     "preco": 12.99,
      "cheio": 18.69,
-     "porUnidade": 747.6,
+     "porUnidade": 519.6,
      "aprov": 1.0
     }
    ]
@@ -2220,23 +2290,72 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": null,
    "hoje": {
-    "produto": "Café Tradicional Vácuo Melitta 500G",
-    "preco": 22.49,
-    "porUnidade": 44.98,
+    "produto": "Café Caboclo Tradicional 500G",
+    "preco": 19.99,
+    "porUnidade": 39.98,
     "aprov": 1.0
    },
    "menor30": {
-    "produto": "Café em Pó Tradicional Coamo 500G",
+    "produto": "Café Caboclo Tradicional 500G",
     "preco": 19.99,
     "porUnidade": 39.98,
-    "dia": "2026-11-20"
+    "dia": "2026-11-25"
    },
    "opcoes": [
+    {
+     "produto": "Café Caboclo Tradicional 500G",
+     "preco": 19.99,
+     "cheio": 26.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Iguaçu Extra Forte 500G",
+     "preco": 19.99,
+     "cheio": 23.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Iguacu Vácuo Tradicional Embalagem 500G",
+     "preco": 19.99,
+     "cheio": 23.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Caboclo Extra Forte 500G",
+     "preco": 19.99,
+     "cheio": 26.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Melitta Extra Forte Caixa 500G",
+     "preco": 22.49,
+     "cheio": 29.99,
+     "porUnidade": 44.98,
+     "aprov": 1.0
+    },
     {
      "produto": "Café Tradicional Vácuo Melitta 500G",
      "preco": 22.49,
      "cheio": 29.99,
      "porUnidade": 44.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café 3 Corações Extraforte a Vácuo 500G",
+     "preco": 23.79,
+     "cheio": 26.99,
+     "porUnidade": 47.58,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café 3 Corações Tradicional Vácuo 500G",
+     "preco": 23.79,
+     "cheio": 26.99,
+     "porUnidade": 47.58,
      "aprov": 1.0
     },
     {
@@ -2247,13 +2366,6 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
-     "produto": "Café 3 Corações Tradicional Vácuo 500G",
-     "preco": 26.99,
-     "cheio": 26.99,
-     "porUnidade": 53.98,
-     "aprov": 1.0
-    },
-    {
      "produto": "Café Pilão Cafeteria Especialidades Torrado e Moído 500g",
      "preco": 29.99,
      "cheio": 29.99,
@@ -2261,10 +2373,73 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
+     "produto": "Café 3 Corações Gourmet Cerrado Mineiro 250G",
+     "preco": 16.49,
+     "cheio": 21.99,
+     "porUnidade": 65.96,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café 3 Corações Gourmet Sul de Minas 250G",
+     "preco": 16.49,
+     "cheio": 21.99,
+     "porUnidade": 65.96,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café 100 Arábica Ultimo Gourmet Pouch Lor 250g",
+     "preco": 16.89,
+     "cheio": 25.99,
+     "porUnidade": 67.56,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Lor Gourmet 100 Arábica Intenso 250G",
+     "preco": 16.89,
+     "cheio": 25.99,
+     "porUnidade": 67.56,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Mogiana 100 Arábica Lor Gourmet Pouch 250g",
+     "preco": 17.49,
+     "cheio": 26.99,
+     "porUnidade": 69.96,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Sul de Minas 100 Arábica Lor Gourmet Pouch 250g",
+     "preco": 17.49,
+     "cheio": 26.99,
+     "porUnidade": 69.96,
+     "aprov": 1.0
+    },
+    {
      "produto": "Café Torrado e Moído a Vácuo Descafeinado Pilão 250G",
      "preco": 20.99,
      "cheio": 20.99,
      "porUnidade": 83.96,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Melitta Extraforte Sachê 40G",
+     "preco": 4.49,
+     "cheio": 7.59,
+     "porUnidade": 112.25,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Orfeu Bourbon Amarelo 100 Arábica 250G",
+     "preco": 29.39,
+     "cheio": 41.99,
+     "porUnidade": 117.56,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Orfeu Clássico 100 Arábica 250G",
+     "preco": 29.39,
+     "cheio": 41.99,
+     "porUnidade": 117.56,
      "aprov": 1.0
     },
     {
@@ -2294,6 +2469,20 @@ window.OFERTAS_KOCH = {
      "cheio": 39.99,
      "porUnidade": 159.96,
      "aprov": 1.0
+    },
+    {
+     "produto": "Café Nescafé Descafeinado 40G",
+     "preco": 7.89,
+     "cheio": 13.29,
+     "porUnidade": 197.25,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Baggio Gourmet Intenso Caixa 50g",
+     "preco": 26.89,
+     "cheio": 26.89,
+     "porUnidade": 537.8,
+     "aprov": 1.0
     }
    ]
   }
@@ -2301,15 +2490,15 @@ window.OFERTAS_KOCH = {
  "extras": {
   "Abacaxi pérola, unidade": {
    "produto": "Abacaxi Pérola Unidade",
-   "preco": 9.49,
+   "preco": 8.99,
    "cheio": 9.99,
-   "equiv": 9.49,
+   "equiv": 8.99,
    "opcoes": [
     {
      "produto": "Abacaxi Pérola Unidade",
-     "preco": 9.49,
+     "preco": 8.99,
      "cheio": 9.99,
-     "equiv": 9.49
+     "equiv": 8.99
     },
     {
      "produto": "Abacaxi Triângulo Mineiro Rodelas 400g",
@@ -2321,53 +2510,65 @@ window.OFERTAS_KOCH = {
   },
   "Biscoito Trakinas recheado, 126g": {
    "produto": "Biscoito Trakinas Chocolate Pacote 126G",
-   "preco": 3.39,
+   "preco": 2.29,
    "cheio": 3.39,
-   "equiv": 3.39,
+   "equiv": 2.29,
    "opcoes": [
     {
      "produto": "Biscoito Trakinas Chocolate Pacote 126G",
-     "preco": 3.39,
+     "preco": 2.29,
      "cheio": 3.39,
-     "equiv": 3.39
+     "equiv": 2.29
     },
     {
      "produto": "Biscoito Trakinas Meio Chocolate Ao Leite e Branco 126G",
-     "preco": 3.39,
+     "preco": 2.29,
      "cheio": 3.39,
-     "equiv": 3.39
+     "equiv": 2.29
     },
     {
      "produto": "Biscoito Trakinas Meio Chocolate Morango Pacote 126G",
-     "preco": 3.39,
+     "preco": 2.29,
      "cheio": 3.39,
-     "equiv": 3.39
+     "equiv": 2.29
     },
     {
      "produto": "Biscoito Trakinas Morango Pacote 126G",
-     "preco": 3.39,
+     "preco": 2.29,
      "cheio": 3.39,
-     "equiv": 3.39
+     "equiv": 2.29
     },
     {
      "produto": "Biscoito Trakinas Recheado Tortinha Limão 126G",
-     "preco": 3.39,
+     "preco": 2.29,
      "cheio": 3.39,
-     "equiv": 3.39
+     "equiv": 2.29
     }
    ]
   },
   "Café solúvel L'Or Classique, 40g": {
-   "produto": "Café Solúvel Lor Classique 130g",
-   "preco": 34.99,
-   "cheio": 34.99,
-   "equiv": 10.77,
+   "produto": "CAFÉ LOR SOLÚVEL CLASSIQUE REFINADOAROMÁTICO SC 40G",
+   "preco": 5.99,
+   "cheio": 9.99,
+   "equiv": 5.99,
    "opcoes": [
     {
+     "produto": "CAFÉ LOR SOLÚVEL CLASSIQUE REFINADOAROMÁTICO SC 40G",
+     "preco": 5.99,
+     "cheio": 9.99,
+     "equiv": 5.99
+    },
+    {
      "produto": "Café Solúvel Lor Classique 130g",
-     "preco": 34.99,
+     "preco": 20.99,
      "cheio": 34.99,
-     "equiv": 10.77
+     "equiv": 6.46
+    },
+    {
+     "produto": "CAFÉ LOR SOLÚVEL CLASSIQUE REFINADOAROMATICO VD 84G",
+     "preco": 17.99,
+     "cheio": 29.99,
+     "equiv": 8.57
     }
    ]
   },
@@ -2391,9 +2592,9 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Canela Br Spices Pó Vidro 50G",
-     "preco": 25.99,
+     "preco": 12.99,
      "cheio": 25.99,
-     "equiv": 14.03
+     "equiv": 7.01
     }
    ]
   },
@@ -2607,131 +2808,161 @@ window.OFERTAS_KOCH = {
   },
   "Desodorante Dove creme, 50g": {
    "produto": "Desodorante Antitranspirante Em Creme Above Sport Energy Men 50G",
-   "preco": 4.99,
+   "preco": 2.49,
    "cheio": 4.99,
-   "equiv": 4.99,
+   "equiv": 2.49,
    "opcoes": [
     {
      "produto": "Desodorante Antitranspirante Em Creme Above Sport Energy Men 50G",
-     "preco": 4.99,
+     "preco": 2.49,
      "cheio": 4.99,
-     "equiv": 4.99
+     "equiv": 2.49
     },
     {
      "produto": "Desodorante em Creme Candy Above Women 50g",
-     "preco": 4.99,
+     "preco": 2.49,
      "cheio": 4.99,
-     "equiv": 4.99
+     "equiv": 2.49
     },
     {
      "produto": "Desodorante Em Creme Sport Above Men 50G",
-     "preco": 4.99,
+     "preco": 2.49,
      "cheio": 4.99,
-     "equiv": 4.99
+     "equiv": 2.49
     },
     {
      "produto": "Desodorante em Creme Above Women Candy 50G",
-     "preco": 11.99,
+     "preco": 5.99,
      "cheio": 11.99,
-     "equiv": 11.99
+     "equiv": 5.99
     },
     {
      "produto": "Desodorante em Creme Above Women Lady 50G",
-     "preco": 12.99,
+     "preco": 6.49,
      "cheio": 12.99,
-     "equiv": 12.99
+     "equiv": 6.49
     },
     {
      "produto": "Desodorante em Creme Above Men Sport Energy 50G",
-     "preco": 14.9,
+     "preco": 7.39,
      "cheio": 14.9,
-     "equiv": 14.9
+     "equiv": 7.39
     },
     {
      "produto": "Desodorante em Creme Above Women Sport Energy 50G",
-     "preco": 14.9,
+     "preco": 7.39,
      "cheio": 14.9,
-     "equiv": 14.9
+     "equiv": 7.39
     },
     {
      "produto": "Desodorante em Creme Rexona All Body Deo Ocean Rush 75G",
-     "preco": 26.9,
+     "preco": 13.39,
      "cheio": 26.9,
-     "equiv": 17.93
+     "equiv": 8.93
     },
     {
      "produto": "Desodorante em Creme Rexona All Body Deo Wild Rose 75G",
-     "preco": 26.9,
+     "preco": 13.39,
      "cheio": 26.9,
-     "equiv": 17.93
+     "equiv": 8.93
     },
     {
      "produto": "Desodorante Creme Sérum Dove Pele Sensível 50g",
-     "preco": 19.99,
+     "preco": 9.99,
      "cheio": 19.99,
-     "equiv": 19.99
+     "equiv": 9.99
     },
     {
      "produto": "Desodorante Dove Creme Sérum Previne Escurecimento 50g",
-     "preco": 19.99,
+     "preco": 9.99,
      "cheio": 19.99,
-     "equiv": 19.99
+     "equiv": 9.99
     },
     {
      "produto": "Desodorante em Creme Dove Sérum Reparação Diária 50g",
-     "preco": 19.99,
+     "preco": 9.99,
      "cheio": 19.99,
-     "equiv": 19.99
+     "equiv": 9.99
     },
     {
      "produto": "Desodorante em Creme Dove All Body Deo Lavender  Camomile 75G",
-     "preco": 31.9,
+     "preco": 15.89,
      "cheio": 31.9,
-     "equiv": 21.27
+     "equiv": 10.59
     },
     {
      "produto": "Desodorante Corporal em Creme Dove All Body Deo 75G",
-     "preco": 31.9,
+     "preco": 15.89,
      "cheio": 31.9,
-     "equiv": 21.27
+     "equiv": 10.59
+    },
+    {
+     "produto": "Desodorante em Creme Rexona Clinical Refresh 58G",
+     "preco": 14.89,
+     "cheio": 29.9,
+     "equiv": 12.84
+    },
+    {
+     "produto": "Desodorante em Creme Powder Protect Cotton Secret 45g",
+     "preco": 14.89,
+     "cheio": 29.9,
+     "equiv": 16.54
     },
     {
      "produto": "Desodorante em Creme Rexona Clinical Clean 58g",
      "preco": 29.9,
      "cheio": 29.9,
      "equiv": 25.78
-    },
-    {
-     "produto": "Desodorante em Creme Rexona Clinical Refresh 58G",
-     "preco": 29.9,
-     "cheio": 29.9,
-     "equiv": 25.78
-    },
-    {
-     "produto": "Desodorante em Creme Powder Protect Cotton Secret 45g",
-     "preco": 29.9,
-     "cheio": 29.9,
-     "equiv": 33.22
     }
    ]
   },
   "Desodorante aerosol (Rexona e similares), 150ml": {
-   "produto": "Desodorante Aerosol Dove Mencare Invisible Dry 150ml",
-   "preco": 22.79,
-   "cheio": 22.79,
-   "equiv": 22.79,
+   "produto": "Desodorante Antitranspirante Aerosol Rexona Powder Dry 250 ml",
+   "preco": 13.89,
+   "cheio": 27.9,
+   "equiv": 8.33,
    "opcoes": [
     {
-     "produto": "Desodorante Aerosol Dove Mencare Invisible Dry 150ml",
-     "preco": 22.79,
+     "produto": "Desodorante Antitranspirante Aerosol Rexona Powder Dry 250 ml",
+     "preco": 13.89,
+     "cheio": 27.9,
+     "equiv": 8.33
+    },
+    {
+     "produto": "Desodorante Antitranspirante Aerosol Dove Original 250ml",
+     "preco": 15.89,
+     "cheio": 31.9,
+     "equiv": 9.53
+    },
+    {
+     "produto": "Rexona Desodorante Power Dry Aerosol 150ml",
+     "preco": 9.69,
+     "cheio": 19.59,
+     "equiv": 9.69
+    },
+    {
+     "produto": "Desodorante Antitranspirante Aerosol Dove Romã e Verbena 150ml",
+     "preco": 11.39,
      "cheio": 22.79,
-     "equiv": 22.79
+     "equiv": 11.39
+    },
+    {
+     "produto": "Desodorante Aerosol Dove Mencare Invisible Dry 150ml",
+     "preco": 11.39,
+     "cheio": 22.79,
+     "equiv": 11.39
     },
     {
      "produto": "Desodorante Aerosol Dove MenCare Sem Perfume 150ml",
-     "preco": 22.79,
+     "preco": 11.39,
      "cheio": 22.79,
-     "equiv": 22.79
+     "equiv": 11.39
+    },
+    {
+     "produto": "Dove Desodorante MenCare Aerosol Energy Boost 150ml",
+     "preco": 11.39,
+     "cheio": 22.79,
+     "equiv": 11.39
     }
    ]
   },
@@ -2772,6 +3003,42 @@ window.OFERTAS_KOCH = {
      "equiv": 1.49
     },
     {
+     "produto": "Detergente Coco Ypê 500Ml",
+     "preco": 2.49,
+     "cheio": 2.79,
+     "equiv": 2.49
+    },
+    {
+     "produto": "Detergente Ypê Capim Limão 500Ml",
+     "preco": 2.49,
+     "cheio": 2.79,
+     "equiv": 2.49
+    },
+    {
+     "produto": "Detergente Ypê Clear Frasco 500Ml",
+     "preco": 2.49,
+     "cheio": 2.79,
+     "equiv": 2.49
+    },
+    {
+     "produto": "Detergente Ypê Limão Frasco 500Ml",
+     "preco": 2.49,
+     "cheio": 2.79,
+     "equiv": 2.49
+    },
+    {
+     "produto": "Detergente Ypê Maçã Frasco 500Ml",
+     "preco": 2.49,
+     "cheio": 2.79,
+     "equiv": 2.49
+    },
+    {
+     "produto": "Detergente Ypê Neutro Frasco 500Ml",
+     "preco": 2.49,
+     "cheio": 2.79,
+     "equiv": 2.49
+    },
+    {
      "produto": "Detergente Líquido Ypê Titanium 500Ml",
      "preco": 3.49,
      "cheio": 3.49,
@@ -2792,10 +3059,22 @@ window.OFERTAS_KOCH = {
      "equiv": 4.99
     },
     {
+     "produto": "Esponja Scotch-B Extrema com 4 Leve 4 Pague 3",
+     "preco": 7.99,
+     "cheio": 10.99,
+     "equiv": 7.99
+    },
+    {
      "produto": "Esponja Scotch-Brite Dupla Face Verde Multiuso Leve 4 Pague 3",
      "preco": 7.99,
      "cheio": 10.99,
      "equiv": 7.99
+    },
+    {
+     "produto": "Esponja Scocth-B Não Risca Verde Leve 3 Pague 2",
+     "preco": 8.79,
+     "cheio": 12.49,
+     "equiv": 11.72
     },
     {
      "produto": "Esponja Ypê Multiuso 1 Unidade",
@@ -2920,11 +3199,107 @@ window.OFERTAS_KOCH = {
    ]
   },
   "Lava-roupas Girando Sol, 3L": {
-   "produto": "Lava Roupas Líquido Brilhante Limpeza Total 3L",
-   "preco": 33.99,
-   "cheio": 33.99,
-   "equiv": 33.99,
+   "produto": "Lava Roupas Guimarães Mil Flores 3l",
+   "preco": 14.99,
+   "cheio": 29.99,
+   "equiv": 14.99,
    "opcoes": [
+    {
+     "produto": "Lava Roupas Guimarães Mil Flores 3l",
+     "preco": 14.99,
+     "cheio": 29.99,
+     "equiv": 14.99
+    },
+    {
+     "produto": "Lava Roupas Guimarães Lavanda Blanc 3l",
+     "preco": 14.99,
+     "cheio": 29.99,
+     "equiv": 14.99
+    },
+    {
+     "produto": "Lava Roupas Guimarães Ciclo Rápido Antiodor 3l",
+     "preco": 14.99,
+     "cheio": 29.99,
+     "equiv": 14.99
+    },
+    {
+     "produto": "Lava Roupa Girando Sol Hipoalergênico Frasco 3L",
+     "preco": 17.99,
+     "cheio": 35.99,
+     "equiv": 17.99
+    },
+    {
+     "produto": "Lava Roupa Líquido Glicerina Girando Sol 3L",
+     "preco": 17.99,
+     "cheio": 35.99,
+     "equiv": 17.99
+    },
+    {
+     "produto": "Lava Roupas Líquido Brancas e Coloridas Coco Girando Sol 3L",
+     "preco": 17.99,
+     "cheio": 35.99,
+     "equiv": 17.99
+    },
+    {
+     "produto": "Lava Roupas Líquido Roupas Brancas e Coloridas Ação Total Girando Sol 3L",
+     "preco": 17.99,
+     "cheio": 35.99,
+     "equiv": 17.99
+    },
+    {
+     "produto": "Sabão Líquido Tixan Ypê Primavera 3L",
+     "preco": 18.49,
+     "cheio": 36.99,
+     "equiv": 18.49
+    },
+    {
+     "produto": "Lava Roupas Girando Sol Coco e Baunilha 1 Litro",
+     "preco": 7.49,
+     "cheio": 14.99,
+     "equiv": 22.47
+    },
+    {
+     "produto": "Lava Roupas Girando Sol Glicerina 1L",
+     "preco": 7.49,
+     "cheio": 14.99,
+     "equiv": 22.47
+    },
+    {
+     "produto": "Lava Roupas Girando Sol Hipoalergênico Frasco 1 Litro",
+     "preco": 7.49,
+     "cheio": 14.99,
+     "equiv": 22.47
+    },
+    {
+     "produto": "Sabão Líquido Tixan Ypê Primavera Refil 900ml",
+     "preco": 6.99,
+     "cheio": 13.99,
+     "equiv": 23.3
+    },
+    {
+     "produto": "Lava Roupas Líquido Tixan Ypê Express Combate Mau Odor 1L",
+     "preco": 7.99,
+     "cheio": 15.99,
+     "equiv": 23.97
+    },
+    {
+     "produto": "Lava Roupas Líquido Tixan Ypê Express Cuida das Roupas 1L",
+     "preco": 7.99,
+     "cheio": 15.99,
+     "equiv": 23.97
+    },
+    {
+     "produto": "Lava Roupas Líquido Aquafast Fresh Clean 1l",
+     "preco": 7.99,
+     "cheio": 15.99,
+     "equiv": 23.97
+    },
+    {
+     "produto": "Lava Roupas Líquido Aquafast Total Clean 1l",
+     "preco": 7.99,
+     "cheio": 15.99,
+     "equiv": 23.97
+    },
     {
      "produto": "Lava Roupas Líquido Brilhante Limpeza Total 3L",
      "preco": 33.99,
@@ -2944,18 +3319,6 @@ window.OFERTAS_KOCH = {
      "equiv": 34.19
     },
     {
-     "produto": "Lava Roupas Líquido Brancas e Coloridas Coco Girando Sol 3L",
-     "preco": 35.99,
-     "cheio": 35.99,
-     "equiv": 35.99
-    },
-    {
-     "produto": "Lava Roupas Líquido Roupas Brancas e Coloridas Ação Total Girando Sol 3L",
-     "preco": 35.99,
-     "cheio": 35.99,
-     "equiv": 35.99
-    },
-    {
      "produto": "Lava Roupas Líquido Surf 5 em 1 Cuidado Coco Frasco 3L",
      "preco": 35.99,
      "cheio": 35.99,
@@ -2968,10 +3331,46 @@ window.OFERTAS_KOCH = {
      "equiv": 35.99
     },
     {
+     "produto": "Lava Roupas Líquido Ariel Refil Cores Radiante 700Ml",
+     "preco": 8.99,
+     "cheio": 17.99,
+     "equiv": 38.53
+    },
+    {
      "produto": "Lava Roupas Líquido Brilhante Limpeza Total Refil 900 Ml",
      "preco": 11.59,
      "cheio": 11.59,
      "equiv": 38.63
+    },
+    {
+     "produto": "LAVA ROUPA ARIEL EXPERT FR 2L",
+     "preco": 28.89,
+     "cheio": 57.9,
+     "equiv": 43.34
+    },
+    {
+     "produto": "Lava Roupas Ola Coco 1000Ml",
+     "preco": 14.99,
+     "cheio": 29.99,
+     "equiv": 44.97
+    },
+    {
+     "produto": "Lava Roupas Ola Lavanda Frasco 1 Litro",
+     "preco": 14.99,
+     "cheio": 29.99,
+     "equiv": 44.97
+    },
+    {
+     "produto": "Lava Roupas Ola Original 1000Ml",
+     "preco": 14.99,
+     "cheio": 29.99,
+     "equiv": 44.97
+    },
+    {
+     "produto": "Lava Roupas Líquido Omo Lavagem Perfeita 3l",
+     "preco": 44.99,
+     "cheio": 44.99,
+     "equiv": 44.99
     },
     {
      "produto": "Lava Roupas Líquido Omo Lavanda 3l",
@@ -2980,28 +3379,10 @@ window.OFERTAS_KOCH = {
      "equiv": 44.99
     },
     {
-     "produto": "Lava Roupas Líquido Tixan Ypê Express Combate Mau Odor 1L",
-     "preco": 15.99,
-     "cheio": 15.99,
-     "equiv": 47.97
-    },
-    {
-     "produto": "Lava Roupas Líquido Tixan Ypê Express Cuida das Roupas 1L",
-     "preco": 15.99,
-     "cheio": 15.99,
-     "equiv": 47.97
-    },
-    {
-     "produto": "Lava Roupas Líquido Aquafast Fresh Clean 1l",
-     "preco": 15.99,
-     "cheio": 15.99,
-     "equiv": 47.97
-    },
-    {
-     "produto": "Lava Roupas Líquido Aquafast Total Clean 1l",
-     "preco": 15.99,
-     "cheio": 15.99,
-     "equiv": 47.97
+     "produto": "Lava Roupas Líquido Omo Puro Cuidado 3l",
+     "preco": 44.99,
+     "cheio": 44.99,
+     "equiv": 44.99
     },
     {
      "produto": "Lava Roupas Líquido Omo Lavagem Perfeita Sachê 900Ml Refil Econômico",
@@ -3050,12 +3431,6 @@ window.OFERTAS_KOCH = {
      "preco": 17.99,
      "cheio": 17.99,
      "equiv": 71.96
-    },
-    {
-     "produto": "Lava Roupas Líquido Ariel Refil Cores Radiante 700Ml",
-     "preco": 17.99,
-     "cheio": 17.99,
-     "equiv": 77.1
     },
     {
      "produto": "Lava Roupas Sabão Líquido Omo Coco 450Ml",
@@ -3128,6 +3503,12 @@ window.OFERTAS_KOCH = {
      "preco": 8.49,
      "cheio": 8.99,
      "equiv": 8.49
+    },
+    {
+     "produto": "Melão Rei Kg",
+     "preco": 13.99,
+     "cheio": 14.79,
+     "equiv": 13.99
     },
     {
      "produto": "MELAO AMARELO KOCH BDJ KG",
@@ -3210,110 +3591,122 @@ window.OFERTAS_KOCH = {
      "preco": 3.79,
      "cheio": 3.79,
      "equiv": 3.79
+    },
+    {
+     "produto": "Milho Torrado Mostarda e Mel Euro Company 100G",
+     "preco": 9.09,
+     "cheio": 12.99,
+     "equiv": 15.45
     }
    ]
   },
   "Papel higiênico Duetto 20m, 18 rolos": {
    "produto": "Papel Higiênico Palmas Folha Dupla 30m com 12 Unidades",
-   "preco": 15.99,
+   "preco": 7.99,
    "cheio": 15.99,
-   "equiv": 15.99,
+   "equiv": 7.99,
    "opcoes": [
     {
      "produto": "Papel Higiênico Palmas Folha Dupla 30m com 12 Unidades",
-     "preco": 15.99,
+     "preco": 7.99,
      "cheio": 15.99,
-     "equiv": 15.99
+     "equiv": 7.99
     },
     {
      "produto": "Papel Higiênico Duetto Folha Dupla 30m Leve 24 Pague 22",
-     "preco": 34.99,
+     "preco": 17.49,
      "cheio": 34.99,
-     "equiv": 17.5
+     "equiv": 8.74
     },
     {
      "produto": "Papel Higiênico Duetto Folha Dupla 30m com 12 Rolos",
-     "preco": 19.89,
+     "preco": 9.89,
      "cheio": 19.89,
-     "equiv": 19.89
+     "equiv": 9.89
     },
     {
      "produto": "Papel Higiênico com 12 Rolos 30M Folha Dupla Duetto",
-     "preco": 19.89,
+     "preco": 9.89,
      "cheio": 19.89,
-     "equiv": 19.89
+     "equiv": 9.89
     },
     {
      "produto": "Papel Higiênico Mimmo Folha Dupla 30m Leve 12 Pague 11",
-     "preco": 19.99,
+     "preco": 9.99,
      "cheio": 19.99,
-     "equiv": 19.99
+     "equiv": 9.99
     },
     {
      "produto": "Papel Higiênico Sublime Folha Dupla 30m Leve 24 Pague 22",
-     "preco": 39.99,
+     "preco": 19.99,
      "cheio": 39.99,
-     "equiv": 20.0
+     "equiv": 9.99
     },
     {
      "produto": "Papel Higiênico Personal Folha Dupla 30m Leve 16 Pague 15",
-     "preco": 28.99,
+     "preco": 14.49,
      "cheio": 28.99,
-     "equiv": 21.74
+     "equiv": 10.87
     },
     {
      "produto": "Papel Higiênico Fofinho Absolute Folha Dupla 30m Leve 16 Pague 15",
-     "preco": 29.99,
+     "preco": 14.99,
      "cheio": 29.99,
-     "equiv": 22.49
+     "equiv": 11.24
     },
     {
      "produto": "Papel Higiênico com 18 Rolos 30M Folha Dupla Mili",
-     "preco": 33.99,
+     "preco": 16.99,
      "cheio": 33.99,
-     "equiv": 22.66
+     "equiv": 11.33
     },
     {
      "produto": "Papel Higiênico Mili Folha Dupla 30m Leve 12 Pague 11",
-     "preco": 22.99,
+     "preco": 11.49,
      "cheio": 22.99,
-     "equiv": 22.99
+     "equiv": 11.49
     },
     {
      "produto": "Papel Higiênico Leve 12 Pague 11 30M Folha Dupla Personal",
-     "preco": 22.99,
+     "preco": 11.49,
      "cheio": 22.99,
-     "equiv": 22.99
+     "equiv": 11.49
+    },
+    {
+     "produto": "Papel Higiênico Folha Dupla Duetto Velvet 30M Pacote com 4 Rolos",
+     "preco": 3.99,
+     "cheio": 7.99,
+     "equiv": 11.97
     },
     {
      "produto": "Papel Higiênico Cameratta Folha Dupla 30m com 16 Rolos",
-     "preco": 31.99,
+     "preco": 15.99,
      "cheio": 31.99,
-     "equiv": 23.99
+     "equiv": 11.99
     },
     {
      "produto": "Papel Higiênico Mili Folha Dupla 30m com 4 Rolos",
-     "preco": 8.49,
+     "preco": 4.19,
      "cheio": 8.49,
-     "equiv": 25.47
+     "equiv": 12.57
     },
     {
      "produto": "Papel Higiênico Leve 12 Pague 11 30M Folha Dupla Neve",
-     "preco": 28.49,
+     "preco": 14.19,
      "cheio": 28.49,
-     "equiv": 28.49
+     "equiv": 14.19
+    },
+    {
+     "produto": "Papel Higiênico com 18 Rolos 20M Folha Dupla Neve",
+     "preco": 16.99,
+     "cheio": 33.99,
+     "equiv": 16.99
     },
     {
      "produto": "Papel Higiênico Neve Folha Dupla 30m Leve 16 Pague 15",
      "preco": 37.99,
      "cheio": 37.99,
      "equiv": 28.49
-    },
-    {
-     "produto": "Papel Higiênico com 18 Rolos 20M Folha Dupla Neve",
-     "preco": 33.99,
-     "cheio": 33.99,
-     "equiv": 33.99
     }
    ]
   },
@@ -3579,47 +3972,299 @@ window.OFERTAS_KOCH = {
   },
   "Requeijão Tirol cheddar, 180g": {
    "produto": "Requeijão Cremoso Tirol Sabor Cheddar Bisnaga 400G",
-   "preco": 17.89,
+   "preco": 12.49,
    "cheio": 17.89,
-   "equiv": 8.05,
+   "equiv": 5.62,
    "opcoes": [
     {
      "produto": "Requeijão Cremoso Tirol Sabor Cheddar Bisnaga 400G",
-     "preco": 17.89,
+     "preco": 12.49,
      "cheio": 17.89,
-     "equiv": 8.05
+     "equiv": 5.62
     },
     {
      "produto": "Requeijão Cremoso Cheddar Tirol 180G",
-     "preco": 8.99,
+     "preco": 6.29,
      "cheio": 8.99,
-     "equiv": 8.99
+     "equiv": 6.29
     },
     {
      "produto": "Requeijão Lac Lelo Sabor Cheddar Bisnaga 400G",
-     "preco": 21.99,
+     "preco": 15.39,
      "cheio": 21.99,
-     "equiv": 9.9
+     "equiv": 6.93
     },
     {
      "produto": "Requeijão Cremoso Sabor Cheddar Catupiry 250G",
-     "preco": 17.99,
+     "preco": 12.59,
      "cheio": 17.99,
-     "equiv": 12.95
+     "equiv": 9.06
     }
    ]
   },
   "Sabonete Protex, 85g": {
-   "produto": "Sabonete em Barra Flor de Ypê Frésia e Pêssego 85g",
-   "preco": 1.79,
-   "cheio": 1.79,
-   "equiv": 1.79,
+   "produto": "Sabonete Ypê Siene Proteínas do Leite 85g",
+   "preco": 0.89,
+   "cheio": 1.49,
+   "equiv": 0.89,
    "opcoes": [
     {
+     "produto": "Sabonete Ypê Siene Proteínas do Leite 85g",
+     "preco": 0.89,
+     "cheio": 1.49,
+     "equiv": 0.89
+    },
+    {
+     "produto": "Sabonete Ypê Siene Erva Doce 85g",
+     "preco": 0.89,
+     "cheio": 1.49,
+     "equiv": 0.89
+    },
+    {
+     "produto": "Sabonete Ypê Siene Rosas Vermelhas 85g",
+     "preco": 0.89,
+     "cheio": 1.49,
+     "equiv": 0.89
+    },
+    {
      "produto": "Sabonete em Barra Flor de Ypê Frésia e Pêssego 85g",
-     "preco": 1.79,
+     "preco": 0.99,
      "cheio": 1.79,
+     "equiv": 0.99
+    },
+    {
+     "produto": "Sabonete Flor De Ype Óleo Essenciais Rosas Bcas E Avela 85G",
+     "preco": 0.99,
+     "cheio": 1.79,
+     "equiv": 0.99
+    },
+    {
+     "produto": "Sabonete Francis Intenso Baunilha 85G",
+     "preco": 1.49,
+     "cheio": 2.49,
+     "equiv": 1.49
+    },
+    {
+     "produto": "Sabonete Francis Intenso Lavanda 85G",
+     "preco": 1.49,
+     "cheio": 2.49,
+     "equiv": 1.49
+    },
+    {
+     "produto": "Sabonete Francis Intenso Lírio dÁgua 85G",
+     "preco": 1.49,
+     "cheio": 2.49,
+     "equiv": 1.49
+    },
+    {
+     "produto": "Sabonete Francis Intenso Rosas 85G",
+     "preco": 1.49,
+     "cheio": 2.49,
+     "equiv": 1.49
+    },
+    {
+     "produto": "Sabonete Francis Intenso Frutas Vermelhas 85G",
+     "preco": 1.49,
+     "cheio": 2.49,
+     "equiv": 1.49
+    },
+    {
+     "produto": "Sabonete Francis Intenso Jasmin 85G",
+     "preco": 1.49,
+     "cheio": 2.49,
+     "equiv": 1.49
+    },
+    {
+     "produto": "Sabonete Farnese Aveia e Esfoliante 180G",
+     "preco": 3.29,
+     "cheio": 5.59,
+     "equiv": 1.55
+    },
+    {
+     "produto": "Sabonete Farnese Pitaya e Framboesa 180G",
+     "preco": 3.29,
+     "cheio": 5.59,
+     "equiv": 1.55
+    },
+    {
+     "produto": "Sabonete Farnese Puro E Hidratante 180G",
+     "preco": 3.29,
+     "cheio": 5.59,
+     "equiv": 1.55
+    },
+    {
+     "produto": "Sabonete em Barra Palmolive Natural Leite e Petala Rosa 150G",
+     "preco": 2.79,
+     "cheio": 4.69,
+     "equiv": 1.58
+    },
+    {
+     "produto": "Sabonete Palmolive Natural Melancia E Lichia barra com 150G",
+     "preco": 2.79,
+     "cheio": 4.69,
+     "equiv": 1.58
+    },
+    {
+     "produto": "Sabonete Palmolive Naturals Hidratação Intensiva 150G",
+     "preco": 2.79,
+     "cheio": 4.69,
+     "equiv": 1.58
+    },
+    {
+     "produto": "Sabonete Palmolive Café e Oleo de Amêndoa 150g Tamanho Familiar",
+     "preco": 2.79,
+     "cheio": 4.69,
+     "equiv": 1.58
+    },
+    {
+     "produto": "Sabonete em Barra Lux Botanicals Gardênia e Óleo de Amêndoas 85g",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete em Barra Palmolive Natural Hidratante Aloe 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Lux Botanicals Buque de Jasmim 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Lux Botanicals Flor de Lótus 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Lux Botanicals Lavanda 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Lux Botanicals Orquídea Negra 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Palmolive Natural Melancia E Lichia Barra com 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Palmolive Naturals 85g",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Palmolive Naturals Óleo Argan 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Palmolive Naturals Petalas Rosa 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Palmolive Naturals Turmalina 85G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Palmolive Café e Oleo de Amêndoa 85g",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.59
+    },
+    {
+     "produto": "Sabonete Rexona Antibacterial Limpeza Profunda 84G",
+     "preco": 1.59,
+     "cheio": 2.79,
+     "equiv": 1.61
+    },
+    {
+     "produto": "Sabonete em Barra Antibacteriano 3 em 1 Nivea 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
      "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra Aveia Nivea 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra Erva Doce  Óleos Nivea 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra NIVEA Lavanda e Óleos 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra Leite Nivea 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra Orquídeas Nivea 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra Toque de Baunilha Nivea 85g",
+     "preco": 1.79,
+     "cheio": 2.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete Francis Brasilidades Acerola 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
+    },
+    {
+     "produto": "Sabonete Francis Brasilidades Água Coco 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
+    },
+    {
+     "produto": "Sabonete Francis Brasilidades Amora 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
+    },
+    {
+     "produto": "Sabonete Francis Brasilidades Capim Limão 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
+    },
+    {
+     "produto": "Sabonete Francis Brasilidades Manga Rosa 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
     },
     {
      "produto": "Sabonete em Barra Lux Botanicals Lavanda 85g 6 unidades",
@@ -3628,94 +4273,414 @@ window.OFERTAS_KOCH = {
      "equiv": 2.33
     },
     {
-     "produto": "Sabonete em Barra Antibacteriano 3 em 1 Nivea 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
+     "produto": "Sabonete Antibacteriano em Barra Aveia Protex 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
     },
     {
-     "produto": "Sabonete em Barra Aveia Nivea 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
+     "produto": "Sabonete Antibacteriano em Barra Cream Protex 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
     },
     {
-     "produto": "Sabonete em Barra Erva Doce  Óleos Nivea 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
+     "produto": "Sabonete Antibacteriano em Barra Limpeza Profunda Protex 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
     },
     {
-     "produto": "Sabonete em Barra NIVEA Lavanda e Óleos 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
+     "produto": "Sabonete em Barra com Hidratante Flor de Ypê Água de Coco e Aloe Vera 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
     },
     {
-     "produto": "Sabonete em Barra Leite Nivea 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
+     "produto": "Sabonete em Barra com Hidratante Flor de Ypê Ameixa e Flor de Lótus 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
     },
     {
-     "produto": "Sabonete em Barra Orquídeas Nivea 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
-    },
-    {
-     "produto": "Sabonete em Barra Toque de Baunilha Nivea 85g",
-     "preco": 2.99,
-     "cheio": 2.99,
-     "equiv": 2.99
+     "produto": "Sabonete Protex Erva Doce Barra com 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
     },
     {
      "produto": "Sabonete Protex Fresh Barra 85g",
-     "preco": 3.99,
+     "preco": 2.39,
      "cheio": 3.99,
-     "equiv": 3.99
+     "equiv": 2.39
+    },
+    {
+     "produto": "Sabonete Protex Suave 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
+    },
+    {
+     "produto": "Sabonete Protex Omega 3 85G",
+     "preco": 2.39,
+     "cheio": 3.99,
+     "equiv": 2.39
+    },
+    {
+     "produto": "Sabonete Cloy Frutas Vermelhas 30 Creme Hidratante 80G",
+     "preco": 2.29,
+     "cheio": 3.89,
+     "equiv": 2.43
+    },
+    {
+     "produto": "Sabonete Cloy Milk Care 30 Creme Hidratante 80G",
+     "preco": 2.29,
+     "cheio": 3.89,
+     "equiv": 2.43
+    },
+    {
+     "produto": "Sabonete Hidratante Cloy Manga 80G",
+     "preco": 2.29,
+     "cheio": 3.89,
+     "equiv": 2.43
+    },
+    {
+     "produto": "Sabonete Cloy Glentle Prebiotico 30 Hidratante 120g",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 2.54
+    },
+    {
+     "produto": "Sabonete  Cloy Pure Care Prebiótico 120g",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 2.54
+    },
+    {
+     "produto": "Sabonete Nivea Creme Care 90g",
+     "preco": 2.89,
+     "cheio": 4.89,
+     "equiv": 2.73
+    },
+    {
+     "produto": "Sabonete em Barra Hidratante NIVEA Pure Milk Sensitive 90g",
+     "preco": 2.89,
+     "cheio": 4.89,
+     "equiv": 2.73
     },
     {
      "produto": "Sabonete em Barra Francis Luxo Rosa Caixa 90G",
-     "preco": 4.99,
+     "preco": 2.99,
      "cheio": 4.99,
-     "equiv": 4.71
+     "equiv": 2.82
     },
     {
      "produto": "Sabonete em Barra Francis Luxo Vermelho Flor Caixa 90G",
-     "preco": 4.99,
+     "preco": 2.99,
      "cheio": 4.99,
-     "equiv": 4.71
+     "equiv": 2.82
+    },
+    {
+     "produto": "Sabonete Francis Luxo Azul 90G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 2.82
+    },
+    {
+     "produto": "Sabonete Francis Luxo Branco Caixa 90G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 2.82
+    },
+    {
+     "produto": "Sabonete Phebo Amazonian 90G",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
+    },
+    {
+     "produto": "Sabonete Phebo Lima Persia 90G",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
+    },
+    {
+     "produto": "Sabonete Phebo Naturelle 90G",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
+    },
+    {
+     "produto": "Sabonete Phebo Odor de Rosas 90G",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
+    },
+    {
+     "produto": "Sabonete Phebo Toque Lavanda 90G",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
+    },
+    {
+     "produto": "SABONETE PHEBO FRESCOR MANHA BR 90G",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
+    },
+    {
+     "produto": "SABONETE POM POM GLICERINADO CX 80G",
+     "preco": 2.79,
+     "cheio": 4.69,
+     "equiv": 2.96
+    },
+    {
+     "produto": "SABONETE POM POM LOCAO HIDRATANTE CX 80G",
+     "preco": 2.79,
+     "cheio": 4.69,
+     "equiv": 2.96
+    },
+    {
+     "produto": "Sabonete Baby Glicerinado Suave Protex 85G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 2.99
+    },
+    {
+     "produto": "Sabonete em Barra para Bebê Baby Delicate Care Protex 85G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 2.99
+    },
+    {
+     "produto": "Sabonete Vegetal NIVEA Nutrição da Natureza Manteiga de Cacau e Jasmin 80G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 3.18
+    },
+    {
+     "produto": "Sabonete Vegetal Nivea Nutrição da Natureza Manteiga de Karité  Lima da Pérsia 80G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 3.18
+    },
+    {
+     "produto": "Sabonete Vegetal Nivea Nutrição da Natureza Óleo de Jojoba e Framboesa 80G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 3.18
+    },
+    {
+     "produto": "Sabonete Vegetal Nivea Nutrição da Natureza Óleo de Abacate e Camomila 80G",
+     "preco": 2.99,
+     "cheio": 4.99,
+     "equiv": 3.18
     },
     {
      "produto": "Sabonete em Barra Dove Pele Sensível 90 g",
-     "preco": 5.99,
+     "preco": 3.59,
      "cheio": 5.99,
-     "equiv": 5.66
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Dove Cremoso 90G",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 3.39
     },
     {
      "produto": "Sabonete em Barra Dove Cuidado Antibac 90g",
-     "preco": 5.99,
+     "preco": 3.59,
      "cheio": 5.99,
-     "equiv": 5.66
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Dove Esfoliação Branco 90G",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Dove Karite e Baunilha 90G",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Dove Leite de Coco 90G",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Dove Micelar 90G",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 3.39
     },
     {
      "produto": "Sabonete em Barra Dove Erva-doce 90g",
-     "preco": 5.99,
+     "preco": 3.59,
      "cheio": 5.99,
-     "equiv": 5.66
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Cremoso Phebo Alfazema Provençal 100G",
+     "preco": 3.99,
+     "cheio": 6.79,
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Cremoso Phebo Limão Siciliano Embalagem 100G",
+     "preco": 3.99,
+     "cheio": 6.79,
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete Phebo Cremoso Nectarina Caixa 100G",
+     "preco": 3.99,
+     "cheio": 6.79,
+     "equiv": 3.39
+    },
+    {
+     "produto": "SABONETE PHEBO CREMOSO ORIGENS GERÂNIO CX 100G",
+     "preco": 3.99,
+     "cheio": 6.79,
+     "equiv": 3.39
+    },
+    {
+     "produto": "Sabonete em Barra Baby Dove Hidratação Enriquecida 75gr",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 4.07
+    },
+    {
+     "produto": "Sabonete Huggies Suave Caixa 75G",
+     "preco": 3.59,
+     "cheio": 5.99,
+     "equiv": 4.07
+    },
+    {
+     "produto": "Sabonete de Glicerina Granado Gengibre 90G",
+     "preco": 4.49,
+     "cheio": 7.49,
+     "equiv": 4.24
+    },
+    {
+     "produto": "Sabonete de Glicerina Granado Lavanda 90G",
+     "preco": 4.49,
+     "cheio": 7.49,
+     "equiv": 4.24
+    },
+    {
+     "produto": "Sabonete Granado Terrapeutics Calêndula Barra com 90G",
+     "preco": 4.49,
+     "cheio": 7.49,
+     "equiv": 4.24
+    },
+    {
+     "produto": "Sabonete Erva Doce Granado 90G",
+     "preco": 4.79,
+     "cheio": 7.99,
+     "equiv": 4.52
+    },
+    {
+     "produto": "Sabonete Granado Vegetal Glicerina Tradicional 90G",
+     "preco": 4.79,
+     "cheio": 7.99,
+     "equiv": 4.52
+    },
+    {
+     "produto": "Sabonete de Mel e Glicerina Johnsons Baby 80G",
+     "preco": 4.29,
+     "cheio": 7.19,
+     "equiv": 4.56
     },
     {
      "produto": "Sabonete em Barra Baby Original Johnsons 80G",
-     "preco": 7.19,
+     "preco": 4.29,
      "cheio": 7.19,
-     "equiv": 7.64
+     "equiv": 4.56
+    },
+    {
+     "produto": "Sabonete Granado Bebê Camomila 90G",
+     "preco": 4.99,
+     "cheio": 8.39,
+     "equiv": 4.71
+    },
+    {
+     "produto": "Sabonete Granado Bebê Lavanda 90G",
+     "preco": 4.99,
+     "cheio": 8.39,
+     "equiv": 4.71
+    },
+    {
+     "produto": "Sabonete Granado Bebê Tradicional 90G",
+     "preco": 4.99,
+     "cheio": 8.39,
+     "equiv": 4.71
+    },
+    {
+     "produto": "Sabonete de Coco Granado 100G",
+     "preco": 5.69,
+     "cheio": 9.49,
+     "equiv": 4.84
+    },
+    {
+     "produto": "Sabonete Granado Antiséptico Tradicional 90G",
+     "preco": 5.69,
+     "cheio": 9.49,
+     "equiv": 5.37
+    },
+    {
+     "produto": "Sabonete Granado Enxofre 90G",
+     "preco": 5.99,
+     "cheio": 9.99,
+     "equiv": 5.66
+    },
+    {
+     "produto": "Sabonete Giorno Bagno Flor Laranjeira E Vetiver Barra com 180G",
+     "preco": 14.89,
+     "cheio": 24.9,
+     "equiv": 7.03
     },
     {
      "produto": "Sabonete em Barra Giorno Bagno Amber Latte 180g",
-     "preco": 24.9,
+     "preco": 14.89,
      "cheio": 24.9,
-     "equiv": 11.76
+     "equiv": 7.03
+    },
+    {
+     "produto": "Sabonete Giorno Bagno Sweet Rouge 180g",
+     "preco": 14.89,
+     "cheio": 24.9,
+     "equiv": 7.03
+    },
+    {
+     "produto": "Sabonete Giorno Limoncello Sapori DTalia 180g",
+     "preco": 19.79,
+     "cheio": 32.99,
+     "equiv": 9.35
+    },
+    {
+     "produto": "Sabonete Esfoliante Dove Beauty Scrub Coco  Açucar Mascavo 280g",
+     "preco": 49.09,
+     "cheio": 81.9,
+     "equiv": 14.9
+    }
+   ]
+  },
+  "Salsa, maço": {
+   "produto": "Salsa Br Spices Vidro com 15G",
+   "preco": 6.59,
+   "cheio": 13.19,
+   "equiv": 6.59,
+   "opcoes": [
+    {
+     "produto": "Salsa Br Spices Vidro com 15G",
+     "preco": 6.59,
+     "cheio": 13.19,
+     "equiv": 6.59
     }
    ]
   },
@@ -3735,75 +4700,81 @@ window.OFERTAS_KOCH = {
   },
   "Toalha umedecida Piquitucho, 140 un": {
    "produto": "Toalha Umedecida Piquitucho Hid C/140",
-   "preco": 11.49,
+   "preco": 5.69,
    "cheio": 11.49,
-   "equiv": 11.49,
+   "equiv": 5.69,
    "opcoes": [
     {
      "produto": "Toalha Umedecida Piquitucho Hid C/140",
-     "preco": 11.49,
+     "preco": 5.69,
      "cheio": 11.49,
-     "equiv": 11.49
+     "equiv": 5.69
     },
     {
      "produto": "Lenços Umedecidos Piquitucho C/ 96un",
-     "preco": 8.99,
+     "preco": 4.49,
      "cheio": 8.99,
-     "equiv": 13.11
+     "equiv": 6.55
     },
     {
      "produto": "Lenços Umedecidos Anjinho Leve 120 Pague 100 Unidades",
-     "preco": 11.99,
+     "preco": 5.99,
      "cheio": 11.99,
-     "equiv": 13.99
+     "equiv": 6.99
     },
     {
      "produto": "Toalha Umedecida Meu Bebê Soft 100 Folhas",
-     "preco": 10.49,
+     "preco": 5.19,
      "cheio": 10.49,
-     "equiv": 14.69
+     "equiv": 7.27
+    },
+    {
+     "produto": "Toalha Umedecida Cottonbaby Cuidado da Pele 100 Unidades",
+     "preco": 5.49,
+     "cheio": 10.99,
+     "equiv": 7.69
     },
     {
      "produto": "Toalha Umedecida Anjinho Refescante Hidratante com 100 Unidades Leve Mais Pague Menos",
-     "preco": 10.99,
+     "preco": 5.49,
      "cheio": 10.99,
-     "equiv": 15.39
-    },
-    {
-     "produto": "Lenços Umedecidos Piquitucho Essential C/48un",
-     "preco": 5.99,
-     "cheio": 5.99,
-     "equiv": 17.47
+     "equiv": 7.69
     },
     {
      "produto": "Toalha Umedecida Cottonbaby Hora de Ninar 50 Unidades",
-     "preco": 6.29,
+     "preco": 3.09,
      "cheio": 6.29,
-     "equiv": 17.61
+     "equiv": 8.65
+    },
+    {
+     "produto": "Lenços Umedecidos Piquitucho Essential C/48un",
+     "preco": 2.99,
+     "cheio": 5.99,
+     "equiv": 8.72
     },
     {
      "produto": "Toalha Umedecida Mili Baby Com 100 Unidades",
-     "preco": 13.49,
+     "preco": 6.69,
      "cheio": 13.49,
-     "equiv": 18.89
+     "equiv": 9.37
     },
     {
      "produto": "Toalha Umedecida Snoopy Baby Cottonbaby Pacote 50 Unidades",
-     "preco": 8.49,
+     "preco": 4.19,
      "cheio": 8.49,
-     "equiv": 23.77
+     "equiv": 11.73
     },
     {
      "produto": "Lenço Umedecido Huggies Tripla Proteção Disney Com 88 Unidades",
-     "preco": 15.99,
+     "preco": 7.99,
      "cheio": 15.99,
-     "equiv": 25.44
+     "equiv": 12.71
     },
     {
      "produto": "Lenço Umedecido Neve Care com 48 unidades",
-     "preco": 17.99,
+     "preco": 8.99,
      "cheio": 17.99,
-     "equiv": 52.47
+     "equiv": 26.22
     },
     {
      "produto": "Toalha Umedecida Mili Vita com 40 Unidades",

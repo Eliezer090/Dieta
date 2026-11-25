@@ -42,6 +42,12 @@ MIN_ITENS = 50             # abaixo disso, considera que a coleta quebrou
 MIN_DIAS_HISTORICO = 7     # dias de histórico antes de usar a regra dos 30 dias
 MAX_EMBALAGEM = 6         # genérico: embalagem até 6x o tamanho que você compra
 TOLERANCIA = 0.05          # até 5% acima do menor preço dos 30 dias ainda conta como preço bom
+# Ofertas fortes do site inteiro (fora da lista de vocês): todas as promoções do dia
+CLUBE_K = 690              # "persona" do Clube K: preço com CPF cadastrado
+DESC_FORTE = 0.40          # desconto real mínimo para entrar na lista
+MIN_CAMPANHA = 5           # campanha ("Fraldas 50% OFF") vira uma linha só se tiver 5+ itens fortes
+MAX_DESTAQUES = 15         # itens avulsos (fora de campanha) na mensagem
+PROMO_EXCLUIR = ["Bebidas Alcoólicas", "Eletro"]   # categorias que não interessam
 HEADLESS = os.getenv("HEADLESS") == "1"   # HEADLESS=1 testa sem janela (pode ser bloqueado)
 DB = os.path.join(PASTA, "ofertas.db")
 JS_SAIDA = os.path.join(PASTA, "ofertas-koch.js")
@@ -429,13 +435,63 @@ def coletar():
                 page.wait_for_timeout(PAUSA_MS)
                 if len(hits) < SIZE:
                     break
+        # Promoções do site inteiro (a lista da página "Promoções"), do maior desconto para o menor.
+        # Cada página dessa lista leva ~3 s no servidor, então busca 3 por vez e para quando o
+        # desconto cai abaixo de DESC_FORTE (o resto não entra nas ofertas fortes).
+        frm, fim = 0, False
+        while not fim and frm < 10000:
+            urls = [f"{API}?promotion=true&size={SIZE}&from={f}&search=&sortField=discount&sortOrder=desc"
+                    for f in range(frm, frm + 3 * SIZE, SIZE)]
+            res = page.evaluate(
+                """async ({urls, headers}) => Promise.all(urls.map(async url => {
+                    const r = await fetch(url, {headers});
+                    return {status: r.status, body: await r.text()};
+                }))""",
+                {"urls": urls, "headers": headers},
+            )
+            for r in res:
+                if r["status"] != 200:
+                    print(f"(lista de promoções parou em {frm}: API respondeu {r['status']})")
+                    fim = True
+                    break
+                hits = json.loads(r["body"]).get("hits", [])
+                for h in hits:
+                    itens.setdefault(h["id"], h)
+                if len(hits) < SIZE or (hits[-1]["pricing"].get("discount") or 0) < DESC_FORTE * 100:
+                    fim = True
+            frm += 3 * SIZE
+            page.wait_for_timeout(PAUSA_MS)
         browser.close()
     return list(itens.values())
 
 
+def _promo_clube(h):
+    """Promoção do Clube K ativa hoje (a de menor preço), ou None."""
+    agora = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    melhor = None
+    for pp in h.get("personaPromotions") or []:
+        if (pp.get("personaId") == CLUBE_K and pp.get("active") and pp.get("promotionPrice")
+                and (pp.get("startDate") or "") <= agora <= (pp.get("endDate") or "9")):
+            if melhor is None or pp["promotionPrice"] < melhor["promotionPrice"]:
+                melhor = pp
+    return melhor
+
+
 def preco_atual(h):
+    """Menor preço de hoje: promoção comum ou do Clube K (com CPF)."""
     pr = h["pricing"]
-    return pr["promotionalPrice"] if pr.get("promotion") else pr["price"]
+    atual = pr["promotionalPrice"] if pr.get("promotion") else pr["price"]
+    clube = _promo_clube(h)
+    return min(atual, clube["promotionPrice"]) if clube else atual
+
+
+def _campanha(categorias):
+    """Nome da campanha ("Fraldas ... com 50% OFF", "Leve 3 Pague 2") nas categorias do produto."""
+    for c in categorias:
+        ultimo = c.split(":", 1)[-1].split(" > ")[-1].strip()
+        if re.search(r"(?i)%|\boff\b|leve \d|pague \d", ultimo):
+            return ultimo
+    return None
 
 
 def criar_tabelas(db):
@@ -445,6 +501,7 @@ def criar_tabelas(db):
         "preco_atual real, desconto real, estoque integer, "
         "primary key(dia, id))"
     )
+    db.execute("create index if not exists precos_id on precos(id, dia)")
     # dieta = produtos de "precos" que casam com um item da dieta. É refeita do zero a cada
     # execução (reprocessar), então mudar as regras de ALVOS vale também para o histórico.
     # por_unidade = preço comparável: por kg limpo / L / ovo.
@@ -463,16 +520,36 @@ def criar_tabelas(db):
         "primary key(dia, id))"
     )
     db.execute("create table if not exists alertas(dia text, id text, por_unidade real)")
+    # promos = dados extras de cada produto em promoção no dia (o preço fica em "precos")
+    db.execute(
+        "create table if not exists promos(dia text, id text, campanha text, categoria text, "
+        "clube integer, fim text, primary key(dia, id))"
+    )
 
 
 def salvar(db, hoje, itens):
     for h in itens:
         pr = h["pricing"]
+        atual = preco_atual(h)
         db.execute(
             "insert or replace into precos values(?,?,?,?,?,?,?,?)",
             (hoje, h["id"], h["name"], h.get("brandName"), pr["price"],
-             preco_atual(h), pr.get("discount"), h.get("quantity", {}).get("inStock")),
+             atual, pr.get("discount"), h.get("quantity", {}).get("inStock")),
         )
+        if atual < pr["price"] - 0.005:
+            cats = h.get("categories") or []
+            clube = _promo_clube(h)
+            normal = pr["promotionalPrice"] if pr.get("promotion") else pr["price"]
+            fim = None
+            if clube and clube.get("endDate"):
+                # endDate vem em UTC; o fim da promoção no horário de Brasília (UTC-3)
+                fim = (datetime.datetime.fromisoformat(clube["endDate"].replace("Z", "+00:00"))
+                       - datetime.timedelta(hours=3)).date().isoformat()
+            # departamentos do produto ("Mercearia|Mundo Bebê"), para filtrar o que não interessa
+            principal = "|".join(dict.fromkeys(c.split(":", 1)[-1].split(" > ")[0] for c in cats))
+            db.execute("insert or replace into promos values(?,?,?,?,?,?)",
+                       (hoje, h["id"], _campanha(cats), principal,
+                        1 if clube and clube["promotionPrice"] < normal - 0.005 else 0, fim))
     db.commit()
 
 
@@ -536,6 +613,47 @@ def analisar(db, hoje):
     return list(resumo.values())
 
 
+def analisar_promos(db, hoje):
+    """Ofertas fortes do site inteiro: desconto real >= DESC_FORTE.
+    "Real": se o produto já tem histórico, o preço cheio de referência é o mais comum dos
+    últimos 60 dias (mediana), não o de hoje — pega o truque de subir o preço antes do desconto.
+    Devolve (campanhas, destaques)."""
+    rows = db.execute(
+        "select p.id, p.nome, p.preco_cheio, p.preco_atual, m.campanha, m.categoria, m.clube, m.fim "
+        "from promos m join precos p on p.dia=m.dia and p.id=m.id where m.dia=?", (hoje,)).fetchall()
+    fortes = []
+    for pid, nome, cheio, atual, campanha, categoria, clube, fim in rows:
+        if any(x in (categoria or "") for x in PROMO_EXCLUIR):
+            continue
+        hist = sorted(c for (c,) in db.execute(
+            "select preco_cheio from precos where id=? and dia<? and dia>=date(?, '-60 day')",
+            (pid, hoje, hoje)))
+        ref = cheio
+        if len(hist) >= MIN_DIAS_HISTORICO:
+            ref = min(cheio, hist[len(hist) // 2])
+        desc = 1 - atual / ref if ref else 0
+        if desc >= DESC_FORTE - 0.005:
+            fortes.append({"nome": nome, "cheio": ref, "atual": atual, "desc": desc,
+                           "campanha": campanha, "clube": clube, "fim": fim})
+    grupos = {}
+    for f in fortes:
+        if f["campanha"]:
+            grupos.setdefault(f["campanha"], []).append(f)
+    campanhas = []
+    for nome, itens in grupos.items():
+        if len(itens) >= MIN_CAMPANHA:
+            fins = [i["fim"] for i in itens if i["fim"]]
+            campanhas.append({"nome": nome, "n": len(itens), "desc": max(i["desc"] for i in itens),
+                              "fim": max(fins) if fins else None,
+                              "clube": sum(i["clube"] for i in itens) > len(itens) / 2})
+    campanhas.sort(key=lambda c: (-c["desc"], -c["n"]))
+    nomes_camp = {c["nome"] for c in campanhas}
+    destaques = sorted((f for f in fortes if f["campanha"] not in nomes_camp),
+                       key=lambda f: -f["desc"])[:MAX_DESTAQUES]
+    print(f"  [promos] {len(rows)} em promoção, {len(fortes)} com {DESC_FORTE:.0%}+ de desconto real")
+    return campanhas, destaques
+
+
 def analisar_extras(db, hoje):
     """Demais itens da tabela: o mais barato de hoje de cada linha (no tamanho da linha).
     Devolve [{e, produto, preco, cheio, equiv}] na ordem de EXTRAS, só os achados no site."""
@@ -586,7 +704,11 @@ def _linha_produto(r, chave, riscado):
     return [topo, f"   _{detalhe}{brl(por_un * fator(a))}/{rotulo(a)}_"]
 
 
-def montar_mensagem(resumo, extras, data):
+def _ate(fim):
+    return f" · até {fim[8:10]}/{fim[5:7]}" if fim else ""
+
+
+def montar_mensagem(resumo, extras, data, promos=((), ())):
     """Mensagem do WhatsApp: promoções que valem no topo, depois preço bom sem promoção,
     depois uma tabela com o resto. Formatação do WhatsApp: *negrito*, _itálico_, ~riscado~,
     ``` bloco de largura fixa ```."""
@@ -626,6 +748,21 @@ def montar_mensagem(resumo, extras, data):
             nome_linha = x["e"]["linha"].split(",")[0]
             promo = " 🔥" if x["preco"] < x["cheio"] - 0.005 else ""
             linhas.append(f"• *{nome_linha}* R$ {brl(x['equiv'])} _(pagou {brl(x['e']['pago'])})_{promo}")
+    # Ofertas fortes do site inteiro, fora da lista
+    campanhas, destaques = promos
+    if campanhas or destaques:
+        linhas += ["", f"🏷️ *OFERTAS FORTES DO SITE* ({DESC_FORTE:.0%} ou mais de desconto)"]
+        for c in campanhas:
+            ck = " 🅺" if c["clube"] else ""
+            linhas.append(f"• *{c['nome']}* _({c['n']} itens{_ate(c['fim'])})_{ck}")
+        if destaques:
+            if campanhas:
+                linhas.append("_Avulsos:_")
+            for d in destaques:
+                ck = " 🅺" if d["clube"] else ""
+                linhas.append(f"• {d['nome']} *R$ {brl(d['atual'])}* ~{brl(d['cheio'])}~ "
+                              f"-{d['desc']:.0%}{_ate(d['fim'])}{ck}")
+        linhas.append("_🅺 = preço do Clube K: passe o CPF no caixa._")
     limpos = [a["nome"].lower() for a in ALVOS if a["limpo"]]
     linhas += ["",
                f"_{', '.join(limpos[:-1]).capitalize()} e {limpos[-1]}: preço por kg limpo (sem osso, pele "
@@ -743,10 +880,11 @@ def main(enviar=True, ir_ao_site=True):
         reprocessar(db)
         resumo = analisar(db, hoje)
         extras = analisar_extras(db, hoje)
+        promos = analisar_promos(db, hoje)
         gerar_js(db, hoje)
         db.close()
-        print(f"{len(itens)} produtos dos itens da dieta gravados; ofertas-koch.js atualizado.\n")
-        notificar(montar_mensagem(resumo, extras, datetime.date.today()), enviar)
+        print(f"{len(itens)} produtos gravados; ofertas-koch.js atualizado.\n")
+        notificar(montar_mensagem(resumo, extras, datetime.date.today(), promos), enviar)
     except Exception as e:
         notificar(f"⚠️ Coleta do Koch falhou: {e}", enviar)
         sys.exit(1)
