@@ -1,6 +1,6 @@
 // Gerado por get-ofertas.py; não edite à mão.
 window.OFERTAS_KOCH = {
- "atualizado": "25/11/2026 14:00",
+ "atualizado": "26/11/2026 09:02",
  "itens": [
   {
    "item": "Ovos",
@@ -127,7 +127,7 @@ window.OFERTAS_KOCH = {
     "produto": "CARNE MOIDA BOVINA KROTH CONG 500G",
     "preco": 16.99,
     "porUnidade": 33.98,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -178,13 +178,6 @@ window.OFERTAS_KOCH = {
      "cheio": 57.9,
      "porUnidade": 60.9474,
      "aprov": 0.95
-    },
-    {
-     "produto": "Músculo Moído Bovino Koch 400g",
-     "preco": 22.49,
-     "cheio": 22.49,
-     "porUnidade": 62.4722,
-     "aprov": 0.9
     },
     {
      "produto": "COXAO MOLE BOVINO MOIDO KG",
@@ -264,13 +257,6 @@ window.OFERTAS_KOCH = {
      "aprov": 0.95
     },
     {
-     "produto": "Patinho Bovino Atm Koch Isca 400g",
-     "preco": 32.99,
-     "cheio": 32.99,
-     "porUnidade": 86.8158,
-     "aprov": 0.95
-    },
-    {
      "produto": "Coxão Mole Bovino Atm Koch Bife 400g",
      "preco": 64.9,
      "cheio": 64.9,
@@ -297,7 +283,7 @@ window.OFERTAS_KOCH = {
     "produto": "Coxa e Sobrecoxa De Frango Congelada Kg",
     "preco": 7.59,
     "porUnidade": 12.65,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -357,6 +343,13 @@ window.OFERTAS_KOCH = {
      "aprov": 0.6
     },
     {
+     "produto": "Sobrecoxa de Frango Macedo 1Kg",
+     "preco": 12.99,
+     "cheio": 12.99,
+     "porUnidade": 19.9846,
+     "aprov": 0.65
+    },
+    {
      "produto": "Sobrecoxa de Frango Nat 1Kg",
      "preco": 12.99,
      "cheio": 12.99,
@@ -397,13 +390,6 @@ window.OFERTAS_KOCH = {
      "cheio": 19.99,
      "porUnidade": 19.99,
      "aprov": 1.0
-    },
-    {
-     "produto": "Sobrecoxa de Frango Macedo 1Kg",
-     "preco": 13.99,
-     "cheio": 13.99,
-     "porUnidade": 21.5231,
-     "aprov": 0.65
     },
     {
      "produto": "Coxa de Frango Congelada Sadia 1kg",
@@ -609,31 +595,17 @@ window.OFERTAS_KOCH = {
      "aprov": 0.5
     },
     {
+     "produto": "Coxa e Sobrecoxa de Frango Congelada Perdigão na Brasa Mostarda e Shoyu 800G",
+     "preco": 23.99,
+     "cheio": 23.99,
+     "porUnidade": 49.9792,
+     "aprov": 0.6
+    },
+    {
      "produto": "Coxinha da Asa de Pato Villa Germania Congelado 750G",
      "preco": 19.99,
      "cheio": 19.99,
      "porUnidade": 53.3067,
-     "aprov": 0.5
-    },
-    {
-     "produto": "Frango ao Molho Branco com Bacon e Arroz com Brócolis Meu Menu Perdigão 300G",
-     "preco": 9.69,
-     "cheio": 13.99,
-     "porUnidade": 53.8333,
-     "aprov": 0.6
-    },
-    {
-     "produto": "Coxa e Sobrecoxa de Frango Congelada Perdigão na Brasa Mostarda e Shoyu 800G",
-     "preco": 25.99,
-     "cheio": 25.99,
-     "porUnidade": 54.1458,
-     "aprov": 0.6
-    },
-    {
-     "produto": "Meio Da Asa Frango Nat 1Kg",
-     "preco": 31.99,
-     "cheio": 31.99,
-     "porUnidade": 63.98,
      "aprov": 0.5
     },
     {
@@ -670,7 +642,7 @@ window.OFERTAS_KOCH = {
     "produto": "Iogurte Natural Holandês Embalagem 1L",
     "preco": 12.99,
     "porUnidade": 12.99,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -755,8 +727,8 @@ window.OFERTAS_KOCH = {
    "ref": 4.49,
    "hoje": {
     "produto": "Leite Italac Integral 1L",
-    "preco": 4.39,
-    "porUnidade": 4.39,
+    "preco": 4.98,
+    "porUnidade": 4.98,
     "aprov": 1.0
    },
    "menor30": {
@@ -768,30 +740,30 @@ window.OFERTAS_KOCH = {
    "opcoes": [
     {
      "produto": "Leite Italac Integral 1L",
-     "preco": 4.39,
+     "preco": 4.98,
      "cheio": 4.98,
-     "porUnidade": 4.39,
+     "porUnidade": 4.98,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Integral Aurora 1L",
-     "preco": 4.39,
+     "preco": 4.98,
      "cheio": 4.98,
-     "porUnidade": 4.39,
+     "porUnidade": 4.98,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Parmalat Integral 1L",
-     "preco": 4.39,
+     "preco": 4.98,
      "cheio": 4.98,
-     "porUnidade": 4.39,
+     "porUnidade": 4.98,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Tirol Integral 1L",
-     "preco": 4.39,
+     "preco": 4.98,
      "cheio": 4.98,
-     "porUnidade": 4.39,
+     "porUnidade": 4.98,
      "aprov": 1.0
     },
     {
@@ -834,22 +806,22 @@ window.OFERTAS_KOCH = {
    "ref": 49.9667,
    "hoje": {
     "produto": "Queijo Mussarela Veneccia Fatiado 300G",
-    "preco": 13.49,
-    "porUnidade": 44.9667,
+    "preco": 12.99,
+    "porUnidade": 43.3,
     "aprov": 1.0
    },
    "menor30": {
-    "produto": "Queijo Mussarela Fatiado Lac Lelo 300G",
+    "produto": "Queijo Mussarela Veneccia Fatiado 300G",
     "preco": 12.99,
     "porUnidade": 43.3,
-    "dia": "2026-11-22"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
      "produto": "Queijo Mussarela Veneccia Fatiado 300G",
-     "preco": 13.49,
+     "preco": 12.99,
      "cheio": 15.99,
-     "porUnidade": 44.9667,
+     "porUnidade": 43.3,
      "aprov": 1.0
     },
     {
@@ -942,7 +914,7 @@ window.OFERTAS_KOCH = {
     "produto": "Requeijão Cremoso Lac Lelo Tradicional 500G",
     "preco": 10.49,
     "porUnidade": 20.98,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1086,13 +1058,6 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
-     "produto": "Requeijão Tirol Profissional com Queijo 1,01kg",
-     "preco": 37.99,
-     "cheio": 37.99,
-     "porUnidade": 37.6139,
-     "aprov": 1.0
-    },
-    {
      "produto": "Requeijão Tirol Cremoso Zero Lactose Tradicional Copo 180G",
      "preco": 6.79,
      "cheio": 9.79,
@@ -1159,9 +1124,9 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": 17.475,
    "hoje": {
-    "produto": "Pão de Forma Tradicional Seven Boys 450G",
-    "preco": 6.89,
-    "porUnidade": 15.3111,
+    "produto": "Pão de Forma Visconti Tradicional 400G",
+    "preco": 5.99,
+    "porUnidade": 14.975,
     "aprov": 1.0
    },
    "menor30": {
@@ -1172,17 +1137,17 @@ window.OFERTAS_KOCH = {
    },
    "opcoes": [
     {
+     "produto": "Pão de Forma Visconti Tradicional 400G",
+     "preco": 5.99,
+     "cheio": 6.99,
+     "porUnidade": 14.975,
+     "aprov": 1.0
+    },
+    {
      "produto": "Pão de Forma Tradicional Seven Boys 450G",
      "preco": 6.89,
      "cheio": 6.89,
      "porUnidade": 15.3111,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Pão de Forma Visconti Tradicional 400G",
-     "preco": 6.69,
-     "cheio": 6.69,
-     "porUnidade": 16.725,
      "aprov": 1.0
     },
     {
@@ -1197,6 +1162,13 @@ window.OFERTAS_KOCH = {
      "preco": 8.19,
      "cheio": 8.19,
      "porUnidade": 18.2,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Pão de Forma Blupão Caseiro 500G",
+     "preco": 9.19,
+     "cheio": 9.19,
+     "porUnidade": 18.38,
      "aprov": 1.0
     },
     {
@@ -1457,7 +1429,7 @@ window.OFERTAS_KOCH = {
     "produto": "Batata Doce Kg",
     "preco": 3.79,
     "porUnidade": 3.79,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1494,7 +1466,7 @@ window.OFERTAS_KOCH = {
     "produto": "Batata Lavada Kg",
     "preco": 5.49,
     "porUnidade": 5.49,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1538,7 +1510,7 @@ window.OFERTAS_KOCH = {
     "produto": "Abobrinha Verde Kg",
     "preco": 2.99,
     "porUnidade": 2.99,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1568,7 +1540,7 @@ window.OFERTAS_KOCH = {
     "produto": "Cebola Para Conserva Kg",
     "preco": 5.99,
     "porUnidade": 5.99,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1612,7 +1584,7 @@ window.OFERTAS_KOCH = {
     "produto": "Cenoura Kg",
     "preco": 2.49,
     "porUnidade": 2.49,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1663,7 +1635,7 @@ window.OFERTAS_KOCH = {
     "produto": "Alho Kg",
     "preco": 24.99,
     "porUnidade": 29.4,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1721,7 +1693,7 @@ window.OFERTAS_KOCH = {
     "produto": "Extrato de Tomate Bonare 300G",
     "preco": 3.19,
     "porUnidade": 10.6333,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1786,7 +1758,7 @@ window.OFERTAS_KOCH = {
     "produto": "Tomate Kg",
     "preco": 19.99,
     "porUnidade": 19.99,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1879,7 +1851,7 @@ window.OFERTAS_KOCH = {
     "produto": "Banana Branca Kg",
     "preco": 3.29,
     "porUnidade": 3.29,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1951,7 +1923,7 @@ window.OFERTAS_KOCH = {
     "produto": "Mamão Papaia/Hawai kg",
     "preco": 7.79,
     "porUnidade": 7.79,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -1988,7 +1960,7 @@ window.OFERTAS_KOCH = {
     "produto": "Manga Tommy Kg",
     "preco": 6.49,
     "porUnidade": 6.49,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -2025,7 +1997,7 @@ window.OFERTAS_KOCH = {
     "produto": "Beterraba Dal Campo 1Kg",
     "preco": 5.99,
     "porUnidade": 5.99,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -2054,22 +2026,22 @@ window.OFERTAS_KOCH = {
    "ref": null,
    "hoje": {
     "produto": "Repolho Verde Unidade",
-    "preco": 4.79,
-    "porUnidade": 4.79,
+    "preco": 3.79,
+    "porUnidade": 3.79,
     "aprov": 1.0
    },
    "menor30": {
     "produto": "Repolho Verde Unidade",
-    "preco": 4.79,
-    "porUnidade": 4.79,
-    "dia": "2026-11-25"
+    "preco": 3.79,
+    "porUnidade": 3.79,
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
      "produto": "Repolho Verde Unidade",
-     "preco": 4.79,
+     "preco": 3.79,
      "cheio": 4.79,
-     "porUnidade": 4.79,
+     "porUnidade": 3.79,
      "aprov": 1.0
     },
     {
@@ -2106,7 +2078,7 @@ window.OFERTAS_KOCH = {
     "produto": "Aveia Vitao Flocos Finos Pacote 400G",
     "preco": 5.99,
     "porUnidade": 14.975,
-    "dia": "2026-11-25"
+    "dia": "2026-11-26"
    },
    "opcoes": [
     {
@@ -2290,9 +2262,9 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": null,
    "hoje": {
-    "produto": "Café Caboclo Tradicional 500G",
-    "preco": 19.99,
-    "porUnidade": 39.98,
+    "produto": "Café Do Ponto Tradicional Pacote 500G",
+    "preco": 23.99,
+    "porUnidade": 47.98,
     "aprov": 1.0
    },
    "menor30": {
@@ -2303,59 +2275,10 @@ window.OFERTAS_KOCH = {
    },
    "opcoes": [
     {
-     "produto": "Café Caboclo Tradicional 500G",
-     "preco": 19.99,
-     "cheio": 26.99,
-     "porUnidade": 39.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Iguaçu Extra Forte 500G",
-     "preco": 19.99,
-     "cheio": 23.99,
-     "porUnidade": 39.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Iguacu Vácuo Tradicional Embalagem 500G",
-     "preco": 19.99,
-     "cheio": 23.99,
-     "porUnidade": 39.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Caboclo Extra Forte 500G",
-     "preco": 19.99,
-     "cheio": 26.99,
-     "porUnidade": 39.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Melitta Extra Forte Caixa 500G",
-     "preco": 22.49,
-     "cheio": 29.99,
-     "porUnidade": 44.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Tradicional Vácuo Melitta 500G",
-     "preco": 22.49,
-     "cheio": 29.99,
-     "porUnidade": 44.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café 3 Corações Extraforte a Vácuo 500G",
-     "preco": 23.79,
-     "cheio": 26.99,
-     "porUnidade": 47.58,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café 3 Corações Tradicional Vácuo 500G",
-     "preco": 23.79,
-     "cheio": 26.99,
-     "porUnidade": 47.58,
+     "produto": "Café Do Ponto Tradicional Pacote 500G",
+     "preco": 23.99,
+     "cheio": 39.99,
+     "porUnidade": 47.98,
      "aprov": 1.0
     },
     {
@@ -2366,52 +2289,17 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
+     "produto": "Café 3 Corações Tradicional Vácuo 500G",
+     "preco": 26.99,
+     "cheio": 26.99,
+     "porUnidade": 53.98,
+     "aprov": 1.0
+    },
+    {
      "produto": "Café Pilão Cafeteria Especialidades Torrado e Moído 500g",
-     "preco": 29.99,
+     "preco": 26.99,
      "cheio": 29.99,
-     "porUnidade": 59.98,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café 3 Corações Gourmet Cerrado Mineiro 250G",
-     "preco": 16.49,
-     "cheio": 21.99,
-     "porUnidade": 65.96,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café 3 Corações Gourmet Sul de Minas 250G",
-     "preco": 16.49,
-     "cheio": 21.99,
-     "porUnidade": 65.96,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café 100 Arábica Ultimo Gourmet Pouch Lor 250g",
-     "preco": 16.89,
-     "cheio": 25.99,
-     "porUnidade": 67.56,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Lor Gourmet 100 Arábica Intenso 250G",
-     "preco": 16.89,
-     "cheio": 25.99,
-     "porUnidade": 67.56,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Mogiana 100 Arábica Lor Gourmet Pouch 250g",
-     "preco": 17.49,
-     "cheio": 26.99,
-     "porUnidade": 69.96,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Sul de Minas 100 Arábica Lor Gourmet Pouch 250g",
-     "preco": 17.49,
-     "cheio": 26.99,
-     "porUnidade": 69.96,
+     "porUnidade": 53.98,
      "aprov": 1.0
     },
     {
@@ -2426,20 +2314,6 @@ window.OFERTAS_KOCH = {
      "preco": 4.49,
      "cheio": 7.59,
      "porUnidade": 112.25,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Orfeu Bourbon Amarelo 100 Arábica 250G",
-     "preco": 29.39,
-     "cheio": 41.99,
-     "porUnidade": 117.56,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Orfeu Clássico 100 Arábica 250G",
-     "preco": 29.39,
-     "cheio": 41.99,
-     "porUnidade": 117.56,
      "aprov": 1.0
     },
     {
@@ -2475,13 +2349,6 @@ window.OFERTAS_KOCH = {
      "preco": 7.89,
      "cheio": 13.29,
      "porUnidade": 197.25,
-     "aprov": 1.0
-    },
-    {
-     "produto": "Café Baggio Gourmet Intenso Caixa 50g",
-     "preco": 26.89,
-     "cheio": 26.89,
-     "porUnidade": 537.8,
      "aprov": 1.0
     }
    ]
@@ -2788,15 +2655,15 @@ window.OFERTAS_KOCH = {
   },
   "Coco verde, unidade": {
    "produto": "Coco Verde Unidade",
-   "preco": 4.99,
+   "preco": 4.49,
    "cheio": 5.49,
-   "equiv": 4.99,
+   "equiv": 4.49,
    "opcoes": [
     {
      "produto": "Coco Verde Unidade",
-     "preco": 4.99,
+     "preco": 4.49,
      "cheio": 5.49,
-     "equiv": 4.99
+     "equiv": 4.49
     },
     {
      "produto": "COCO VERDE AUTENTICOCO DESCASCADO IN NATURA UN",
@@ -2879,12 +2746,6 @@ window.OFERTAS_KOCH = {
      "equiv": 9.99
     },
     {
-     "produto": "Desodorante em Creme Dove Sérum Reparação Diária 50g",
-     "preco": 9.99,
-     "cheio": 19.99,
-     "equiv": 9.99
-    },
-    {
      "produto": "Desodorante em Creme Dove All Body Deo Lavender  Camomile 75G",
      "preco": 15.89,
      "cheio": 31.9,
@@ -2907,12 +2768,6 @@ window.OFERTAS_KOCH = {
      "preco": 14.89,
      "cheio": 29.9,
      "equiv": 16.54
-    },
-    {
-     "produto": "Desodorante em Creme Rexona Clinical Clean 58g",
-     "preco": 29.9,
-     "cheio": 29.9,
-     "equiv": 25.78
     }
    ]
   },
@@ -2991,58 +2846,10 @@ window.OFERTAS_KOCH = {
      "equiv": 1.49
     },
     {
-     "produto": "Detergente Líquido Suprema Natural Clear 500Ml",
-     "preco": 1.49,
-     "cheio": 2.39,
-     "equiv": 1.49
-    },
-    {
      "produto": "Detergente Líquido Suprema Neutro 500Ml",
      "preco": 1.49,
      "cheio": 2.39,
      "equiv": 1.49
-    },
-    {
-     "produto": "Detergente Coco Ypê 500Ml",
-     "preco": 2.49,
-     "cheio": 2.79,
-     "equiv": 2.49
-    },
-    {
-     "produto": "Detergente Ypê Capim Limão 500Ml",
-     "preco": 2.49,
-     "cheio": 2.79,
-     "equiv": 2.49
-    },
-    {
-     "produto": "Detergente Ypê Clear Frasco 500Ml",
-     "preco": 2.49,
-     "cheio": 2.79,
-     "equiv": 2.49
-    },
-    {
-     "produto": "Detergente Ypê Limão Frasco 500Ml",
-     "preco": 2.49,
-     "cheio": 2.79,
-     "equiv": 2.49
-    },
-    {
-     "produto": "Detergente Ypê Maçã Frasco 500Ml",
-     "preco": 2.49,
-     "cheio": 2.79,
-     "equiv": 2.49
-    },
-    {
-     "produto": "Detergente Ypê Neutro Frasco 500Ml",
-     "preco": 2.49,
-     "cheio": 2.79,
-     "equiv": 2.49
-    },
-    {
-     "produto": "Detergente Líquido Ypê Titanium 500Ml",
-     "preco": 3.49,
-     "cheio": 3.49,
-     "equiv": 3.49
     }
    ]
   },
@@ -3059,22 +2866,10 @@ window.OFERTAS_KOCH = {
      "equiv": 4.99
     },
     {
-     "produto": "Esponja Scotch-B Extrema com 4 Leve 4 Pague 3",
-     "preco": 7.99,
-     "cheio": 10.99,
-     "equiv": 7.99
-    },
-    {
      "produto": "Esponja Scotch-Brite Dupla Face Verde Multiuso Leve 4 Pague 3",
      "preco": 7.99,
      "cheio": 10.99,
      "equiv": 7.99
-    },
-    {
-     "produto": "Esponja Scocth-B Não Risca Verde Leve 3 Pague 2",
-     "preco": 8.79,
-     "cheio": 12.49,
-     "equiv": 11.72
     },
     {
      "produto": "Esponja Ypê Multiuso 1 Unidade",
@@ -3229,12 +3024,6 @@ window.OFERTAS_KOCH = {
      "equiv": 17.99
     },
     {
-     "produto": "Lava Roupa Líquido Glicerina Girando Sol 3L",
-     "preco": 17.99,
-     "cheio": 35.99,
-     "equiv": 17.99
-    },
-    {
      "produto": "Lava Roupas Líquido Brancas e Coloridas Coco Girando Sol 3L",
      "preco": 17.99,
      "cheio": 35.99,
@@ -3245,12 +3034,6 @@ window.OFERTAS_KOCH = {
      "preco": 17.99,
      "cheio": 35.99,
      "equiv": 17.99
-    },
-    {
-     "produto": "Sabão Líquido Tixan Ypê Primavera 3L",
-     "preco": 18.49,
-     "cheio": 36.99,
-     "equiv": 18.49
     },
     {
      "produto": "Lava Roupas Girando Sol Coco e Baunilha 1 Litro",
@@ -3271,19 +3054,7 @@ window.OFERTAS_KOCH = {
      "equiv": 22.47
     },
     {
-     "produto": "Sabão Líquido Tixan Ypê Primavera Refil 900ml",
-     "preco": 6.99,
-     "cheio": 13.99,
-     "equiv": 23.3
-    },
-    {
      "produto": "Lava Roupas Líquido Tixan Ypê Express Combate Mau Odor 1L",
-     "preco": 7.99,
-     "cheio": 15.99,
-     "equiv": 23.97
-    },
-    {
-     "produto": "Lava Roupas Líquido Tixan Ypê Express Cuida das Roupas 1L",
      "preco": 7.99,
      "cheio": 15.99,
      "equiv": 23.97
@@ -3307,16 +3078,10 @@ window.OFERTAS_KOCH = {
      "equiv": 33.99
     },
     {
-     "produto": "Lava Roupas Líquido Aquafast Ternura 3L",
+     "produto": "Lava-roupas Líquido Brilhante Perfume e Cuidado Extraordinário Galão 3l",
      "preco": 33.99,
      "cheio": 33.99,
      "equiv": 33.99
-    },
-    {
-     "produto": "Lava Roupas Líquido Omo Lavagem Perfeita Frasco 5L",
-     "preco": 56.99,
-     "cheio": 56.99,
-     "equiv": 34.19
     },
     {
      "produto": "Lava Roupas Líquido Surf 5 em 1 Cuidado Coco Frasco 3L",
@@ -3341,18 +3106,6 @@ window.OFERTAS_KOCH = {
      "preco": 11.59,
      "cheio": 11.59,
      "equiv": 38.63
-    },
-    {
-     "produto": "LAVA ROUPA ARIEL EXPERT FR 2L",
-     "preco": 28.89,
-     "cheio": 57.9,
-     "equiv": 43.34
-    },
-    {
-     "produto": "Lava Roupas Ola Coco 1000Ml",
-     "preco": 14.99,
-     "cheio": 29.99,
-     "equiv": 44.97
     },
     {
      "produto": "Lava Roupas Ola Lavanda Frasco 1 Litro",
@@ -3391,10 +3144,10 @@ window.OFERTAS_KOCH = {
      "equiv": 49.63
     },
     {
-     "produto": "Lava Roupas Líquido Omo Roupas Finas e Delicadas Bebê 900Ml",
-     "preco": 17.99,
-     "cheio": 17.99,
-     "equiv": 59.97
+     "produto": "Sabão Líquido Refil Omo Lavanda 900ml",
+     "preco": 14.89,
+     "cheio": 14.89,
+     "equiv": 49.63
     },
     {
      "produto": "Sabão Líquido Omo Roupas Finas e Delicadas Coco 900ml",
@@ -3505,12 +3258,6 @@ window.OFERTAS_KOCH = {
      "equiv": 8.49
     },
     {
-     "produto": "Melão Rei Kg",
-     "preco": 13.99,
-     "cheio": 14.79,
-     "equiv": 13.99
-    },
-    {
      "produto": "MELAO AMARELO KOCH BDJ KG",
      "preco": 14.99,
      "cheio": 14.99,
@@ -3591,12 +3338,6 @@ window.OFERTAS_KOCH = {
      "preco": 3.79,
      "cheio": 3.79,
      "equiv": 3.79
-    },
-    {
-     "produto": "Milho Torrado Mostarda e Mel Euro Company 100G",
-     "preco": 9.09,
-     "cheio": 12.99,
-     "equiv": 15.45
     }
    ]
   },
@@ -3655,12 +3396,6 @@ window.OFERTAS_KOCH = {
      "equiv": 11.24
     },
     {
-     "produto": "Papel Higiênico com 18 Rolos 30M Folha Dupla Mili",
-     "preco": 16.99,
-     "cheio": 33.99,
-     "equiv": 11.33
-    },
-    {
      "produto": "Papel Higiênico Mili Folha Dupla 30m Leve 12 Pague 11",
      "preco": 11.49,
      "cheio": 22.99,
@@ -3701,12 +3436,6 @@ window.OFERTAS_KOCH = {
      "preco": 16.99,
      "cheio": 33.99,
      "equiv": 16.99
-    },
-    {
-     "produto": "Papel Higiênico Neve Folha Dupla 30m Leve 16 Pague 15",
-     "preco": 37.99,
-     "cheio": 37.99,
-     "equiv": 28.49
     }
    ]
   },
@@ -3958,15 +3687,15 @@ window.OFERTAS_KOCH = {
   },
   "Repolho verde, unidade": {
    "produto": "Repolho Verde Unidade",
-   "preco": 4.79,
+   "preco": 3.79,
    "cheio": 4.79,
-   "equiv": 4.79,
+   "equiv": 3.79,
    "opcoes": [
     {
      "produto": "Repolho Verde Unidade",
-     "preco": 4.79,
+     "preco": 3.79,
      "cheio": 4.79,
-     "equiv": 4.79
+     "equiv": 3.79
     }
    ]
   },
@@ -4082,12 +3811,6 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Sabonete Farnese Pitaya e Framboesa 180G",
-     "preco": 3.29,
-     "cheio": 5.59,
-     "equiv": 1.55
-    },
-    {
-     "produto": "Sabonete Farnese Puro E Hidratante 180G",
      "preco": 3.29,
      "cheio": 5.59,
      "equiv": 1.55
@@ -4213,6 +3936,18 @@ window.OFERTAS_KOCH = {
      "equiv": 1.79
     },
     {
+     "produto": "Sabonete em Barra com Hidratante Flor de Ypê Água de Coco e Aloe Vera 85G",
+     "preco": 1.79,
+     "cheio": 3.99,
+     "equiv": 1.79
+    },
+    {
+     "produto": "Sabonete em Barra com Hidratante Flor de Ypê Ameixa e Flor de Lótus 85G",
+     "preco": 1.79,
+     "cheio": 3.99,
+     "equiv": 1.79
+    },
+    {
      "produto": "Sabonete em Barra NIVEA Lavanda e Óleos 85g",
      "preco": 1.79,
      "cheio": 2.99,
@@ -4237,19 +3972,7 @@ window.OFERTAS_KOCH = {
      "equiv": 1.79
     },
     {
-     "produto": "Sabonete Francis Brasilidades Acerola 80G",
-     "preco": 1.89,
-     "cheio": 3.29,
-     "equiv": 2.01
-    },
-    {
      "produto": "Sabonete Francis Brasilidades Água Coco 80G",
-     "preco": 1.89,
-     "cheio": 3.29,
-     "equiv": 2.01
-    },
-    {
-     "produto": "Sabonete Francis Brasilidades Amora 80G",
      "preco": 1.89,
      "cheio": 3.29,
      "equiv": 2.01
@@ -4280,24 +4003,6 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Sabonete Antibacteriano em Barra Cream Protex 85G",
-     "preco": 2.39,
-     "cheio": 3.99,
-     "equiv": 2.39
-    },
-    {
-     "produto": "Sabonete Antibacteriano em Barra Limpeza Profunda Protex 85G",
-     "preco": 2.39,
-     "cheio": 3.99,
-     "equiv": 2.39
-    },
-    {
-     "produto": "Sabonete em Barra com Hidratante Flor de Ypê Água de Coco e Aloe Vera 85G",
-     "preco": 2.39,
-     "cheio": 3.99,
-     "equiv": 2.39
-    },
-    {
-     "produto": "Sabonete em Barra com Hidratante Flor de Ypê Ameixa e Flor de Lótus 85G",
      "preco": 2.39,
      "cheio": 3.99,
      "equiv": 2.39
@@ -4429,13 +4134,13 @@ window.OFERTAS_KOCH = {
      "equiv": 2.92
     },
     {
-     "produto": "SABONETE POM POM GLICERINADO CX 80G",
-     "preco": 2.79,
-     "cheio": 4.69,
-     "equiv": 2.96
+     "produto": "Sabonete Banho a Banho Original Blend de Óleos 90g",
+     "preco": 3.09,
+     "cheio": 5.29,
+     "equiv": 2.92
     },
     {
-     "produto": "SABONETE POM POM LOCAO HIDRATANTE CX 80G",
+     "produto": "SABONETE POM POM GLICERINADO CX 80G",
      "preco": 2.79,
      "cheio": 4.69,
      "equiv": 2.96
@@ -4567,12 +4272,6 @@ window.OFERTAS_KOCH = {
      "equiv": 4.24
     },
     {
-     "produto": "Sabonete de Glicerina Granado Lavanda 90G",
-     "preco": 4.49,
-     "cheio": 7.49,
-     "equiv": 4.24
-    },
-    {
      "produto": "Sabonete Granado Terrapeutics Calêndula Barra com 90G",
      "preco": 4.49,
      "cheio": 7.49,
@@ -4646,12 +4345,6 @@ window.OFERTAS_KOCH = {
     },
     {
      "produto": "Sabonete em Barra Giorno Bagno Amber Latte 180g",
-     "preco": 14.89,
-     "cheio": 24.9,
-     "equiv": 7.03
-    },
-    {
-     "produto": "Sabonete Giorno Bagno Sweet Rouge 180g",
      "preco": 14.89,
      "cheio": 24.9,
      "equiv": 7.03
@@ -4741,12 +4434,6 @@ window.OFERTAS_KOCH = {
      "equiv": 7.69
     },
     {
-     "produto": "Toalha Umedecida Cottonbaby Hora de Ninar 50 Unidades",
-     "preco": 3.09,
-     "cheio": 6.29,
-     "equiv": 8.65
-    },
-    {
      "produto": "Lenços Umedecidos Piquitucho Essential C/48un",
      "preco": 2.99,
      "cheio": 5.99,
@@ -4769,12 +4456,6 @@ window.OFERTAS_KOCH = {
      "preco": 7.99,
      "cheio": 15.99,
      "equiv": 12.71
-    },
-    {
-     "produto": "Lenço Umedecido Neve Care com 48 unidades",
-     "preco": 8.99,
-     "cheio": 17.99,
-     "equiv": 26.22
     },
     {
      "produto": "Toalha Umedecida Mili Vita com 40 Unidades",
