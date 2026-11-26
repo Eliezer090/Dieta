@@ -1,6 +1,6 @@
 // Gerado por get-ofertas.py; não edite à mão.
 window.OFERTAS_KOCH = {
- "atualizado": "26/11/2026 09:02",
+ "atualizado": "26/11/2026 10:25",
  "itens": [
   {
    "item": "Ovos",
@@ -22,6 +22,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 0.433,
     "dia": "2026-11-22"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     0.4597
+    ],
+    [
+     "2026-11-21",
+     0.433
+    ],
+    [
+     "2026-11-22",
+     0.433
+    ],
+    [
+     "2026-11-23",
+     0.633
+    ],
+    [
+     "2026-11-24",
+     0.633
+    ],
+    [
+     "2026-11-25",
+     0.5663
+    ],
+    [
+     "2026-11-26",
+     0.5663
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Ovos Vermelhos com 30 Unidades",
@@ -116,7 +146,7 @@ window.OFERTAS_KOCH = {
    "fator": 1.0,
    "limpo": true,
    "aprovRef": 1.0,
-   "ref": 19.13,
+   "ref": 54.975,
    "hoje": {
     "produto": "CARNE MOIDA BOVINA KROTH CONG 500G",
     "preco": 16.99,
@@ -129,6 +159,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 33.98,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     33.98
+    ],
+    [
+     "2026-11-21",
+     33.98
+    ],
+    [
+     "2026-11-22",
+     33.98
+    ],
+    [
+     "2026-11-23",
+     33.98
+    ],
+    [
+     "2026-11-24",
+     33.98
+    ],
+    [
+     "2026-11-25",
+     33.98
+    ],
+    [
+     "2026-11-26",
+     33.98
+    ]
+   ],
    "opcoes": [
     {
      "produto": "CARNE MOIDA BOVINA KROTH CONG 500G",
@@ -285,6 +345,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 12.65,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     14.15
+    ],
+    [
+     "2026-11-21",
+     12.9833
+    ],
+    [
+     "2026-11-22",
+     12.9833
+    ],
+    [
+     "2026-11-23",
+     15.65
+    ],
+    [
+     "2026-11-24",
+     15.65
+    ],
+    [
+     "2026-11-25",
+     12.65
+    ],
+    [
+     "2026-11-26",
+     12.65
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Coxa e Sobrecoxa De Frango Congelada Kg",
@@ -609,6 +699,13 @@ window.OFERTAS_KOCH = {
      "aprov": 0.5
     },
     {
+     "produto": "Frango ao Molho Branco com Bacon e Arroz com Brócolis Meu Menu Perdigão 300G",
+     "preco": 9.69,
+     "cheio": 13.99,
+     "porUnidade": 53.8333,
+     "aprov": 0.6
+    },
+    {
      "produto": "Coxa e Sobrecoxa de Frango Desossada Congelada Sadia Pacote 1Kg",
      "preco": 39.99,
      "cheio": 39.99,
@@ -644,6 +741,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 12.99,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     12.99
+    ],
+    [
+     "2026-11-21",
+     12.99
+    ],
+    [
+     "2026-11-22",
+     12.99
+    ],
+    [
+     "2026-11-23",
+     12.99
+    ],
+    [
+     "2026-11-24",
+     12.99
+    ],
+    [
+     "2026-11-25",
+     12.99
+    ],
+    [
+     "2026-11-26",
+     12.99
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Iogurte Natural Holandês Embalagem 1L",
@@ -727,8 +854,8 @@ window.OFERTAS_KOCH = {
    "ref": 4.49,
    "hoje": {
     "produto": "Leite Italac Integral 1L",
-    "preco": 4.98,
-    "porUnidade": 4.98,
+    "preco": 4.58,
+    "porUnidade": 4.58,
     "aprov": 1.0
    },
    "menor30": {
@@ -737,33 +864,63 @@ window.OFERTAS_KOCH = {
     "porUnidade": 4.39,
     "dia": "2026-11-25"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     4.39
+    ],
+    [
+     "2026-11-21",
+     4.39
+    ],
+    [
+     "2026-11-22",
+     4.39
+    ],
+    [
+     "2026-11-23",
+     4.98
+    ],
+    [
+     "2026-11-24",
+     4.39
+    ],
+    [
+     "2026-11-25",
+     4.39
+    ],
+    [
+     "2026-11-26",
+     4.58
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Leite Italac Integral 1L",
-     "preco": 4.98,
+     "preco": 4.58,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.58,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Integral Aurora 1L",
-     "preco": 4.98,
+     "preco": 4.58,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.58,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Parmalat Integral 1L",
-     "preco": 4.98,
+     "preco": 4.58,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.58,
      "aprov": 1.0
     },
     {
      "produto": "Leite Uht Tirol Integral 1L",
-     "preco": 4.98,
+     "preco": 4.58,
      "cheio": 4.98,
-     "porUnidade": 4.98,
+     "porUnidade": 4.58,
      "aprov": 1.0
     },
     {
@@ -816,6 +973,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 43.3,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     43.3
+    ],
+    [
+     "2026-11-21",
+     43.3
+    ],
+    [
+     "2026-11-22",
+     43.3
+    ],
+    [
+     "2026-11-23",
+     51.6333
+    ],
+    [
+     "2026-11-24",
+     44.9667
+    ],
+    [
+     "2026-11-25",
+     44.9667
+    ],
+    [
+     "2026-11-26",
+     43.3
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Queijo Mussarela Veneccia Fatiado 300G",
@@ -916,6 +1103,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 20.98,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     29.95
+    ],
+    [
+     "2026-11-21",
+     29.95
+    ],
+    [
+     "2026-11-22",
+     29.95
+    ],
+    [
+     "2026-11-23",
+     29.98
+    ],
+    [
+     "2026-11-24",
+     31.98
+    ],
+    [
+     "2026-11-25",
+     20.98
+    ],
+    [
+     "2026-11-26",
+     20.98
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Requeijão Cremoso Lac Lelo Tradicional 500G",
@@ -1135,6 +1352,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 12.475,
     "dia": "2026-11-20"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     12.475
+    ],
+    [
+     "2026-11-21",
+     15.3111
+    ],
+    [
+     "2026-11-22",
+     15.3111
+    ],
+    [
+     "2026-11-23",
+     15.3111
+    ],
+    [
+     "2026-11-24",
+     15.3111
+    ],
+    [
+     "2026-11-25",
+     15.3111
+    ],
+    [
+     "2026-11-26",
+     14.975
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Pão de Forma Visconti Tradicional 400G",
@@ -1431,6 +1678,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 3.79,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     5.49
+    ],
+    [
+     "2026-11-21",
+     5.49
+    ],
+    [
+     "2026-11-22",
+     5.49
+    ],
+    [
+     "2026-11-23",
+     5.49
+    ],
+    [
+     "2026-11-24",
+     5.49
+    ],
+    [
+     "2026-11-25",
+     3.79
+    ],
+    [
+     "2026-11-26",
+     3.79
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Batata Doce Kg",
@@ -1468,6 +1745,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 5.49,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     5.99
+    ],
+    [
+     "2026-11-21",
+     5.99
+    ],
+    [
+     "2026-11-22",
+     5.99
+    ],
+    [
+     "2026-11-23",
+     5.99
+    ],
+    [
+     "2026-11-24",
+     5.99
+    ],
+    [
+     "2026-11-25",
+     5.49
+    ],
+    [
+     "2026-11-26",
+     5.49
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Batata Lavada Kg",
@@ -1512,6 +1819,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 2.99,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     4.99
+    ],
+    [
+     "2026-11-21",
+     3.99
+    ],
+    [
+     "2026-11-22",
+     3.99
+    ],
+    [
+     "2026-11-23",
+     4.99
+    ],
+    [
+     "2026-11-24",
+     4.99
+    ],
+    [
+     "2026-11-25",
+     2.99
+    ],
+    [
+     "2026-11-26",
+     2.99
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Abobrinha Verde Kg",
@@ -1542,6 +1879,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 5.99,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     7.99
+    ],
+    [
+     "2026-11-21",
+     7.99
+    ],
+    [
+     "2026-11-22",
+     7.99
+    ],
+    [
+     "2026-11-23",
+     7.99
+    ],
+    [
+     "2026-11-24",
+     7.99
+    ],
+    [
+     "2026-11-25",
+     5.99
+    ],
+    [
+     "2026-11-26",
+     5.99
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Cebola Para Conserva Kg",
@@ -1586,6 +1953,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 2.49,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     4.99
+    ],
+    [
+     "2026-11-21",
+     4.79
+    ],
+    [
+     "2026-11-22",
+     4.79
+    ],
+    [
+     "2026-11-23",
+     4.99
+    ],
+    [
+     "2026-11-24",
+     4.99
+    ],
+    [
+     "2026-11-25",
+     2.49
+    ],
+    [
+     "2026-11-26",
+     2.49
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Cenoura Kg",
@@ -1637,6 +2034,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 29.4,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     31.7529
+    ],
+    [
+     "2026-11-21",
+     31.7529
+    ],
+    [
+     "2026-11-22",
+     31.7529
+    ],
+    [
+     "2026-11-23",
+     31.7529
+    ],
+    [
+     "2026-11-24",
+     31.7529
+    ],
+    [
+     "2026-11-25",
+     29.4
+    ],
+    [
+     "2026-11-26",
+     29.4
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Alho Kg",
@@ -1695,6 +2122,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 10.6333,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     10.6333
+    ],
+    [
+     "2026-11-21",
+     10.6333
+    ],
+    [
+     "2026-11-22",
+     10.6333
+    ],
+    [
+     "2026-11-23",
+     18.9667
+    ],
+    [
+     "2026-11-24",
+     18.9667
+    ],
+    [
+     "2026-11-25",
+     10.6333
+    ],
+    [
+     "2026-11-26",
+     10.6333
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Extrato de Tomate Bonare 300G",
@@ -1760,6 +2217,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 19.99,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     19.99
+    ],
+    [
+     "2026-11-21",
+     19.99
+    ],
+    [
+     "2026-11-22",
+     19.99
+    ],
+    [
+     "2026-11-23",
+     19.99
+    ],
+    [
+     "2026-11-24",
+     19.99
+    ],
+    [
+     "2026-11-25",
+     19.99
+    ],
+    [
+     "2026-11-26",
+     19.99
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Tomate Kg",
@@ -1853,6 +2340,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 3.29,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     5.29
+    ],
+    [
+     "2026-11-21",
+     5.29
+    ],
+    [
+     "2026-11-22",
+     5.29
+    ],
+    [
+     "2026-11-23",
+     5.29
+    ],
+    [
+     "2026-11-24",
+     5.29
+    ],
+    [
+     "2026-11-25",
+     3.29
+    ],
+    [
+     "2026-11-26",
+     3.29
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Banana Branca Kg",
@@ -1925,6 +2442,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 7.79,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     10.49
+    ],
+    [
+     "2026-11-21",
+     10.49
+    ],
+    [
+     "2026-11-22",
+     10.49
+    ],
+    [
+     "2026-11-23",
+     10.49
+    ],
+    [
+     "2026-11-24",
+     9.99
+    ],
+    [
+     "2026-11-25",
+     7.79
+    ],
+    [
+     "2026-11-26",
+     7.79
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Mamão Papaia/Hawai kg",
@@ -1962,6 +2509,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 6.49,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     6.49
+    ],
+    [
+     "2026-11-21",
+     6.49
+    ],
+    [
+     "2026-11-22",
+     6.49
+    ],
+    [
+     "2026-11-23",
+     6.99
+    ],
+    [
+     "2026-11-24",
+     6.99
+    ],
+    [
+     "2026-11-25",
+     6.49
+    ],
+    [
+     "2026-11-26",
+     6.49
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Manga Tommy Kg",
@@ -1999,6 +2576,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 5.99,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     5.99
+    ],
+    [
+     "2026-11-21",
+     5.99
+    ],
+    [
+     "2026-11-22",
+     5.99
+    ],
+    [
+     "2026-11-23",
+     7.99
+    ],
+    [
+     "2026-11-24",
+     7.99
+    ],
+    [
+     "2026-11-25",
+     5.99
+    ],
+    [
+     "2026-11-26",
+     5.99
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Beterraba Dal Campo 1Kg",
@@ -2036,6 +2643,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 3.79,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     4.79
+    ],
+    [
+     "2026-11-21",
+     4.79
+    ],
+    [
+     "2026-11-22",
+     4.79
+    ],
+    [
+     "2026-11-23",
+     4.79
+    ],
+    [
+     "2026-11-24",
+     4.79
+    ],
+    [
+     "2026-11-25",
+     4.79
+    ],
+    [
+     "2026-11-26",
+     3.79
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Repolho Verde Unidade",
@@ -2080,6 +2717,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 14.975,
     "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     21.725
+    ],
+    [
+     "2026-11-21",
+     21.725
+    ],
+    [
+     "2026-11-22",
+     31.0889
+    ],
+    [
+     "2026-11-23",
+     31.0889
+    ],
+    [
+     "2026-11-24",
+     21.725
+    ],
+    [
+     "2026-11-25",
+     14.975
+    ],
+    [
+     "2026-11-26",
+     14.975
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Aveia Vitao Flocos Finos Pacote 400G",
@@ -2222,6 +2889,36 @@ window.OFERTAS_KOCH = {
     "porUnidade": 7.49,
     "dia": "2026-11-20"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     7.49
+    ],
+    [
+     "2026-11-21",
+     8.8778
+    ],
+    [
+     "2026-11-22",
+     8.8778
+    ],
+    [
+     "2026-11-23",
+     8.8778
+    ],
+    [
+     "2026-11-24",
+     8.8778
+    ],
+    [
+     "2026-11-25",
+     8.8778
+    ],
+    [
+     "2026-11-26",
+     8.8778
+    ]
+   ],
    "opcoes": [
     {
      "produto": "Tapioca Damazia Goma para Preparo 900g",
@@ -2262,18 +2959,167 @@ window.OFERTAS_KOCH = {
    "aprovRef": 1.0,
    "ref": null,
    "hoje": {
-    "produto": "Café Do Ponto Tradicional Pacote 500G",
-    "preco": 23.99,
-    "porUnidade": 47.98,
+    "produto": "Café Nescafé Dolce Gusto Kopenhagen com 10 unidades",
+    "preco": 23.85,
+    "porUnidade": 23.85,
     "aprov": 1.0
    },
    "menor30": {
-    "produto": "Café Caboclo Tradicional 500G",
-    "preco": 19.99,
-    "porUnidade": 39.98,
-    "dia": "2026-11-25"
+    "produto": "Café Nescafé Dolce Gusto Kopenhagen com 10 unidades",
+    "preco": 23.85,
+    "porUnidade": 23.85,
+    "dia": "2026-11-26"
    },
+   "hist": [
+    [
+     "2026-11-20",
+     39.98
+    ],
+    [
+     "2026-11-21",
+     41.98
+    ],
+    [
+     "2026-11-22",
+     41.98
+    ],
+    [
+     "2026-11-23",
+     47.98
+    ],
+    [
+     "2026-11-24",
+     47.58
+    ],
+    [
+     "2026-11-25",
+     39.98
+    ],
+    [
+     "2026-11-26",
+     23.85
+    ]
+   ],
    "opcoes": [
+    {
+     "produto": "Café Nescafé Dolce Gusto Kopenhagen com 10 unidades",
+     "preco": 23.85,
+     "cheio": 23.85,
+     "porUnidade": 23.85,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Caboclo Tradicional 500G",
+     "preco": 19.99,
+     "cheio": 26.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café em Pó Tradicional Coamo 500G",
+     "preco": 19.99,
+     "cheio": 25.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Iguaçu Extra Forte 500G",
+     "preco": 19.99,
+     "cheio": 23.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Iguacu Vácuo Tradicional Embalagem 500G",
+     "preco": 19.99,
+     "cheio": 23.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Caboclo Extra Forte 500G",
+     "preco": 19.99,
+     "cheio": 26.99,
+     "porUnidade": 39.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café 3 Corações Extraforte a Vácuo 500G",
+     "preco": 21.99,
+     "cheio": 26.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café 3 Corações Tradicional Vácuo 500G",
+     "preco": 21.99,
+     "cheio": 26.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Clássico Torrado Damasco 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Damasco Intenso Pacote 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café em Pó Damasco Extra Forte a Vácuo 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Pilão 252 Graus Pacote 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Pilão Extra Forte Pacote 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Pilão Intenso Pacote 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Pilão Tradicional Pacote 500G",
+     "preco": 21.99,
+     "cheio": 28.99,
+     "porUnidade": 43.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Melitta Extra Forte Caixa 500G",
+     "preco": 22.49,
+     "cheio": 29.99,
+     "porUnidade": 44.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Tradicional Vácuo Melitta 500G",
+     "preco": 22.49,
+     "cheio": 29.99,
+     "porUnidade": 44.98,
+     "aprov": 1.0
+    },
     {
      "produto": "Café Do Ponto Tradicional Pacote 500G",
      "preco": 23.99,
@@ -2289,17 +3135,17 @@ window.OFERTAS_KOCH = {
      "aprov": 1.0
     },
     {
-     "produto": "Café 3 Corações Tradicional Vácuo 500G",
-     "preco": 26.99,
-     "cheio": 26.99,
-     "porUnidade": 53.98,
-     "aprov": 1.0
-    },
-    {
      "produto": "Café Pilão Cafeteria Especialidades Torrado e Moído 500g",
      "preco": 26.99,
      "cheio": 29.99,
      "porUnidade": 53.98,
+     "aprov": 1.0
+    },
+    {
+     "produto": "Café Sul de Minas 100 Arábica Lor Gourmet Pouch 250g",
+     "preco": 17.49,
+     "cheio": 26.99,
+     "porUnidade": 69.96,
      "aprov": 1.0
     },
     {
@@ -2850,6 +3696,30 @@ window.OFERTAS_KOCH = {
      "preco": 1.49,
      "cheio": 2.39,
      "equiv": 1.49
+    },
+    {
+     "produto": "Detergente Ypê Clear Frasco 500Ml",
+     "preco": 2.59,
+     "cheio": 2.79,
+     "equiv": 2.59
+    },
+    {
+     "produto": "Detergente Ypê Limão Frasco 500Ml",
+     "preco": 2.59,
+     "cheio": 2.79,
+     "equiv": 2.59
+    },
+    {
+     "produto": "Detergente Ypê Neutro Frasco 500Ml",
+     "preco": 2.59,
+     "cheio": 2.79,
+     "equiv": 2.59
+    },
+    {
+     "produto": "Detergente Líquido Ypê Platinum 500Ml",
+     "preco": 3.49,
+     "cheio": 3.49,
+     "equiv": 3.49
     }
    ]
   },
@@ -2866,10 +3736,22 @@ window.OFERTAS_KOCH = {
      "equiv": 4.99
     },
     {
+     "produto": "Esponja Scotch-B Extrema com 4 Leve 4 Pague 3",
+     "preco": 7.99,
+     "cheio": 10.99,
+     "equiv": 7.99
+    },
+    {
      "produto": "Esponja Scotch-Brite Dupla Face Verde Multiuso Leve 4 Pague 3",
      "preco": 7.99,
      "cheio": 10.99,
      "equiv": 7.99
+    },
+    {
+     "produto": "Esponja Scocth-B Não Risca Verde Leve 3 Pague 2",
+     "preco": 8.79,
+     "cheio": 12.49,
+     "equiv": 11.72
     },
     {
      "produto": "Esponja Ypê Multiuso 1 Unidade",
@@ -3258,6 +4140,12 @@ window.OFERTAS_KOCH = {
      "equiv": 8.49
     },
     {
+     "produto": "Melão Rei Kg",
+     "preco": 13.99,
+     "cheio": 14.79,
+     "equiv": 13.99
+    },
+    {
      "produto": "MELAO AMARELO KOCH BDJ KG",
      "preco": 14.99,
      "cheio": 14.99,
@@ -3338,6 +4226,12 @@ window.OFERTAS_KOCH = {
      "preco": 3.79,
      "cheio": 3.79,
      "equiv": 3.79
+    },
+    {
+     "produto": "Milho Torrado Mostarda e Mel Euro Company 100G",
+     "preco": 9.09,
+     "cheio": 12.99,
+     "equiv": 15.45
     }
    ]
   },
@@ -3972,7 +4866,19 @@ window.OFERTAS_KOCH = {
      "equiv": 1.79
     },
     {
+     "produto": "Sabonete Francis Brasilidades Acerola 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
+    },
+    {
      "produto": "Sabonete Francis Brasilidades Água Coco 80G",
+     "preco": 1.89,
+     "cheio": 3.29,
+     "equiv": 2.01
+    },
+    {
+     "produto": "Sabonete Francis Brasilidades Amora 80G",
      "preco": 1.89,
      "cheio": 3.29,
      "equiv": 2.01
@@ -4364,11 +5270,17 @@ window.OFERTAS_KOCH = {
    ]
   },
   "Salsa, maço": {
-   "produto": "Salsa Br Spices Vidro com 15G",
-   "preco": 6.59,
-   "cheio": 13.19,
-   "equiv": 6.59,
+   "produto": "Salsa Unidade",
+   "preco": 2.79,
+   "cheio": 3.49,
+   "equiv": 2.79,
    "opcoes": [
+    {
+     "produto": "Salsa Unidade",
+     "preco": 2.79,
+     "cheio": 3.49,
+     "equiv": 2.79
+    },
     {
      "produto": "Salsa Br Spices Vidro com 15G",
      "preco": 6.59,

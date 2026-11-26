@@ -418,7 +418,6 @@
     .tab[aria-selected="true"] { border-left-color: transparent; border-bottom-color: var(--accent-herb); }
     .app-header { padding-top: 1.25rem; }
     .card { padding: 1rem; border-radius: 8px; }
-    .tabela-precos { font-size: 0.85rem; }
   }
 
 
@@ -451,24 +450,59 @@
   .prep-meta strong { color: var(--ink); }
   ol.preparo li { margin: 0 0 0.55rem; }
 
-  .tabela-precos .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .tabela-precos tr.oferta-boa td { background: var(--card-soft); font-weight: 700; }
-  .tabela-precos .produto-koch { display: block; font-size: 0.85em; font-weight: 400; opacity: 0.75; white-space: normal; min-width: 9rem; }
-  .tabela-precos tr.expansivel { cursor: pointer; }
-  .tabela-precos tr.expansivel:hover > td, .tabela-precos tr.expansivel:focus-visible > td { background: var(--card-soft); }
-  .tabela-precos tr.expansivel > td:first-child::before { content: "▸"; display: inline-block; width: 1.1em; color: var(--accent-herb); }
-  .tabela-precos tr.expansivel.aberto > td:first-child::before { content: "▾"; }
-  .tabela-precos tr.opcoes-linha { display: none; }
-  .tabela-precos tr.opcoes-linha.visivel { display: table-row; }
-  .tabela-precos tr.opcoes-linha > td { background: var(--card-soft); padding: 0.3rem 0.6rem 0.9rem 1.6rem; }
-  .lista-opcoes { width: 100%; border-collapse: collapse; font-size: 0.86em; }
-  .lista-opcoes th { text-align: left; font-weight: 600; color: var(--ink-soft); padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line); }
-  .lista-opcoes td { padding: 0.28rem 0.5rem; border-bottom: 1px solid var(--line); font-weight: 400; background: transparent; }
-  .lista-opcoes td.num, .lista-opcoes th.num { text-align: right; }
-  .lista-opcoes tr.mais-barato td { color: var(--accent-herb-strong); font-weight: 600; }
-  .lista-opcoes s { opacity: 0.6; }
-  .lista-opcoes .nota-opcao { opacity: 0.7; font-size: 0.92em; }
-  .tabela-precos .cat-linha td { font-family: var(--font-display); font-weight: 700; color: var(--accent-herb-strong); background: var(--card-soft); }
+  /* Cards de preço (abas Preços e Promoções): um item por card, valores um embaixo do outro */
+  .cards-precos { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.6rem; }
+  .cp { background: var(--card-soft); border: 1px solid var(--line); border-radius: 8px; min-width: 0; }
+  .cp[hidden], .cp-grupo[hidden], .card[hidden] { display: none; }
+  details.cp[open] { grid-column: 1 / -1; }
+  .cp-destaque { border-color: var(--accent-herb); box-shadow: inset 3px 0 0 var(--accent-herb); }
+  .cp-resumo { display: block; padding: 0.6rem 0.75rem; list-style: none; }
+  summary.cp-resumo { cursor: pointer; }
+  summary.cp-resumo::-webkit-details-marker { display: none; }
+  .cp-topo { display: flex; align-items: flex-start; gap: 0.4rem; margin-bottom: 0.3rem; }
+  .cp-titulo { font-weight: 700; flex: 1; min-width: 0; line-height: 1.25; }
+  .cp-seta::before { content: "▸"; color: var(--accent-herb); }
+  details[open] .cp-seta::before { content: "▾"; }
+  .selo { font-size: 0.75rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 999px; white-space: nowrap;
+          background: var(--accent-herb); color: var(--card); }
+  .selo-desc { background: var(--accent-yolk); color: var(--accent-yolk-ink); }
+  .cp-linha { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.5rem; font-size: 0.88rem; padding: 0.1rem 0; }
+  .cp-rot { color: var(--ink-soft); flex: 1; }
+  .cp-val { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .cp-det { flex-basis: 100%; font-size: 0.78rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .barato, .cp-linha.barato .cp-val { color: var(--accent-herb-strong); font-weight: 700; }
+  .cp-linha.caro .cp-val { color: var(--ink-soft); }
+  .cp-corpo { border-top: 1px dashed var(--line); padding: 0.5rem 0.75rem 0.75rem; }
+  .cp-sub { margin: 0.4rem 0 0.3rem; font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); }
+  ul.opcoes { list-style: none; margin: 0; padding: 0; font-size: 0.85rem; }
+  ul.opcoes li { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 0.75rem; padding: 0.3rem 0; border-bottom: 1px solid var(--line); }
+  ul.opcoes li:last-child { border-bottom: none; }
+  ul.opcoes li.barato .op-nome { color: var(--accent-herb-strong); font-weight: 600; }
+  .op-nome small { color: var(--ink-soft); }
+  .op-precos { font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+  .op-precos strong { color: var(--ink); }
+  .op-precos s, .promo-preco s { opacity: 0.6; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .chip { font-size: 0.78rem; padding: 0.1rem 0.45rem; border: 1px solid var(--line); border-radius: 999px; background: var(--card); white-space: nowrap; }
+  .chip-menor { border-color: var(--accent-herb); color: var(--accent-herb-strong); }
+  .promo-preco { font-variant-numeric: tabular-nums; }
+  .promo-preco strong { font-size: 1.15rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.3rem; }
+  .tag { font-size: 0.72rem; padding: 0.05rem 0.4rem; border-radius: 4px; background: var(--card); border: 1px solid var(--line); color: var(--ink-soft); }
+  .tag-forte { border-color: var(--accent-herb); color: var(--accent-herb-strong); font-weight: 700; }
+  .tag-alerta { border-color: var(--accent-yolk); color: var(--ink); }
+  .cp-grupo + .cp-grupo { margin-top: 0.4rem; }
+  .busca { display: flex; align-items: center; gap: 0.6rem; }
+  .busca input { flex: 1; min-width: 0; font: inherit; font-size: 1rem; padding: 0.55rem 0.75rem; border: 1px solid var(--line);
+                 border-radius: 8px; background: var(--card-soft); color: var(--ink); }
+  .busca-conta { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+  .busca-card { padding: 0.75rem; position: sticky; top: 0.5rem; z-index: 2; }
+  .filtros { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; margin-top: 0.6rem; font-size: 0.9rem; }
+  .filtros select { font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--card-soft); color: var(--ink); max-width: 100%; }
+  .promo-lista { margin-top: 1rem; }
+  .mais { text-align: center; margin-top: 1rem; }
+  .mais button { font: inherit; padding: 0.55rem 1.2rem; border-radius: 8px; border: 1px solid var(--accent-herb); background: var(--card); color: var(--accent-herb-strong); cursor: pointer; }
+  .mais button[hidden] { display: none; }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
@@ -490,6 +524,7 @@
       <button class="tab" role="tab" data-tab="semana4" aria-selected="false">Semana 4</button>
       <button class="tab" role="tab" data-tab="dieta" aria-selected="false">A Dieta</button>
       <button class="tab" role="tab" data-tab="precos" aria-selected="false">Preços</button>
+      <button class="tab" role="tab" data-tab="promos" aria-selected="false">Promoções</button>
     </nav>
 
     <main>
@@ -501,12 +536,13 @@
       <section id="tab-semana4" class="panel"></section>
       <section id="tab-dieta" class="panel"></section>
       <section id="tab-precos" class="panel"></section>
+      <section id="tab-promos" class="panel"></section>
       <details class="info-note">
           <summary>Como a lista de compras foi pensada</summary>
           <ul>
             <li><strong>Poucos ingredientes, muitos formatos:</strong> ovos, carne moída e frango são a base. A variação vem do formato (crepioca, bolonhesa, almôndega, fritada, pizza de pão) e dos temperos. Se enjoar de uma receita, troque por outra com o mesmo ingrediente e a compra não muda.</li>
             <li><strong>Sem atum, peixe e whey:</strong> o cardápio não usa itens caros ou que não agradam. A proteína do whey é reposta com iogurte coado, ovos e carne.</li>
-            <li><strong>Carne moída a R$ 19,13/kg:</strong> neste preço ela custa quase o mesmo que ovo e frango por grama de proteína. Se estiver mais cara, reduza para 2 usos por semana e use mais ovos e frango.</li>
+            <li><strong>Carne moída a R$ 54,98/kg</strong> (cupom de 07/11, 400g por R$ 21,99): por grama de proteína ela custa cerca de 3 vezes o ovo e o frango. Para economizar, compre quando a aba Preços marcar a carne como "comprar", ou troque 1 ou 2 usos por semana por frango e ovos.</li>
             <li><strong>Pão, aveia e leite</strong> servem a várias receitas: o mesmo pacote de pão cobre o café, o lanche e o jantar; a aveia entra no mamão do café, na panqueca e no iogurte. A crepioca e o crep fit levam tapioca.</li>
             <li><strong>Cada semana troca</strong> a segunda fruta e o segundo legume, para variar sem aumentar a lista.</li>
             <li><strong>Lanche das 10h:</strong> não consta no PDF. São ~120 a 175 kcal e ocupam o lugar da ceia opcional (~215 kcal). Confirme com a nutricionista.</li>
@@ -528,6 +564,7 @@
 
 <!-- gerado todo dia por get-ofertas.py; se não existir, a tabela de ofertas não aparece -->
 <script src="ofertas-koch.js"></script>
+<script src="promos-koch.js"></script>
 <script>
 (function () {
   "use strict";
@@ -536,7 +573,7 @@
   // preco = R$ por unidade-base (g, ml, un ou fatia), dos cupons do Komprão de 07/11 e 16/11/2026 (o mais recente vale).
   // Sem preco = o item não estava no cupom. emCasa = já existe na despensa e não entra na lista.
   var ING = {
-    carneMoida:     { nome: "Carne moída (crua)", unidade: "g", cat: "Proteínas", preco: 19.13 / 1000 },
+    carneMoida:     { nome: "Carne moída (crua)", unidade: "g", cat: "Proteínas", preco: 21.99 / 400 },
     frango:         { nome: "Peito de frango com osso", unidade: "g", cat: "Proteínas", preco: 13.49 / 1000 },
 
     ovos:           { nome: "Ovos (bandeja com 30)", unidade: "un", cat: "Ovos e Laticínios", preco: 14.99 / 30, pacote: 30 },
@@ -1269,7 +1306,7 @@
       "<ul class=\"preparo\">" +
       "<li>Média de ~1.610 kcal por dia, de ~1.460 (sábado) a ~1.760 nos dias mais altos, com ~87 a 150 g de proteína.</li>" +
       "<li>Compra-base: 1 bandeja de 30 ovos, ~1,13 kg de carne moída, ~1,12 kg de peito de frango com osso, 2 L de leite e 1 pacote de pão integral.</li>" +
-      "<li>Custo dos itens com preço no cupom: de ~R$ 135 a ~R$ 145 por semana.</li>" +
+      "<li>Custo dos itens com preço no cupom: de ~R$ 175 a ~R$ 186 por semana (a carne moída do cupom, a R$ 54,98/kg, pesa ~R$ 62 disso).</li>" +
       "</ul></div>";
     html += tabelaRefeicao("Café da manhã (7h)", "Sempre com mamão e aveia. Os cafés com ovo trocam de dia a cada semana; os de frango ficam na segunda, sexta e sábado por causa dos potes do domingo.", "desjejum");
     html += tabelaRefeicao("Lanche da manhã (10h)", "Três opções que se revezam: iogurte coado com aveia, pão com requeijão e a fruta da semana, banana com aveia e canela.", "manha");
@@ -1371,143 +1408,245 @@
     "Extrato de tomate Bonare gourmet, 1,02 kg": ["Extrato de tomate", 1.02]
   };
 
-  // Lista de todas as opções do dia (marcas, tamanhos, cortes), aberta ao clicar na linha.
-  // opcoes: [{produto, preco, cheio, v, nota}], v = valor comparável; base = preço pago para comparar.
-  function linhaOpcoes(opcoes, colspan, tituloValor, base) {
-    if (!opcoes || opcoes.length === 0) return "";
-    var corpo = opcoes.map(function (o) {
-      var promo = o.cheio != null && o.preco < o.cheio - 0.005;
-      var dif = "&mdash;";
-      if (base != null) {
-        var d = o.v - base;
-        dif = Math.abs(d) < 0.005 ? "igual" : (d > 0 ? "+ " : "− ") + formatBRL(Math.abs(d)) + " (" + (d > 0 ? "+" : "−") + Math.abs(Math.round(d / base * 100)) + "%)";
-      }
-      var barato = base != null && o.v < base - 0.005;
-      return "<tr" + (barato ? " class=\"mais-barato\"" : "") + "><td>" + escapeHtml(o.produto) +
-        (o.nota ? " <span class=\"nota-opcao\">" + escapeHtml(o.nota) + "</span>" : "") + "</td>" +
-        "<td class=\"num\">" + formatBRL(o.preco) + (promo ? " <s>" + formatBRL(o.cheio) + "</s>" : "") + "</td>" +
-        "<td class=\"num\">" + formatBRL(o.v) + "</td><td class=\"num\">" + dif + "</td></tr>";
-    }).join("");
-    return "<tr class=\"opcoes-linha\"><td colspan=\"" + colspan + "\"><table class=\"lista-opcoes\"><thead><tr>" +
-      "<th>Opções no site hoje (" + opcoes.length + ")</th><th class=\"num\">Preço</th><th class=\"num\">" + escapeHtml(tituloValor) +
-      "</th><th class=\"num\">" + (base != null ? "× você pagou" : "") + "</th></tr></thead><tbody>" + corpo + "</tbody></table></td></tr>";
+  // ---------- Cards (abas Preços e Promoções): um item por card, toque para abrir ----------
+  function semAcento(t) {
+    return String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   }
+  function dataBR(iso) { return iso.slice(8, 10) + "/" + iso.slice(5, 7); }
+  // Diferença de v para base: "− R$ 1,20 (−8%)", com classe "barato"/"caro".
+  function diferenca(v, base) {
+    var d = v - base;
+    if (Math.abs(d) < 0.005) return { txt: "igual", cls: "" };
+    return { txt: (d > 0 ? "+ " : "− ") + formatBRL(Math.abs(d)) + " (" + (d > 0 ? "+" : "−") + Math.abs(Math.round(d / base * 100)) + "%)",
+             cls: d < 0 ? "barato" : "caro" };
+  }
+  // linhas: [[rótulo, valor (HTML), detalhe (texto, opcional), classe (opcional)]]
+  function cardPreco(titulo, selo, linhas, corpo, busca, destaque) {
+    var dl = linhas.map(function (l) {
+      return "<div class=\"cp-linha " + (l[3] || "") + "\"><span class=\"cp-rot\">" + escapeHtml(l[0]) + "</span><span class=\"cp-val\">" + l[1] + "</span>" +
+        (l[2] ? "<span class=\"cp-det\">" + escapeHtml(l[2]) + "</span>" : "") + "</div>";
+    }).join("");
+    var topo = "<span class=\"cp-titulo\">" + escapeHtml(titulo) + "</span>" + (selo ? "<span class=\"selo\">" + selo + "</span>" : "");
+    var cls = "cp" + (destaque ? " cp-destaque" : "");
+    var dados = " data-busca=\"" + escapeHtml(semAcento(busca || titulo)) + "\" data-titulo=\"" + escapeHtml(semAcento(titulo)) + "\"";
+    if (!corpo) return "<div class=\"" + cls + "\"" + dados + "><div class=\"cp-resumo\"><div class=\"cp-topo\">" + topo + "</div>" + dl + "</div></div>";
+    return "<details class=\"" + cls + "\"" + dados + "><summary class=\"cp-resumo\"><div class=\"cp-topo\">" + topo +
+      "<span class=\"cp-seta\" aria-hidden=\"true\"></span></div>" + dl + "</summary><div class=\"cp-corpo\">" + corpo + "</div></details>";
+  }
+  // Opções do site hoje (marcas, tamanhos, cortes): [{produto, preco, cheio, v, nota}], v = valor comparável.
+  function listaOpcoes(opcoes, rotuloV, base) {
+    if (!opcoes || opcoes.length === 0) return "";
+    var lis = opcoes.map(function (o) {
+      var promo = o.cheio != null && o.preco < o.cheio - 0.005;
+      var dif = base != null ? diferenca(o.v, base) : null;
+      return "<li class=\"" + (dif && dif.cls === "barato" ? "barato" : "") + "\"><span class=\"op-nome\">" + escapeHtml(o.produto) +
+        (o.nota ? " <small>" + escapeHtml(o.nota) + "</small>" : "") + "</span><span class=\"op-precos\">" +
+        formatBRL(o.preco) + (promo ? " <s>" + formatBRL(o.cheio) + "</s>" : "") +
+        " · <strong>" + formatBRL(o.v) + rotuloV + "</strong>" + (dif ? " · <span class=\"" + dif.cls + "\">" + dif.txt + "</span>" : "") + "</span></li>";
+    }).join("");
+    return "<p class=\"cp-sub\">Opções no site hoje (" + opcoes.length + ")" + (base != null ? ", comparadas com o que você pagou" : "") + "</p><ul class=\"opcoes\">" + lis + "</ul>";
+  }
+  // Histórico dia a dia: [[dd/mm, valor]]
+  function chipsHist(hist, rotuloV) {
+    if (!hist || hist.length < 2) return "";
+    var menor = Math.min.apply(null, hist.map(function (h) { return h[1]; }));
+    return "<p class=\"cp-sub\">Dia a dia</p><div class=\"chips\">" + hist.map(function (h) {
+      return "<span class=\"chip" + (h[1] <= menor + 0.005 ? " chip-menor" : "") + "\">" + h[0] + " <strong>" + formatBRL(h[1]) + rotuloV + "</strong></span>";
+    }).join("") + "</div>";
+  }
+  function barraBusca(id, placeholder) {
+    return "<div class=\"busca\"><input type=\"search\" id=\"" + id + "\" placeholder=\"" + escapeHtml(placeholder) + "\" autocomplete=\"off\" aria-label=\"" + escapeHtml(placeholder) + "\"><span class=\"busca-conta\" id=\"" + id + "-conta\"></span></div>";
+  }
+  // Todas as palavras digitadas precisam aparecer (sem acento, em qualquer ordem).
+  function casaBusca(texto, termos) {
+    for (var i = 0; i < termos.length; i++) if (texto.indexOf(termos[i]) < 0) return false;
+    return true;
+  }
+  function termosBusca(q) { return semAcento(q).split(/\s+/).filter(Boolean); }
 
+  // ---------- Aba Preços ----------
   function renderPrecos() {
     var H2 = "<h2 style=\"font-family:var(--font-display);margin-top:0;\">";
     var cats = [];
     PRECOS.forEach(function (l) { if (cats.indexOf(l[0]) < 0) cats.push(l[0]); });
-    var ths = PRECOS_DATAS.map(function (d) { return "<th class=\"num\">" + escapeHtml(d) + "</th>"; }).join("");
-    // Coluna do Koch: preço de hoje do mesmo item, convertido para o tamanho da linha (vem de ofertas-koch.js).
+    // Preço de hoje do mesmo item no site, convertido para o tamanho da linha (vem de ofertas-koch.js).
     var koch = {}, extras = (window.OFERTAS_KOCH && window.OFERTAS_KOCH.extras) || {};
     if (window.OFERTAS_KOCH) window.OFERTAS_KOCH.itens.forEach(function (i) { if (i.hoje) koch[i.item] = i; });
     var temKoch = Object.keys(koch).length > 0;
-    var kochData = temKoch ? window.OFERTAS_KOCH.atualizado.slice(0, 5) : "";
-    var thKoch = temKoch ? "<th class=\"num\">Site " + escapeHtml(kochData) + "</th>" : "";
-    // Variação: com dados do site, compara o site hoje com a última compra; sem eles, as duas últimas compras.
-    var tituloVar = temKoch ? "Site × última compra" : "Variação";
-    var html = "<div class=\"card\">" + H2 + "Tabela de preços</h2>" +
-      "<p class=\"prep-intro\">Preços pagos em cada compra. Um traço significa que o produto não foi comprado naquele dia." +
-      (temKoch ? " A coluna Site mostra o produto mais barato do mesmo item no site hoje, já no mesmo tamanho da linha. Clique numa linha (▸) para ver todas as marcas e tamanhos do site, cada um comparado com o que você pagou. A última coluna diz quanto o site está mais barato (−) ou mais caro (+) que a última vez que você pagou."
-               : " A coluna Variação compara as duas compras mais recentes em que o produto apareceu.") + "</p>" +
-      "<div class=\"table-scroll\"><table class=\"menu-semana tabela-precos\"><thead><tr><th>Produto</th>" + ths + thKoch +
-      "<th class=\"num\">" + tituloVar + "</th></tr></thead><tbody>";
-    var variacao = function (antes, depois) {
-      var d = depois - antes;
-      if (Math.abs(d) < 0.005) return "igual";
-      var txt = (d > 0 ? "+ " : "− ") + formatBRL(Math.abs(d)) + " (" + (d > 0 ? "+" : "−") + Math.abs(Math.round(d / antes * 100)) + "%)";
-      return d < 0 ? "<strong>" + txt + "</strong>" : txt;
-    };
+    var html = "<div class=\"card\">" + H2 + "Tudo o que vocês compram</h2>" +
+      "<p class=\"prep-intro\">O que vocês pagaram nos cupons × o mesmo item no site hoje, no mesmo tamanho. Borda verde = site mais barato. Toque para ver as marcas.</p>";
     cats.forEach(function (cat) {
-      html += "<tr class=\"cat-linha\"><td colspan=\"" + (PRECOS_DATAS.length + 2 + (temKoch ? 1 : 0)) + "\">" + escapeHtml(cat) + "</td></tr>";
+      html += "<section class=\"cp-grupo\"><h3 class=\"prep-titulo\">" + escapeHtml(cat) + "</h3><div class=\"cards-precos\">";
       PRECOS.filter(function (l) { return l[0] === cat; }).forEach(function (l) {
-        var vals = l[2], comPreco = vals.filter(function (v) { return v != null; });
-        var ultimo = comPreco[comPreco.length - 1];
-        var celSite = "", varTxt = "&mdash;", opcoes = null;
+        var pagos = [];
+        l[2].forEach(function (v, i) { if (v != null) pagos.push([PRECOS_DATAS[i], v]); });
+        var ultimo = pagos.length ? pagos[pagos.length - 1] : null;
+        var v = null, prod = "", opcoes = null;
         if (temKoch) {
-          // Itens da dieta: o mais barato do item (qualquer marca/corte), convertido para o tamanho da linha;
-          // frango, carne e alho: quanto custa a mesma quantidade de carne/alho limpo do que você comprou.
-          // Demais itens: o mesmo produto, no tamanho da linha.
-          var m = PRECOS_KOCH[l[1]], it = m && koch[m[0]], ex = extras[l[1]], v = null, prod = "";
+          // Itens da dieta: o mais barato do item (qualquer marca/corte) no tamanho da linha;
+          // frango, carne e alho: a mesma quantidade de carne/alho limpo do que você comprou.
+          var m = PRECOS_KOCH[l[1]], it = m && koch[m[0]], ex = extras[l[1]];
           if (it) {
             opcoes = (it.opcoes || []).map(function (o) {
               return { produto: o.produto, preco: o.preco, cheio: o.cheio, v: o.porUnidade * (it.aprovRef || 1) * m[1],
                        nota: o.aprov < 1 ? "aproveita " + Math.round(o.aprov * 100) + "%" : "" };
             });
             v = it.hoje.porUnidade * (it.aprovRef || 1) * m[1];
-            prod = it.hoje.produto + " · " + formatBRL(it.hoje.preco) + (it.hoje.aprov < 1 ? " (equivalente, já descontando osso, pele ou casca)" : "");
+            prod = it.hoje.produto + " · " + formatBRL(it.hoje.preco) + (it.hoje.aprov < 1 ? " (equivalente, sem osso, pele ou casca)" : "");
           } else if (ex) {
-            opcoes = (ex.opcoes || []).map(function (o) {
-              return { produto: o.produto, preco: o.preco, cheio: o.cheio, v: o.equiv, nota: "" };
-            });
+            opcoes = (ex.opcoes || []).map(function (o) { return { produto: o.produto, preco: o.preco, cheio: o.cheio, v: o.equiv, nota: "" }; });
             v = ex.equiv;
             prod = ex.produto + " · " + formatBRL(ex.preco);
           }
-          if (v != null) {
-            celSite = "<td class=\"num\">" + formatBRL(v) + "<span class=\"produto-koch\">" + escapeHtml(prod) + "</span></td>";
-            if (ultimo != null) varTxt = variacao(ultimo, v);
-          } else {
-            celSite = "<td class=\"num\">&mdash;</td>";
-          }
-        } else if (comPreco.length >= 2) {
-          varTxt = variacao(comPreco[comPreco.length - 2], ultimo);
         }
-        var abre = opcoes && opcoes.length > 0;
-        html += "<tr" + (abre ? " class=\"expansivel\" tabindex=\"0\" title=\"Clique para ver todas as opções do site\"" : "") + "><td>" + escapeHtml(l[1]) + "</td>" + PRECOS_DATAS.map(function (_, i) {
-          return "<td class=\"num\">" + (vals[i] != null ? formatBRL(vals[i]) : "&mdash;") + "</td>"; }).join("") +
-          celSite + "<td class=\"num\">" + varTxt + "</td></tr>" +
-          (abre ? linhaOpcoes(opcoes, PRECOS_DATAS.length + 3, "No tamanho da linha", ultimo != null ? ultimo : null) : "");
+        var linhas = [];
+        if (ultimo) {
+          var antes = pagos.length > 1 ? "antes " + formatBRL(pagos[pagos.length - 2][1]) + " em " + pagos[pagos.length - 2][0].slice(0, 5) : "";
+          linhas.push(["Você pagou (" + ultimo[0].slice(0, 5) + ")", formatBRL(ultimo[1]), antes]);
+        } else {
+          linhas.push(["Você pagou", "&mdash;", "ainda não comprado"]);
+        }
+        var dif = null;
+        if (v != null) {
+          dif = ultimo ? diferenca(v, ultimo[1]) : null;
+          linhas.push(["Site hoje", formatBRL(v), prod]);
+          if (dif) linhas.push(["Site × última compra", dif.txt, "", dif.cls]);
+        } else if (temKoch) {
+          linhas.push(["Site hoje", "&mdash;", "não achado no site"]);
+        }
+        var nomes = (opcoes || []).map(function (o) { return o.produto; }).join(" ");
+        html += cardPreco(l[1], dif && dif.cls === "barato" ? "mais barato" : "", linhas,
+          listaOpcoes(opcoes, "", ultimo ? ultimo[1] : null), l[1] + " " + cat + " " + nomes, dif && dif.cls === "barato");
       });
+      html += "</div></section>";
     });
-    html += "</tbody></table></div>" +
-      "<p class=\"legenda-estimativa\">Fora dos cupons: carne moída a R$ 19,13/kg (preço que você informou ter conseguido; sem data). É o valor usado nas listas de compras.</p></div>";
-    return renderOfertasKoch() + html;
+    html += "<p class=\"legenda-estimativa\">Carne moída: a referência é o cupom de 07/11 (dianteiro Komprão, 400g por R$ 21,99 = R$ 54,98/kg).</p></div>";
+    var topo = "<div class=\"card busca-card\">" + barraBusca("busca-precos", "Buscar item (ex.: ovo, frango, sabonete)") + "</div>";
+    return topo + renderOfertasKoch() + html;
   }
 
-  // Ofertas do Koch (arquivo ofertas-koch.js, gerado por get-ofertas.py). Referência = menor preço pago no Komprão.
+  // Itens da dieta (ofertas-koch.js, gerado por get-ofertas.py). Referência = menor preço pago no Komprão.
   function renderOfertasKoch() {
     var d = window.OFERTAS_KOCH;
     if (!d || !d.itens) return "";
     // porUnidade/ref vêm por kg (limpo), L ou ovo; "fator" converte para o que é mostrado (pão: pacote de 400g).
-    var cel = function (o, i) {
+    var cards = d.itens.map(function (i) {
       var f = i.fator || 1, u = "/" + (i.rotulo || i.unidade);
-      return o ? formatBRL(o.porUnidade * f) + u + "<span class=\"produto-koch\">" + escapeHtml(o.produto) + " · " + formatBRL(o.preco) + "</span>" : "&mdash;";
-    };
-    var linhas = d.itens.map(function (i) {
       var boa = i.hoje && i.ref != null && i.hoje.porUnidade < i.ref - 0.005;
-      var menor = i.menor30 ? cel(i.menor30, i) + "<span class=\"produto-koch\">em " + i.menor30.dia.split("-").reverse().join("/") + "</span>" : "&mdash;";
-      var f = i.fator || 1;
+      var linhas = [
+        ["Menor já pago", i.ref != null ? formatBRL(i.ref * f) + u : "&mdash;", ""],
+        ["Site hoje", i.hoje ? formatBRL(i.hoje.porUnidade * f) + u : "&mdash;", i.hoje ? i.hoje.produto + " · " + formatBRL(i.hoje.preco) : "", boa ? "barato" : ""],
+        ["Menor em 30 dias", i.menor30 ? formatBRL(i.menor30.porUnidade * f) + u : "&mdash;", i.menor30 ? dataBR(i.menor30.dia) + " · " + i.menor30.produto : ""]
+      ];
       var ops = (i.opcoes || []).map(function (o) {
-        return { produto: o.produto, preco: o.preco, cheio: o.cheio, v: o.porUnidade * f,
-                 nota: o.aprov < 1 ? "aproveita " + Math.round(o.aprov * 100) + "%" : "" };
+        return { produto: o.produto, preco: o.preco, cheio: o.cheio, v: o.porUnidade * f, nota: o.aprov < 1 ? "aproveita " + Math.round(o.aprov * 100) + "%" : "" };
       });
-      var cls = (boa ? "oferta-boa" : "") + (ops.length ? " expansivel" : "");
-      return "<tr class=\"" + cls.trim() + "\"" + (ops.length ? " tabindex=\"0\" title=\"Clique para ver todas as opções do site\"" : "") + "><td>" + escapeHtml(i.item) + (boa ? " ✓ comprar" : "") + "</td>" +
-        "<td class=\"num\">" + (i.ref != null ? formatBRL(i.ref * (i.fator || 1)) + "/" + (i.rotulo || i.unidade) : "&mdash;") + "</td>" +
-        "<td class=\"num\">" + cel(i.hoje, i) + "</td><td class=\"num\">" + menor + "</td></tr>" +
-        linhaOpcoes(ops, 4, "Por " + (i.rotulo || i.unidade), i.ref != null ? i.ref * f : null);
+      var hist = (i.hist || []).map(function (h) { return [dataBR(h[0]), h[1] * f]; });
+      var corpo = chipsHist(hist, "") + listaOpcoes(ops, u, i.ref != null ? i.ref * f : null);
+      return cardPreco(i.item, boa ? "✓ comprar" : "", linhas, corpo,
+        i.item + " " + ops.map(function (o) { return o.produto; }).join(" "), boa);
     }).join("");
-    return "<div class=\"card\"><h2 style=\"font-family:var(--font-display);margin-top:0;\">Preços do site hoje (itens da dieta)</h2>" +
-      "<p class=\"prep-intro\">Atualizado em " + escapeHtml(d.atualizado) + ". Busca diária no site do Koch: o produto mais barato de cada item hoje (qualquer marca; frango, carne e alho comparam todos os cortes e tipos pelo kg limpo, sem osso, pele ou casca; pão por pacote de 400g), comparado com o menor preço que você já pagou (cupons abaixo) e com o menor dos últimos 30 dias. Linha destacada = mais barato que o menor já pago: vale comprar. Clique num item (▸) para ver todas as marcas e cortes de hoje.</p>" +
-      "<div class=\"table-scroll\"><table class=\"menu-semana tabela-precos\"><thead><tr><th>Item</th><th class=\"num\">Menor já pago</th><th class=\"num\">Site hoje</th><th class=\"num\">Site, menor em 30 dias</th></tr></thead><tbody>" +
-      linhas + "</tbody></table></div></div>";
+    return "<div class=\"card\"><h2 style=\"font-family:var(--font-display);margin-top:0;\">Itens da dieta no site hoje</h2>" +
+      "<p class=\"prep-intro\">Atualizado em " + escapeHtml(d.atualizado) + ". O mais barato de cada item (frango, carne e alho pelo kg limpo). Borda verde = mais barato que o menor já pago. Toque para ver o dia a dia e as marcas.</p>" +
+      "<section class=\"cp-grupo\"><div class=\"cards-precos\">" + cards + "</div></section></div>";
   }
   document.getElementById("tab-precos").innerHTML = renderPrecos();
-  function alternarOpcoes(tr) {
-    var prox = tr.nextElementSibling;
-    if (!prox || !prox.classList.contains("opcoes-linha")) return;
-    tr.classList.toggle("aberto");
-    prox.classList.toggle("visivel");
+
+  // Busca da aba Preços: esconde os cards que não casam; se só uma marca dentro do card casa, abre o card.
+  function filtrarPrecos() {
+    var termos = termosBusca(document.getElementById("busca-precos").value), n = 0;
+    document.querySelectorAll("#tab-precos .cp").forEach(function (c) {
+      var ok = casaBusca(c.dataset.busca, termos);
+      c.hidden = !ok;
+      if (ok) n++;
+      if (c.tagName === "DETAILS") c.open = ok && termos.length > 0 && !casaBusca(c.dataset.titulo, termos);
+    });
+    document.querySelectorAll("#tab-precos .cp-grupo").forEach(function (g) {
+      g.hidden = !g.querySelector(".cp:not([hidden])");
+    });
+    document.querySelectorAll("#tab-precos > .card:not(.busca-card)").forEach(function (c) {
+      c.hidden = !c.querySelector(".cp:not([hidden])");
+    });
+    document.getElementById("busca-precos-conta").textContent = termos.length ? n + (n === 1 ? " item" : " itens") : "";
   }
-  document.getElementById("tab-precos").addEventListener("click", function (e) {
-    var tr = e.target.closest("tr.expansivel");
-    if (tr) alternarOpcoes(tr);
-  });
-  document.getElementById("tab-precos").addEventListener("keydown", function (e) {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    var tr = e.target.closest("tr.expansivel");
-    if (tr) { e.preventDefault(); alternarOpcoes(tr); }
-  });
+  document.getElementById("busca-precos").addEventListener("input", filtrarPrecos);
+
+  // ---------- Aba Promoções (promos-koch.js, gerado por get-ofertas.py) ----------
+  // Item: [nome, preço, cheio anunciado, cheio de referência, desconto real, nº campanha, nº departamento,
+  //        Clube K, fim "dd/mm", menor preço antes de hoje, nº de dias antes, histórico [[nº do dia, preço]]]
+  var PROMO_PAGINA = 60;
+  var promoEstado = { mostrar: PROMO_PAGINA };
+  function promoVale(p, P) {
+    var menorVisto = p[10] >= 3 && p[9] != null && p[1] < p[9] - 0.005;
+    return { vale: p[4] >= P.descVale - 0.005 || menorVisto, menorVisto: menorVisto };
+  }
+  function cardPromo(p, P) {
+    var v = promoVale(p, P), desc = Math.round(p[4] * 100), anunciado = p[2] > 0 ? Math.round((1 - p[1] / p[2]) * 100) : 0;
+    var tags = [];
+    if (v.menorVisto) tags.push("<span class=\"tag tag-forte\">menor preço já visto</span>");
+    if (p[7]) tags.push("<span class=\"tag\">🅺 Clube K</span>");
+    if (p[8]) tags.push("<span class=\"tag\">até " + p[8] + "</span>");
+    if (anunciado - desc >= 10) tags.push("<span class=\"tag tag-alerta\">anunciado −" + anunciado + "%, real −" + desc + "%</span>");
+    var hist = p[11].map(function (h) { return [P.dias[h[0]], h[1]]; });
+    var corpo = "<ul class=\"opcoes\">" +
+      "<li><span class=\"op-nome\">Preço cheio de referência</span><span class=\"op-precos\">" + formatBRL(p[3]) +
+        (Math.abs(p[3] - p[2]) > 0.005 ? " (o site diz " + formatBRL(p[2]) + ")" : "") + "</span></li>" +
+      (p[9] != null ? "<li><span class=\"op-nome\">Menor preço antes de hoje</span><span class=\"op-precos\">" + formatBRL(p[9]) + " (" + p[10] + (p[10] === 1 ? " dia" : " dias") + " de histórico)</span></li>"
+                    : "<li><span class=\"op-nome\">Primeira vez que vimos este produto</span><span class=\"op-precos\">sem histórico ainda</span></li>") +
+      (p[5] >= 0 ? "<li><span class=\"op-nome\">Campanha</span><span class=\"op-precos\">" + escapeHtml(P.campanhas[p[5]]) + "</span></li>" : "") +
+      (p[6] >= 0 ? "<li><span class=\"op-nome\">Departamento</span><span class=\"op-precos\">" + escapeHtml(P.deptos[p[6]]) + "</span></li>" : "") +
+      "</ul>" + (hist.length > 1 ? chipsHist(hist, "") : "<p class=\"cp-sub\">Dia a dia: só o preço de hoje até agora.</p>");
+    return "<details class=\"cp" + (v.vale ? " cp-destaque" : "") + "\"><summary class=\"cp-resumo\"><div class=\"cp-topo\"><span class=\"cp-titulo\">" + escapeHtml(p[0]) + "</span>" +
+      "<span class=\"selo selo-desc\">−" + desc + "%</span><span class=\"cp-seta\" aria-hidden=\"true\"></span></div>" +
+      "<div class=\"promo-preco\"><strong>" + formatBRL(p[1]) + "</strong> <s>" + formatBRL(p[3]) + "</s></div>" +
+      (tags.length ? "<div class=\"tags\">" + tags.join("") + "</div>" : "") + "</summary><div class=\"cp-corpo\">" + corpo + "</div></details>";
+  }
+  function renderPromos() {
+    var P = window.PROMOS_KOCH;
+    if (!P || !P.itens) return "<div class=\"card\"><p class=\"prep-intro\">As promoções aparecem aqui depois da próxima busca diária no site.</p></div>";
+    P.itens.forEach(function (p) { p.busca = semAcento(p[0] + " " + (p[5] >= 0 ? P.campanhas[p[5]] : "") + " " + (p[6] >= 0 ? P.deptos[p[6]] : "")); });
+    var deptos = P.deptos.map(function (d, i) { return [d, i]; }).sort(function (a, b) { return a[0].localeCompare(b[0]); });
+    return "<div class=\"card\"><h2 style=\"font-family:var(--font-display);margin-top:0;\">Promoções do site</h2>" +
+      "<p class=\"prep-intro\">" + P.itens.length + " promoções em " + escapeHtml(P.atualizado) + ", do maior para o menor desconto <strong>real</strong> (contra o preço cheio de costume, não o inflado). Borda verde = vale a pena: " + Math.round(P.descVale * 100) + "%+ de desconto real ou menor preço já visto. Toque para ver o dia a dia.</p>" +
+      barraBusca("busca-promos", "Buscar promoção (ex.: fralda, café, sabão)") +
+      "<div class=\"filtros\"><label><input type=\"checkbox\" id=\"promo-vale\"> Só as que valem a pena</label>" +
+      "<select id=\"promo-depto\" aria-label=\"Departamento\"><option value=\"\">Todos os departamentos</option>" +
+      deptos.map(function (d) { return "<option value=\"" + d[1] + "\">" + escapeHtml(d[0]) + "</option>"; }).join("") + "</select>" +
+      "<select id=\"promo-ordem\" aria-label=\"Ordem\"><option value=\"desc\">Maior desconto</option><option value=\"preco\">Menor preço</option></select></div>" +
+      "</div><div class=\"cards-precos promo-lista\" id=\"promo-lista\"></div>" +
+      "<div class=\"mais\"><button type=\"button\" id=\"promo-mais\">Mostrar mais</button></div>";
+  }
+  function listarPromos(reiniciar) {
+    var P = window.PROMOS_KOCH;
+    if (!P || !P.itens) return;
+    if (reiniciar) promoEstado.mostrar = PROMO_PAGINA;
+    var termos = termosBusca(document.getElementById("busca-promos").value);
+    var soVale = document.getElementById("promo-vale").checked;
+    var depto = document.getElementById("promo-depto").value;
+    var lista = P.itens.filter(function (p) {
+      return casaBusca(p.busca, termos) && (!depto || String(p[6]) === depto) && (!soVale || promoVale(p, P).vale);
+    });
+    if (document.getElementById("promo-ordem").value === "preco") lista = lista.slice().sort(function (a, b) { return a[1] - b[1]; });
+    if (termos.length) {  // primeiro quem tem as palavras no nome, depois quem só casa pela campanha ou departamento
+      var noNome = function (p) { return casaBusca(semAcento(p[0]), termos) ? 0 : 1; };
+      lista = lista.map(function (p, i) { return [noNome(p), i, p]; }).sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }).map(function (x) { return x[2]; });
+    }
+    document.getElementById("promo-lista").innerHTML = lista.length
+      ? lista.slice(0, promoEstado.mostrar).map(function (p) { return cardPromo(p, P); }).join("")
+      : "<p class=\"prep-intro\">Nenhuma promoção com esse filtro.</p>";
+    document.getElementById("busca-promos-conta").textContent = lista.length + (lista.length === 1 ? " promoção" : " promoções");
+    var botao = document.getElementById("promo-mais");
+    botao.hidden = lista.length <= promoEstado.mostrar;
+    botao.textContent = "Mostrar mais (" + (lista.length - promoEstado.mostrar) + " restantes)";
+  }
+  document.getElementById("tab-promos").innerHTML = renderPromos();
+  if (window.PROMOS_KOCH) {
+    listarPromos(true);
+    var aoMudar = function () { listarPromos(true); };
+    document.getElementById("busca-promos").addEventListener("input", aoMudar);
+    ["promo-vale", "promo-depto", "promo-ordem"].forEach(function (id) { document.getElementById(id).addEventListener("change", aoMudar); });
+    document.getElementById("promo-mais").addEventListener("click", function () { promoEstado.mostrar += PROMO_PAGINA * 2; listarPromos(false); });
+  }
 
   aplicarChecksSalvos();
   [1, 2, 3, 4].forEach(atualizarProgresso);

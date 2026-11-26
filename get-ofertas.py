@@ -1,8 +1,8 @@
 """
 Busca no Koch (API sense.osuper.com.br, via Playwright) cada item da dieta, com e
 sem promoção, compara (preço de referência = o menor que você já pagou no Komprão,
-aba Preços do index.html), grava o histórico em SQLite, gera ofertas-koch.js
-(lido pela aba Preços do index.html) e avisa no WhatsApp quando vale comprar.
+aba Preços do index.html), grava o histórico em SQLite, gera ofertas-koch.js (aba Preços)
+e promos-koch.js (aba Promoções: todas as promoções do site) e avisa no WhatsApp quando vale comprar.
 
 Preço bom = por kg/L/ovo/un igual ou abaixo da referência do Komprão,
             OU o menor preço do Koch em 30 dias (com 7+ dias de histórico).
@@ -51,6 +51,8 @@ PROMO_EXCLUIR = ["Bebidas Alcoólicas", "Eletro"]   # categorias que não intere
 HEADLESS = os.getenv("HEADLESS") == "1"   # HEADLESS=1 testa sem janela (pode ser bloqueado)
 DB = os.path.join(PASTA, "ofertas.db")
 JS_SAIDA = os.path.join(PASTA, "ofertas-koch.js")
+JS_PROMOS = os.path.join(PASTA, "promos-koch.js")   # aba Promoções do index.html
+DESC_VALE = DESC_FORTE     # aba Promoções: "vale a pena" = desconto real de DESC_FORTE+ ou menor preço já visto
 WA_PERFIL = os.path.join(PASTA, "wa_perfil")
 # Número que recebe os avisos (só dígitos, DDI+DDD+número). Fica no arquivo wa_numero.txt,
 # fora do Git, para não publicar o telefone; a variável de ambiente WA_NUMERO também vale.
@@ -61,8 +63,12 @@ WA_NUMERO = os.getenv("WA_NUMERO") or (
 NAVEGADOR = os.getenv("NAVEGADOR", "chrome")
 
 
-def _opcoes(**kw):
-    """Opções de lançamento com o navegador escolhido (o Chromium do Playwright não precisa de channel)."""
+def _opcoes(visivel=False, **kw):
+    """Opções de lançamento com o navegador escolhido (o Chromium do Playwright não precisa de channel).
+    O navegador abre com janela de verdade (o site e o WhatsApp Web bloqueiam o modo sem janela com
+    mais facilidade), mas fora da tela, para não aparecer. VISIVEL=1 mostra a janela (para depurar)."""
+    if not kw.get("headless") and not visivel and os.getenv("VISIVEL") != "1":
+        kw["args"] = ["--window-position=-32000,-32000"]
     return {**kw, "channel": NAVEGADOR} if NAVEGADOR != "chromium" else kw
 
 # Itens da dieta. Cada item compara TODAS as variações que servem para a mesma coisa
@@ -105,7 +111,7 @@ ALVOS = [
      "excluir": ["suin", "porco", "frango", "almondega", "hamburguer", "pure", "arroz", "perdigao",
                  "soja", "temperad", "recheado", "cordeiro", "ovelha", "cozid", "desfiad",
                  "escondidinho", "molho", "defumad", "costela", "osso"],
-     "ref": 19.13, "unidade": "kg"},
+     "ref": 21.99 / 0.4, "unidade": "kg"},  # cupom 07/11: moída dianteiro Komprão, 400g por R$ 21,99
     # Frango: qualquer corte. Aproveitamento = carne sem osso e sem pele.
     {"nome": "Frango",
      "buscas": ["peito de frango", "file de peito de frango", "sassami", "coxa e sobrecoxa",
@@ -435,13 +441,12 @@ def coletar():
                 page.wait_for_timeout(PAUSA_MS)
                 if len(hits) < SIZE:
                     break
-        # Promoções do site inteiro (a lista da página "Promoções"), do maior desconto para o menor.
-        # Cada página dessa lista leva ~3 s no servidor, então busca 3 por vez e para quando o
-        # desconto cai abaixo de DESC_FORTE (o resto não entra nas ofertas fortes).
+        # Todas as promoções do site (a lista da página "Promoções"), do maior desconto para o menor.
+        # Cada página dessa lista leva ~3 s no servidor, então busca 4 por vez (~3 min no total).
         frm, fim = 0, False
         while not fim and frm < 10000:
             urls = [f"{API}?promotion=true&size={SIZE}&from={f}&search=&sortField=discount&sortOrder=desc"
-                    for f in range(frm, frm + 3 * SIZE, SIZE)]
+                    for f in range(frm, frm + 4 * SIZE, SIZE)]
             res = page.evaluate(
                 """async ({urls, headers}) => Promise.all(urls.map(async url => {
                     const r = await fetch(url, {headers});
@@ -457,9 +462,9 @@ def coletar():
                 hits = json.loads(r["body"]).get("hits", [])
                 for h in hits:
                     itens.setdefault(h["id"], h)
-                if len(hits) < SIZE or (hits[-1]["pricing"].get("discount") or 0) < DESC_FORTE * 100:
+                if len(hits) < SIZE:
                     fim = True
-            frm += 3 * SIZE
+            frm += 4 * SIZE
             page.wait_for_timeout(PAUSA_MS)
         browser.close()
     return list(itens.values())
@@ -613,6 +618,19 @@ def analisar(db, hoje):
     return list(resumo.values())
 
 
+def desconto_real(db, pid, hoje, cheio, atual):
+    """(preço cheio de referência, desconto real). Com 7+ dias de histórico, o cheio de referência
+    é o mais comum dos últimos 60 dias (mediana), se for menor que o de hoje: pega o truque de
+    subir o preço antes de dar o desconto."""
+    hist = sorted(c for (c,) in db.execute(
+        "select preco_cheio from precos where id=? and dia<? and dia>=date(?, '-60 day')",
+        (pid, hoje, hoje)))
+    ref = cheio
+    if len(hist) >= MIN_DIAS_HISTORICO:
+        ref = min(cheio, hist[len(hist) // 2])
+    return ref, (1 - atual / ref if ref else 0)
+
+
 def analisar_promos(db, hoje):
     """Ofertas fortes do site inteiro: desconto real >= DESC_FORTE.
     "Real": se o produto já tem histórico, o preço cheio de referência é o mais comum dos
@@ -625,13 +643,7 @@ def analisar_promos(db, hoje):
     for pid, nome, cheio, atual, campanha, categoria, clube, fim in rows:
         if any(x in (categoria or "") for x in PROMO_EXCLUIR):
             continue
-        hist = sorted(c for (c,) in db.execute(
-            "select preco_cheio from precos where id=? and dia<? and dia>=date(?, '-60 day')",
-            (pid, hoje, hoje)))
-        ref = cheio
-        if len(hist) >= MIN_DIAS_HISTORICO:
-            ref = min(cheio, hist[len(hist) // 2])
-        desc = 1 - atual / ref if ref else 0
+        ref, desc = desconto_real(db, pid, hoje, cheio, atual)
         if desc >= DESC_FORTE - 0.005:
             fortes.append({"nome": nome, "cheio": ref, "atual": atual, "desc": desc,
                            "campanha": campanha, "clube": clube, "fim": fim})
@@ -797,6 +809,10 @@ def gerar_js(db, hoje):
             "menor30": {"produto": min_row[0], "preco": min_row[1], "porUnidade": round(min_row[2], 4),
                         "dia": min_row[3]} if min_row else None,
             # todas as marcas/cortes de hoje, do mais barato ao mais caro (lista que abre ao clicar)
+            # o mais barato de cada dia nos últimos 30 dias (comparativo dia a dia)
+            "hist": [[d, round(v, 4)] for d, v in db.execute(
+                "select dia, min(por_unidade) from dieta where item=? and dia>=date(?, '-30 day') "
+                "group by dia order by dia", (a["nome"], hoje))],
             "opcoes": [{"produto": n, "preco": pr, "cheio": ch, "porUnidade": round(pu, 4), "aprov": ap}
                        for n, pr, ch, pu, ap in db.execute(
                            "select nome, preco, cheio, por_unidade, aprov from dieta where item=? and dia=? "
@@ -817,15 +833,60 @@ def gerar_js(db, hoje):
                 + json.dumps(dados, ensure_ascii=False, indent=1) + ";\n")
 
 
-def _abrir_wa(p):
+def gerar_promos_js(db, hoje):
+    """Escreve promos-koch.js (aba Promoções): todas as promoções de hoje, com o desconto real e
+    o histórico de preço de cada produto (só os dias em que o preço mudou, para o arquivo ficar leve).
+    Cada item é uma lista: [nome, preço, cheio anunciado, cheio de referência, desconto real,
+    nº da campanha, nº do departamento, Clube K (0/1), fim "dd/mm", menor preço antes de hoje,
+    nº de dias com preço antes de hoje, histórico [[nº do dia, preço], ...]]."""
+    rows = db.execute(
+        "select p.id, p.nome, p.preco_cheio, p.preco_atual, m.campanha, m.categoria, m.clube, m.fim "
+        "from promos m join precos p on p.dia=m.dia and p.id=m.id where m.dia=?", (hoje,)).fetchall()
+    dias = [d for (d,) in db.execute(
+        "select distinct dia from precos where dia>=date(?, '-60 day') order by dia", (hoje,))]
+    idx_dia = {d: i for i, d in enumerate(dias)}
+    campanhas, deptos, itens = [], [], []
+
+    def indice(lista, valor):
+        if not valor:
+            return -1
+        if valor not in lista:
+            lista.append(valor)
+        return lista.index(valor)
+
+    for pid, nome, cheio, atual, campanha, categoria, clube, fim in rows:
+        ref, desc = desconto_real(db, pid, hoje, cheio, atual)
+        serie = db.execute("select dia, preco_atual from precos where id=? and dia>=date(?, '-60 day') "
+                           "order by dia", (pid, hoje)).fetchall()
+        antes = [v for d, v in serie if d < hoje]
+        hist, ultimo = [], None
+        for d, v in serie:
+            if ultimo is None or abs(v - ultimo) > 0.005:
+                hist.append([idx_dia[d], v])
+                ultimo = v
+        itens.append([nome, atual, cheio, round(ref, 2), round(desc, 3), indice(campanhas, campanha),
+                      indice(deptos, (categoria or "").split("|")[0]), clube or 0,
+                      f"{fim[8:10]}/{fim[5:7]}" if fim else "", min(antes) if antes else None,
+                      len(antes), hist])
+    itens.sort(key=lambda i: -i[4])
+    dados = {"atualizado": datetime.datetime.now().strftime("%d/%m/%Y %H:%M"),
+             "dias": [f"{d[8:10]}/{d[5:7]}" for d in dias], "campanhas": campanhas, "deptos": deptos,
+             "descVale": DESC_VALE, "itens": itens}
+    with open(JS_PROMOS, "w", encoding="utf-8") as f:
+        f.write("// Gerado por get-ofertas.py; não edite à mão.\nwindow.PROMOS_KOCH = "
+                + json.dumps(dados, ensure_ascii=False, separators=(",", ":")) + ";\n")
+    print(f"  [promos] {len(itens)} promoções em promos-koch.js")
+
+
+def _abrir_wa(p, visivel=False):
     # perfil persistente: a sessão do WhatsApp Web fica salva na pasta wa_perfil
-    return p.chromium.launch_persistent_context(WA_PERFIL, **_opcoes(headless=False, locale="pt-BR"))
+    return p.chromium.launch_persistent_context(WA_PERFIL, **_opcoes(visivel, headless=False, locale="pt-BR"))
 
 
 def login_whatsapp():
     """Rode uma vez: abre o WhatsApp Web para você escanear o QR code."""
     with sync_playwright() as p:
-        ctx = _abrir_wa(p)
+        ctx = _abrir_wa(p, visivel=True)  # precisa ver o QR
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
         page.goto("https://web.whatsapp.com/")
         input("Escaneie o QR, espere as conversas carregarem e aperte Enter aqui... ")
@@ -882,6 +943,7 @@ def main(enviar=True, ir_ao_site=True):
         extras = analisar_extras(db, hoje)
         promos = analisar_promos(db, hoje)
         gerar_js(db, hoje)
+        gerar_promos_js(db, hoje)
         db.close()
         print(f"{len(itens)} produtos gravados; ofertas-koch.js atualizado.\n")
         notificar(montar_mensagem(resumo, extras, datetime.date.today(), promos), enviar)

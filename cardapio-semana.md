@@ -17,7 +17,6 @@ Ovos, carne moída e frango são a base. A variação vem do formato (crepioca, 
 | Ovo (bandeja com 30 a R$ 14,99) | R$ 0,50 cada | R$ 0,08 |
 | Peito de frango com osso (R$ 13,49/kg) | R$ 13,49/kg | R$ 0,08 |
 | Carne moída dianteiro embalada 400 g (R$ 21,99) | R$ 54,97/kg | R$ 0,28 |
-| Carne moída que você conseguiu a R$ 19,13/kg | R$ 19,13/kg | R$ 0,11 |
 
 ## Semana (café 7h | lanche 10h | almoço | lanche 16h | jantar 20h)
 | Dia | Café | Lanche 10h | Almoço | Lanche 16h | Jantar |
