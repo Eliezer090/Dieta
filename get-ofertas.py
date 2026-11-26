@@ -48,6 +48,13 @@ DESC_FORTE = 0.40          # desconto real mínimo para entrar na lista
 MIN_CAMPANHA = 5           # campanha ("Fraldas 50% OFF") vira uma linha só se tiver 5+ itens fortes
 MAX_DESTAQUES = 15         # itens avulsos (fora de campanha) na mensagem
 PROMO_EXCLUIR = ["Bebidas Alcoólicas", "Eletro"]   # categorias que não interessam
+SITE_PROMOS = "https://eliezer090.github.io/Dieta/#promos"   # aba Promoções publicada (link na mensagem)
+# Departamentos na mensagem, nesta ordem (os que não estão aqui vão no fim, em "Outros")
+DEPTOS = [("Mercearia", "🛒"), ("Hortifruti", "🥦"), ("Açougue", "🥩"), ("Frios & Laticínios", "🧀"),
+          ("Padaria & Confeitaria", "🍞"), ("Congelados", "🧊"), ("Alimentação Especial", "🌾"),
+          ("Bebidas", "🥤"), ("Limpeza", "🧽"), ("Higiene & Beleza", "🧴"), ("Mundo Bebê", "👶"),
+          ("Casa & Utilidades", "🏠"), ("Pet Care", "🐾")]
+DEPTO_IGNORAR = ("BLACK FRIDAY", "Grandes Marcas")   # "departamentos" que são vitrines, não seções
 HEADLESS = os.getenv("HEADLESS") == "1"   # HEADLESS=1 testa sem janela (pode ser bloqueado)
 DB = os.path.join(PASTA, "ofertas.db")
 JS_SAIDA = os.path.join(PASTA, "ofertas-koch.js")
@@ -618,6 +625,14 @@ def analisar(db, hoje):
     return list(resumo.values())
 
 
+def depto_principal(categoria):
+    """'BLACK FRIDAY|Limpeza' -> 'Limpeza' (o primeiro departamento que não é vitrine)."""
+    for d in (categoria or "").split("|"):
+        if d and d not in DEPTO_IGNORAR:
+            return d
+    return "Outros"
+
+
 def desconto_real(db, pid, hoje, cheio, atual):
     """(preço cheio de referência, desconto real). Com 7+ dias de histórico, o cheio de referência
     é o mais comum dos últimos 60 dias (mediana), se for menor que o de hoje: pega o truque de
@@ -635,18 +650,18 @@ def analisar_promos(db, hoje):
     """Ofertas fortes do site inteiro: desconto real >= DESC_FORTE.
     "Real": se o produto já tem histórico, o preço cheio de referência é o mais comum dos
     últimos 60 dias (mediana), não o de hoje — pega o truque de subir o preço antes do desconto.
-    Devolve (campanhas, destaques)."""
+    Devolve (campanhas, destaques); campanha = {nome, n, desc, fim, clube, depto, exemplo}."""
     rows = db.execute(
-        "select p.id, p.nome, p.preco_cheio, p.preco_atual, m.campanha, m.categoria, m.clube, m.fim "
-        "from promos m join precos p on p.dia=m.dia and p.id=m.id where m.dia=?", (hoje,)).fetchall()
+        "select p.id, p.nome, p.preco_cheio, p.preco_atual, m.campanha, m.categoria, m.clube, m.fim, "
+        "p.estoque from promos m join precos p on p.dia=m.dia and p.id=m.id where m.dia=?", (hoje,)).fetchall()
     fortes = []
-    for pid, nome, cheio, atual, campanha, categoria, clube, fim in rows:
+    for pid, nome, cheio, atual, campanha, categoria, clube, fim, estoque in rows:
         if any(x in (categoria or "") for x in PROMO_EXCLUIR):
             continue
         ref, desc = desconto_real(db, pid, hoje, cheio, atual)
         if desc >= DESC_FORTE - 0.005:
-            fortes.append({"nome": nome, "cheio": ref, "atual": atual, "desc": desc,
-                           "campanha": campanha, "clube": clube, "fim": fim})
+            fortes.append({"nome": nome, "cheio": ref, "atual": atual, "desc": desc, "estoque": estoque or 0,
+                           "campanha": campanha, "clube": clube, "fim": fim, "depto": depto_principal(categoria)})
     grupos = {}
     for f in fortes:
         if f["campanha"]:
@@ -655,9 +670,13 @@ def analisar_promos(db, hoje):
     for nome, itens in grupos.items():
         if len(itens) >= MIN_CAMPANHA:
             fins = [i["fim"] for i in itens if i["fim"]]
+            deptos = [i["depto"] for i in itens]
             campanhas.append({"nome": nome, "n": len(itens), "desc": max(i["desc"] for i in itens),
                               "fim": max(fins) if fins else None,
-                              "clube": sum(i["clube"] for i in itens) > len(itens) / 2})
+                              "clube": sum(i["clube"] for i in itens) > len(itens) / 2,
+                              "depto": max(set(deptos), key=deptos.count),
+                              # exemplo de preço: o de maior estoque (em geral, o mais vendido)
+                              "exemplo": max(itens, key=lambda i: i["estoque"])})
     campanhas.sort(key=lambda c: (-c["desc"], -c["n"]))
     nomes_camp = {c["nome"] for c in campanhas}
     destaques = sorted((f for f in fortes if f["campanha"] not in nomes_camp),
@@ -716,6 +735,10 @@ def _linha_produto(r, chave, riscado):
     return [topo, f"   _{detalhe}{brl(por_un * fator(a))}/{rotulo(a)}_"]
 
 
+def _corta(txt, limite):
+    return txt if len(txt) <= limite else txt[:limite - 1].rstrip() + "…"
+
+
 def _ate(fim):
     return f" · até {fim[8:10]}/{fim[5:7]}" if fim else ""
 
@@ -760,21 +783,53 @@ def montar_mensagem(resumo, extras, data, promos=((), ())):
             nome_linha = x["e"]["linha"].split(",")[0]
             promo = " 🔥" if x["preco"] < x["cheio"] - 0.005 else ""
             linhas.append(f"• *{nome_linha}* R$ {brl(x['equiv'])} _(pagou {brl(x['e']['pago'])})_{promo}")
-    # Ofertas fortes do site inteiro, fora da lista
+    # Ofertas fortes do site inteiro, por departamento: campanhas (com um exemplo de preço) e avulsos
     campanhas, destaques = promos
     if campanhas or destaques:
-        linhas += ["", f"🏷️ *OFERTAS FORTES DO SITE* ({DESC_FORTE:.0%} ou mais de desconto)"]
+        linhas += ["", "━━━━━━━━━━━━━━━",
+                   "🏷️ *PROMOÇÕES QUE VALEM A PENA NO SITE*",
+                   ]
+        # Fim e Clube K mais comuns vão no cabeçalho; a linha só mostra quando for diferente.
+        todos = campanhas + destaques
+        fins = [x["fim"] for x in todos]
+        fim_comum = max(set(fins), key=fins.count)
+        clube_comum = sum(1 for x in todos if x["clube"]) > len(todos) / 2
+        linhas.append(f"_{DESC_FORTE:.0%} ou mais abaixo do preço de costume"
+                      + (f", valem {_ate(fim_comum)[3:]}" if fim_comum else "")
+                      + (". Preço com CPF no Clube K (passe o CPF no caixa)" if clube_comum else "") + "._")
+
+        def obs(x):
+            t = _ate(x["fim"]) if x["fim"] != fim_comum else ""
+            if clube_comum and not x["clube"]:
+                t += " · sem CPF"
+            elif not clube_comum and x["clube"]:
+                t += " · com CPF 🅺"
+            return t
+
+        # Avulsos quase iguais (mesma 1ª palavra e mesmos preços: sabores, cores) viram uma linha só.
+        juntos = {}
+        for d in destaques:
+            juntos.setdefault((d["depto"], d["nome"].split()[0].lower(), d["atual"], d["cheio"]), []).append(d)
+        destaques = [dict(g[0], mais=len(g) - 1) for g in juntos.values()]
+        ordem = [d for d, _ in DEPTOS]
+        icone = dict(DEPTOS)
+        grupos = {}
         for c in campanhas:
-            ck = " 🅺" if c["clube"] else ""
-            linhas.append(f"• *{c['nome']}* _({c['n']} itens{_ate(c['fim'])})_{ck}")
-        if destaques:
-            if campanhas:
-                linhas.append("_Avulsos:_")
-            for d in destaques:
-                ck = " 🅺" if d["clube"] else ""
-                linhas.append(f"• {d['nome']} *R$ {brl(d['atual'])}* ~{brl(d['cheio'])}~ "
-                              f"-{d['desc']:.0%}{_ate(d['fim'])}{ck}")
-        linhas.append("_🅺 = preço do Clube K: passe o CPF no caixa._")
+            grupos.setdefault(c["depto"], ([], []))[0].append(c)
+        for d in destaques:
+            grupos.setdefault(d["depto"], ([], []))[1].append(d)
+        for depto in sorted(grupos, key=lambda x: ordem.index(x) if x in ordem else len(ordem)):
+            camps, avulsos = grupos[depto]
+            linhas += ["", f"{icone.get(depto, '🏷️')} *{depto.upper()}*"]
+            for c in camps:
+                ex = c["exemplo"]
+                linhas.append(f"• *{c['nome']}* · {c['n']} itens{obs(c)}")
+                linhas.append(f"   _ex.: {_corta(ex['nome'], 38)}_ *R$ {brl(ex['atual'])}* ~{brl(ex['cheio'])}~")
+            for d in avulsos:
+                mais = f" _(+{d['mais']} parecido{'s' if d['mais'] > 1 else ''})_" if d["mais"] else ""
+                linhas.append(f"• {_corta(d['nome'], 45)}{mais} *R$ {brl(d['atual'])}* ~{brl(d['cheio'])}~ "
+                              f"-{d['desc']:.0%}{obs(d)}")
+        linhas += ["", f"📱 *Todas as promoções, com busca:* {SITE_PROMOS}", "━━━━━━━━━━━━━━━"]
     limpos = [a["nome"].lower() for a in ALVOS if a["limpo"]]
     linhas += ["",
                f"_{', '.join(limpos[:-1]).capitalize()} e {limpos[-1]}: preço por kg limpo (sem osso, pele "
@@ -865,7 +920,7 @@ def gerar_promos_js(db, hoje):
                 hist.append([idx_dia[d], v])
                 ultimo = v
         itens.append([nome, atual, cheio, round(ref, 2), round(desc, 3), indice(campanhas, campanha),
-                      indice(deptos, (categoria or "").split("|")[0]), clube or 0,
+                      indice(deptos, depto_principal(categoria)), clube or 0,
                       f"{fim[8:10]}/{fim[5:7]}" if fim else "", min(antes) if antes else None,
                       len(antes), hist])
     itens.sort(key=lambda i: -i[4])

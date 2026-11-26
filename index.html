@@ -1660,6 +1660,10 @@
     });
   });
 
+  // Link direto para uma aba: index.html#promos, #precos... (usado na mensagem do WhatsApp)
+  var abaDoLink = document.querySelector(".tab[data-tab=\"" + location.hash.slice(1) + "\"]");
+  if (abaDoLink) abaDoLink.click();
+
   // Checkbox (delegação)
   document.addEventListener("change", function (e) {
     var cb = e.target.closest("input[type=checkbox][data-key]");
